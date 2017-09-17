@@ -1,0 +1,35 @@
+/*
+ * Card.cpp
+ *
+ *  Created on: Sep 17, 2017
+ *      Author: dylanfernandes
+ */
+
+#include "Card.h"
+#include <string>
+#include <iostream>
+using namespace std;
+Card::Card() {
+	// TODO Auto-generated constructor stub
+
+}
+
+Card::Card(cardType c, std::string t)
+{
+	this->val = c;
+	this->territory = t;
+}
+
+Card:: void getTerritory()
+{
+
+}
+Card:: cardType getCard()
+{
+	return val;
+}
+
+Card::~Card() {
+	// TODO Auto-generated destructor stub
+}
+

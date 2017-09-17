@@ -1,0 +1,27 @@
+/*
+ * Card.h
+ *
+ *  Created on: Sep 17, 2017
+ *      Author: dylanfernandes
+ */
+
+#ifndef CARD_H_
+#define CARD_H_
+#include <string>
+#include <iostream>
+using namespace std;
+
+class Card {
+private:
+	cardType val;
+	string territory;
+public:
+
+	Card();
+	Card(cardType, string);
+	cardType getCardVal();
+	string getTerritory();
+	virtual ~Card();
+};
+
+#endif /* CARD_H_ */

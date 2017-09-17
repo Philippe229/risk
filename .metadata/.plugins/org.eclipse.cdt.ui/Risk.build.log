@@ -1,0 +1,19 @@
+01:24:02 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Card.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Card.d" -MT"Card.o" -o "Card.o" "../Card.cpp"
+Finished building: ../Card.cpp
+ 
+Building target: Risk
+Invoking: MacOS X C++ Linker
+g++  -o "Risk"  ./Card.o   
+Undefined symbols for architecture x86_64:
+  "_main", referenced from:
+     implicit entry/start for main executable
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [Risk] Error 1
+
+01:24:03 Build Finished (took 859ms)
+

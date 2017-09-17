@@ -1,0 +1,20 @@
+/*
+ * Card.h
+ *
+ *  Created on: Sep 17, 2017
+ *      Author: dylanfernandes
+ */
+
+#ifndef CARD_H_
+#define CARD_H_
+
+class Card {
+private:
+	enum cardType {Infantry, Artillery, Cavalry};
+public:
+	Card();
+	cardType getCard();
+	virtual ~Card();
+};
+
+#endif /* CARD_H_ */

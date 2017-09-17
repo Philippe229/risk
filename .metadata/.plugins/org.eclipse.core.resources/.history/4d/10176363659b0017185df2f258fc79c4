@@ -1,0 +1,21 @@
+/*
+ * Card.cpp
+ *
+ *  Created on: Sep 17, 2017
+ *      Author: dylanfernandes
+ */
+
+#include "Card.h"
+
+Card::Card() {
+	// TODO Auto-generated constructor stub
+
+}
+
+Card::getCard()
+{
+	}
+Card::~Card() {
+	// TODO Auto-generated destructor stub
+}
+

@@ -1,0 +1,107 @@
+01:13:48 **** Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Card.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Card.d" -MT"Card.o" -o "Card.o" "../Card.cpp"
+../Card.cpp:23:7: error: expected unqualified-id
+Card:: void getTerritory()
+      ^
+../Card.cpp:27:8: error: 'cardType' is a private member of 'Card'
+Card:: cardType getCard()
+       ^
+../Card.h:16:7: note: declared private here
+        enum cardType {Infantry, Artillery, Cavalry};
+             ^
+2 errors generated.
+make: *** [Card.o] Error 1
+01:14:03 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Card.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Card.d" -MT"Card.o" -o "Card.o" "../Card.cpp"
+../Card.cpp:23:1: error: no type named 'string' in 'Card'; did you mean simply 'string'?
+Card:: string getTerritory()
+^~~~~~~~~~~~~
+string
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iosfwd:194:65: note: 'string' declared here
+typedef basic_string<char, char_traits<char>, allocator<char> > string;
+                                                                ^
+../Card.cpp:27:8: error: 'cardType' is a private member of 'Card'
+Card:: cardType getCard()
+       ^
+../Card.h:16:7: note: declared private here
+        enum cardType {Infantry, Artillery, Cavalry};
+             ^
+2 errors generated.
+make: *** [Card.o] Error 1
+01:18:40 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Card.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Card.d" -MT"Card.o" -o "Card.o" "../Card.cpp"
+../Card.cpp:24:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+../Card.cpp:25:1: error: unknown type name 'cardType'
+cardType Card::getCardVal()
+^
+1 warning and 1 error generated.
+make: *** [Card.o] Error 1
+01:19:48 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Card.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Card.d" -MT"Card.o" -o "Card.o" "../Card.cpp"
+../Card.cpp:26:1: error: unknown type name 'cardType'; did you mean 'Card::cardType'?
+cardType Card::getCardVal()
+^~~~~~~~
+Card::cardType
+../Card.h:16:7: note: 'Card::cardType' declared here
+        enum cardType {Infantry, Artillery, Cavalry};
+             ^
+1 error generated.
+make: *** [Card.o] Error 1
+01:21:09 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Card.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Card.d" -MT"Card.o" -o "Card.o" "../Card.cpp"
+../Card.cpp:26:1: error: unknown type name 'cardType'; did you mean 'Card::cardType'?
+cardType Card::getCardVal()
+^~~~~~~~
+Card::cardType
+../Card.h:16:7: note: 'Card::cardType' declared here
+        enum cardType {Infantry, Artillery, Cavalry};
+             ^
+1 error generated.
+make: *** [Card.o] Error 1
+01:22:52 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Card.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Card.d" -MT"Card.o" -o "Card.o" "../Card.cpp"
+../Card.cpp:26:1: error: unknown type name 'cardType'; did you mean 'Card::cardType'?
+cardType Card::getCardVal()
+^~~~~~~~
+Card::cardType
+../Card.h:16:7: note: 'Card::cardType' declared here
+        enum cardType {Infantry, Artillery, Cavalry};
+             ^
+1 error generated.
+make: *** [Card.o] Error 1
+01:24:02 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Card.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Card.d" -MT"Card.o" -o "Card.o" "../Card.cpp"
+Finished building: ../Card.cpp
+ 
+Building target: Risk
+Invoking: MacOS X C++ Linker
+g++  -o "Risk"  ./Card.o   
+Undefined symbols for architecture x86_64:
+  "_main", referenced from:
+     implicit entry/start for main executable
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [Risk] Error 1
