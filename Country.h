@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include "Player.h"
 
 using namespace std;
@@ -14,6 +15,7 @@ private:
 	string country_name;
 	string continent_name;
 	Player owner;
+	vector<Country> borderingCountries;
 
 public:
 	Country();
@@ -21,6 +23,7 @@ public:
 	Country(string, string);
 	Country(string, string, Player);
 	Country(string, string, Player, int);
+	Country(string, string, Player, int, vector<Country>);
 
 	int getArmies();
 	string getName();
@@ -31,6 +34,7 @@ public:
 	void addArmies(int);
 	void removeArmies(int);
 	void setOwner(Player);
+	void addBorderingCountry(Country);
 };
 
 #endif

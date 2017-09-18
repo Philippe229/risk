@@ -1,18 +1,12 @@
 #include "Map.h"
 
 Map::Map() {
-
 }
 
-Map::Map(vector<Country> c, vector<Border> b) {
+Map::Map(vector<Country> c) {
 	countries = c;
-	borders = b;
 }
 
 vector<Country> Map::getCountries() {
 	return countries;
-}
-
-vector<Border> Map::getBorders() {
-	return borders;
 }

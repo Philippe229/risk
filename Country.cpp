@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include "Country.h"
 
 using namespace std;
@@ -33,6 +34,14 @@ Country::Country(string country, string continent, Player player, int army) {
 	owner = player;
 }
 
+Country::Country(string country, string continent, Player player, int army, vector<Country> countries) {
+	armies = army;
+	country_name = country;
+	continent_name = continent;
+	owner = player;
+	borderingCountries = countries;
+}
+
 int Country::getArmies() {
 	return armies;
 }
@@ -59,4 +68,8 @@ void Country::removeArmies(int army) {
 
 void Country::setOwner(Player player) {
 	owner = player;
+}
+
+void Country::addBorderingCountry(Country country) {
+	borderingCountries.push_back(country);
 }
