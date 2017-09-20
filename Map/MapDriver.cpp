@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
 
-#include "Player.h"
-#include "Map/Country.h"
-#include "Map/Map.h"
+#include "../Player.h"
+#include "Country.h"
+#include "Map.h"
 
 using namespace std;
 
