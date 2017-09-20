@@ -18,6 +18,7 @@ public:
 	Map(vector<Country>);
 
 	vector<Country> getCountries();
+	void addCountry(Country);
 };
 
 #endif

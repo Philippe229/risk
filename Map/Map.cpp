@@ -10,3 +10,7 @@ Map::Map(vector<Country> c) {
 vector<Country> Map::getCountries() {
 	return countries;
 }
+
+void Map::addCountry(Country c) {
+	countries.push_back(c);
+}
