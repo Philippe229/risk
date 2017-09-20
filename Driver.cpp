@@ -2,8 +2,8 @@
 #include <vector>
 
 #include "Player.h"
-#include "Country.h"
-#include "Map.h"
+#include "Map/Country.h"
+#include "Map/Map.h"
 
 using namespace std;
 
