@@ -13,16 +13,13 @@
 using namespace std;
 
 class DiceRollingFacility {
+	private:
+		int diceRollHistory[6] = {0,0,0,0,0,0};
+		void registerResult(int result);
 
-private:
-	int diceRollHistory[6] = {0,0,0,0,0,0};
-	void registerResult(int result);
-
-public:
-	DiceRollingFacility(int seed);
-	vector<int> throwDie(int numOfDie);
-	void printDiceRollHistory();
-
+	public:
+		vector<int> throwDie(int numOfDie);
+		void printDiceRollHistory();
 };
 
 #endif /* DICEROLLINGFACILITY_H_ */

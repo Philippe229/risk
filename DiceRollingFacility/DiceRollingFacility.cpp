@@ -6,14 +6,9 @@
  */
 
 #include <iostream>
-#include <cstdlib>
 using namespace std;
 #include "DiceRollingFacility.h"
 #include "Dice.h"
-
-DiceRollingFacility::DiceRollingFacility(int seed) {
-	srand(seed);
-}
 
 vector<int> DiceRollingFacility::throwDie(int numOfDie) {
 	vector<int> results;
@@ -24,7 +19,7 @@ vector<int> DiceRollingFacility::throwDie(int numOfDie) {
 	}
 
 	while (numOfDie > 0) {
-		Dice dice(rand());
+		Dice dice;
 		int result = dice.roll();
 		this -> registerResult(result);
 		results.push_back(result);

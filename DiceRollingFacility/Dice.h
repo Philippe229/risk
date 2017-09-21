@@ -9,13 +9,8 @@
 #define DICE_H_
 
 class Dice {
-
-	private:
-
 	public:
-		Dice(int seed);
 		int roll();
-
 };
 
 #endif /* DICE_H_ */
