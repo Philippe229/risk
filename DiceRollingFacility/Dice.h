@@ -8,22 +8,13 @@
 #ifndef DICE_H_
 #define DICE_H_
 
-#include <iostream>
-#include <vector>
-using namespace std;
-
 class Dice {
 
-private:
-	vector<int> results; // list or array instead?
-	int best;
+	private:
 
-public:
-	Dice();
-	~Dice();
-	int roll();
-	int getResults();
-	int getBest();
+	public:
+		Dice(int seed);
+		int roll();
 
 };
 

@@ -7,25 +7,13 @@
 
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
 using namespace std;
 #include "Dice.h"
 
-Dice::Dice() {
-	cout << "Dice constructed" << endl;
-	srand(time(0)); // seed a random number with time
-	best = -1;
-}
-
-Dice::~Dice() {
-	cout << "Dice destroyed" << endl;
+Dice::Dice(int seed) {
+	srand(seed);
 }
 
 int Dice::roll() {
-	return rand() % 6 + 1; // biased?
-}
-
-
-int Dice::getBest() {
-	return best;
+	return rand() % 6 + 1;
 }
