@@ -1,0 +1,34 @@
+/*
+ * Hand.cpp
+ *
+ *  Created on: Sep 20, 2017
+ *      Author: dylanfernandes
+ */
+
+#include "Hand.h"
+#include <iostream>
+using namespace std;
+
+Hand::Hand(int max) {
+	maxCards = max;
+	numCards = 0;
+
+}
+
+void Hand::PrintHand()
+{
+	Card::cardType type;
+	for(int i = 0;i < maxCards;i++)
+	{
+		if(!cards.empty() && i < cards.size())
+		{
+			type = cards.at(i).getCardVal();
+			cout << "Card Slot " << i+1 << ": " << type << endl;
+		}
+	}
+}
+
+Hand::~Hand() {
+	// TODO Auto-generated destructor stub
+}
+

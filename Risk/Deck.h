@@ -10,6 +10,7 @@
 #include "Card.h"
 #include <vector>
 using namespace std;
+
 class Deck {
 public:
 	Deck(int);

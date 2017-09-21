@@ -8,6 +8,7 @@
 #include "Deck.h"
 #include <stdlib.h>
 #include <iostream>
+#include <stdlib.h>
 using namespace std;
 
 Deck::Deck(int numCountries) {
@@ -40,7 +41,8 @@ Card Deck::Draw()
 {
 	if(!cards.empty())
 	{
-		Card draw = cards.pop_back();
+		Card::Card draw = cards.back();
+		cards.pop_back();
 		Card::cardType type = draw.getCardVal();
 		if(type == Card::Infantry)
 		{
@@ -60,7 +62,7 @@ Card Deck::Draw()
 	{
 		cout << "The deck is empty\n";
 	}
-	return NULL;
+	exit (EXIT_FAILURE);
 }
 void Deck::PrintStatistics()
 {

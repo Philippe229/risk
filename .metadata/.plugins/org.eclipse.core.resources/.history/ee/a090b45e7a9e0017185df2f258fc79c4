@@ -1,0 +1,18 @@
+/*
+ * Hand.cpp
+ *
+ *  Created on: Sep 20, 2017
+ *      Author: dylanfernandes
+ */
+
+#include "Hand.h"
+
+Hand::Hand() {
+	// TODO Auto-generated constructor stub
+
+}
+
+Hand::~Hand() {
+	// TODO Auto-generated destructor stub
+}
+

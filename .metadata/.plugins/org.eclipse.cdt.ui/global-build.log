@@ -241,3 +241,341 @@ Undefined symbols for architecture x86_64:
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 make: *** [Risk] Error 1
+00:33:35 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Card.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Card.d" -MT"Card.o" -o "Card.o" "../Card.cpp"
+Finished building: ../Card.cpp
+ 
+Building file: ../Deck.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Deck.d" -MT"Deck.o" -o "Deck.o" "../Deck.cpp"
+../Deck.cpp:43:8: error: no viable conversion from 'void' to 'Card'
+                Card draw = cards.pop_back();
+                     ^      ~~~~~~~~~~~~~~~~
+../Card.h:14:7: note: candidate constructor (the implicit copy constructor) not viable: cannot convert argument of incomplete type 'void' to 'const Card &' for 1st argument
+class Card {
+      ^
+../Card.h:17:2: note: candidate constructor not viable: cannot convert argument of incomplete type 'void' to 'Card::cardType' for 1st argument
+        Card(cardType);
+        ^
+../Deck.cpp:63:9: error: no viable conversion from returned value of type 'long' to function return type 'Card'
+        return NULL;
+               ^~~~
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/include/stddef.h:100:18: note: expanded from macro 'NULL'
+#    define NULL __null
+                 ^~~~~~
+../Card.h:14:7: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'long' to 'const Card &' for 1st argument
+class Card {
+      ^
+../Card.h:17:2: note: candidate constructor not viable: no known conversion from 'long' to 'Card::cardType' for 1st argument
+        Card(cardType);
+        ^
+2 errors generated.
+make: *** [Deck.o] Error 1
+00:34:20 **** Clean-only build of configuration Debug for project Risk ****
+make clean 
+rm -rf  ./Card.o ./Deck.o ./Hand.o  ./Card.d ./Deck.d ./Hand.d  Risk
+ 
+00:34:27 **** Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Card.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Card.d" -MT"Card.o" -o "Card.o" "../Card.cpp"
+Finished building: ../Card.cpp
+ 
+Building file: ../Deck.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Deck.d" -MT"Deck.o" -o "Deck.o" "../Deck.cpp"
+../Deck.cpp:43:8: error: no viable conversion from 'void' to 'Card'
+                Card draw = cards.pop_back();
+                     ^      ~~~~~~~~~~~~~~~~
+../Card.h:14:7: note: candidate constructor (the implicit copy constructor) not viable: cannot convert argument of incomplete type 'void' to 'const Card &' for 1st argument
+class Card {
+      ^
+../Card.h:17:2: note: candidate constructor not viable: cannot convert argument of incomplete type 'void' to 'Card::cardType' for 1st argument
+        Card(cardType);
+        ^
+../Deck.cpp:63:9: error: no viable conversion from returned value of type 'long' to function return type 'Card'
+        return NULL;
+               ^~~~
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/include/stddef.h:100:18: note: expanded from macro 'NULL'
+#    define NULL __null
+                 ^~~~~~
+../Card.h:14:7: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'long' to 'const Card &' for 1st argument
+class Card {
+      ^
+../Card.h:17:2: note: candidate constructor not viable: no known conversion from 'long' to 'Card::cardType' for 1st argument
+        Card(cardType);
+        ^
+2 errors generated.
+make: *** [Deck.o] Error 1
+00:37:17 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Deck.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Deck.d" -MT"Deck.o" -o "Deck.o" "../Deck.cpp"
+../Deck.cpp:64:9: error: no viable conversion from returned value of type 'long' to function return type 'Card'
+        return NULL;
+               ^~~~
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/include/stddef.h:100:18: note: expanded from macro 'NULL'
+#    define NULL __null
+                 ^~~~~~
+../Card.h:14:7: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'long' to 'const Card &' for 1st argument
+class Card {
+      ^
+../Card.h:17:2: note: candidate constructor not viable: no known conversion from 'long' to 'Card::cardType' for 1st argument
+        Card(cardType);
+        ^
+1 error generated.
+make: *** [Deck.o] Error 1
+00:38:45 **** Clean-only build of configuration Debug for project Risk ****
+make clean 
+rm -rf  ./Card.o ./Deck.o ./Hand.o  ./Card.d ./Deck.d ./Hand.d  Risk
+ 
+00:38:52 **** Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Card.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Card.d" -MT"Card.o" -o "Card.o" "../Card.cpp"
+Finished building: ../Card.cpp
+ 
+Building file: ../Deck.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Deck.d" -MT"Deck.o" -o "Deck.o" "../Deck.cpp"
+../Deck.cpp:41:7: error: no matching constructor for initialization of 'Card'
+        Card draw;
+             ^
+../Card.h:17:2: note: candidate constructor not viable: requires 1 argument, but 0 were provided
+        Card(cardType);
+        ^
+../Card.h:14:7: note: candidate constructor (the implicit copy constructor) not viable: requires 1 argument, but 0 were provided
+class Card {
+      ^
+../Card.h:18:2: note: candidate constructor not viable: requires 2 arguments, but 0 were provided
+        Card(cardType, string);
+        ^
+1 error generated.
+make: *** [Deck.o] Error 1
+00:40:21 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Deck.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Deck.d" -MT"Deck.o" -o "Deck.o" "../Deck.cpp"
+../Deck.cpp:41:7: error: no viable conversion from 'Card *' to 'Card'
+        Card draw = new Card(Card::Artillery);
+             ^      ~~~~~~~~~~~~~~~~~~~~~~~~~
+../Card.h:14:7: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'Card *' to 'const Card &' for 1st argument; dereference the argument with *
+class Card {
+      ^
+../Card.h:17:2: note: candidate constructor not viable: no known conversion from 'Card *' to 'Card::cardType' for 1st argument
+        Card(cardType);
+        ^
+1 error generated.
+make: *** [Deck.o] Error 1
+00:42:39 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Deck.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Deck.d" -MT"Deck.o" -o "Deck.o" "../Deck.cpp"
+../Deck.cpp:64:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+1 warning generated.
+Finished building: ../Deck.cpp
+ 
+Building file: ../Hand.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Hand.d" -MT"Hand.o" -o "Hand.o" "../Hand.cpp"
+In file included from ../Hand.cpp:8:
+../Hand.h:20:15: error: implicit instantiation of undefined template 'std::__1::vector<Card, std::__1::allocator<Card> >'
+        vector<Card> cards;
+                     ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iosfwd:200:29: note: template is declared here
+class _LIBCPP_TYPE_VIS_ONLY vector;
+                            ^
+1 error generated.
+make: *** [Hand.o] Error 1
+00:43:20 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Hand.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Hand.d" -MT"Hand.o" -o "Hand.o" "../Hand.cpp"
+../Hand.cpp:67:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+../Hand.cpp:71:17: error: no viable conversion from 'value_type' (aka 'Card') to 'Card::cardType'
+        Card::cardType type1 = cards.at(c1-1); //index starts at 0
+                       ^       ~~~~~~~~~~~~~~
+../Hand.cpp:72:17: error: no viable conversion from 'value_type' (aka 'Card') to 'Card::cardType'
+        Card::cardType type2 = cards.at(c2-1);
+                       ^       ~~~~~~~~~~~~~~
+../Hand.cpp:73:17: error: no viable conversion from 'value_type' (aka 'Card') to 'Card::cardType'
+        Card::cardType type3 = cards.at(c3-1);
+                       ^       ~~~~~~~~~~~~~~
+1 warning and 3 errors generated.
+make: *** [Hand.o] Error 1
+00:44:20 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Hand.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Hand.d" -MT"Hand.o" -o "Hand.o" "../Hand.cpp"
+../Hand.cpp:67:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+1 warning generated.
+Finished building: ../Hand.cpp
+ 
+Building target: Risk
+Invoking: MacOS X C++ Linker
+g++  -o "Risk"  ./Card.o ./Deck.o ./Hand.o   
+Undefined symbols for architecture x86_64:
+  "Card::~Card()", referenced from:
+      Deck::Deck(int) in Deck.o
+      Deck::Draw() in Deck.o
+  "vtable for Card", referenced from:
+      Card::Card(Card::cardType) in Card.o
+      Card::Card(Card::cardType, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >) in Card.o
+      Card::Card(Card const&) in Deck.o
+  NOTE: a missing vtable usually means the first non-inline virtual member function has no definition.
+  "_main", referenced from:
+     implicit entry/start for main executable
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [Risk] Error 1
+00:45:26 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Hand.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Hand.d" -MT"Hand.o" -o "Hand.o" "../Hand.cpp"
+Finished building: ../Hand.cpp
+ 
+Building target: Risk
+Invoking: MacOS X C++ Linker
+g++  -o "Risk"  ./Card.o ./Deck.o ./Hand.o   
+Undefined symbols for architecture x86_64:
+  "Card::~Card()", referenced from:
+      Deck::Deck(int) in Deck.o
+      Deck::Draw() in Deck.o
+  "vtable for Card", referenced from:
+      Card::Card(Card::cardType) in Card.o
+      Card::Card(Card::cardType, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >) in Card.o
+      Card::Card(Card const&) in Deck.o
+  NOTE: a missing vtable usually means the first non-inline virtual member function has no definition.
+  "_main", referenced from:
+     implicit entry/start for main executable
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [Risk] Error 1
+00:49:17 **** Clean-only build of configuration Debug for project Risk ****
+make clean 
+rm -rf  ./Card.o ./Deck.o ./Hand.o  ./Card.d ./Deck.d ./Hand.d  Risk
+ 
+00:49:21 **** Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Card.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Card.d" -MT"Card.o" -o "Card.o" "../Card.cpp"
+Finished building: ../Card.cpp
+ 
+Building file: ../Deck.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Deck.d" -MT"Deck.o" -o "Deck.o" "../Deck.cpp"
+Finished building: ../Deck.cpp
+ 
+Building file: ../Hand.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Hand.d" -MT"Hand.o" -o "Hand.o" "../Hand.cpp"
+Finished building: ../Hand.cpp
+ 
+Building target: Risk
+Invoking: MacOS X C++ Linker
+g++  -o "Risk"  ./Card.o ./Deck.o ./Hand.o   
+Undefined symbols for architecture x86_64:
+  "Card::~Card()", referenced from:
+      Deck::Deck(int) in Deck.o
+      Deck::Draw() in Deck.o
+  "vtable for Card", referenced from:
+      Card::Card(Card::cardType) in Card.o
+      Card::Card(Card::cardType, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >) in Card.o
+      Card::Card(Card const&) in Deck.o
+  NOTE: a missing vtable usually means the first non-inline virtual member function has no definition.
+  "_main", referenced from:
+     implicit entry/start for main executable
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [Risk] Error 1
+00:57:15 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Hand.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Hand.d" -MT"Hand.o" -o "Hand.o" "../Hand.cpp"
+Finished building: ../Hand.cpp
+ 
+Building file: ../driver.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"driver.d" -MT"driver.o" -o "driver.o" "../driver.cpp"
+../driver.cpp:13:7: error: no viable conversion from 'Deck *' to 'Deck'
+        Deck myDeck = new Deck(COUNTRIES);
+             ^        ~~~~~~~~~~~~~~~~~~~
+../Deck.h:14:7: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'Deck *' to 'const Deck &' for 1st argument; dereference the argument with *
+class Deck {
+      ^
+../Deck.h:16:2: note: candidate constructor not viable: no known conversion from 'Deck *' to 'int' for 1st argument
+        Deck(int);
+        ^
+../driver.cpp:14:7: error: no viable conversion from 'Hand *' to 'Hand'
+        Hand myHand = new Hand(HANDSIZE);
+             ^        ~~~~~~~~~~~~~~~~~~
+../Hand.h:13:7: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'Hand *' to 'const Hand &' for 1st argument; dereference the argument with *
+class Hand {
+      ^
+../Hand.h:15:2: note: candidate constructor not viable: no known conversion from 'Hand *' to 'int' for 1st argument
+        Hand(int);
+        ^
+2 errors generated.
+make: *** [driver.o] Error 1
+00:57:40 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../driver.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"driver.d" -MT"driver.o" -o "driver.o" "../driver.cpp"
+Finished building: ../driver.cpp
+ 
+Building target: Risk
+Invoking: MacOS X C++ Linker
+g++  -o "Risk"  ./Card.o ./Deck.o ./Hand.o ./driver.o   
+Undefined symbols for architecture x86_64:
+  "Card::~Card()", referenced from:
+      Deck::Deck(int) in Deck.o
+      Deck::Draw() in Deck.o
+      _main in driver.o
+  "vtable for Card", referenced from:
+      Card::Card(Card::cardType) in Card.o
+      Card::Card(Card::cardType, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >) in Card.o
+      Card::Card(Card const&) in Deck.o
+      Card::Card(Card const&) in Hand.o
+  NOTE: a missing vtable usually means the first non-inline virtual member function has no definition.
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [Risk] Error 1
+00:57:50 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building target: Risk
+Invoking: MacOS X C++ Linker
+g++  -o "Risk"  ./Card.o ./Deck.o ./Hand.o ./driver.o   
+Undefined symbols for architecture x86_64:
+  "Card::~Card()", referenced from:
+      Deck::Deck(int) in Deck.o
+      Deck::Draw() in Deck.o
+      _main in driver.o
+  "vtable for Card", referenced from:
+      Card::Card(Card::cardType) in Card.o
+      Card::Card(Card::cardType, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >) in Card.o
+      Card::Card(Card const&) in Deck.o
+      Card::Card(Card const&) in Hand.o
+  NOTE: a missing vtable usually means the first non-inline virtual member function has no definition.
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [Risk] Error 1

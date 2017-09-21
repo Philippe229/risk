@@ -1,19 +1,22 @@
-22:22:22 **** Incremental Build of configuration Debug for project Risk ****
+00:57:50 **** Incremental Build of configuration Debug for project Risk ****
 make all 
-Building file: ../Deck.cpp
-Invoking: GCC C++ Compiler
-g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Deck.d" -MT"Deck.o" -o "Deck.o" "../Deck.cpp"
-Finished building: ../Deck.cpp
- 
 Building target: Risk
 Invoking: MacOS X C++ Linker
-g++  -o "Risk"  ./Card.o ./Deck.o   
+g++  -o "Risk"  ./Card.o ./Deck.o ./Hand.o ./driver.o   
 Undefined symbols for architecture x86_64:
-  "_main", referenced from:
-     implicit entry/start for main executable
+  "Card::~Card()", referenced from:
+      Deck::Deck(int) in Deck.o
+      Deck::Draw() in Deck.o
+      _main in driver.o
+  "vtable for Card", referenced from:
+      Card::Card(Card::cardType) in Card.o
+      Card::Card(Card::cardType, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >) in Card.o
+      Card::Card(Card const&) in Deck.o
+      Card::Card(Card const&) in Hand.o
+  NOTE: a missing vtable usually means the first non-inline virtual member function has no definition.
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 make: *** [Risk] Error 1
 
-22:22:23 Build Finished (took 1s.232ms)
+00:57:50 Build Finished (took 118ms)
 

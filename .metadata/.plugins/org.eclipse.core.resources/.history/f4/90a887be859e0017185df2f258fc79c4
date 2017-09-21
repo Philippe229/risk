@@ -1,0 +1,25 @@
+/*
+ * Hand.h
+ *
+ *  Created on: Sep 20, 2017
+ *      Author: dylanfernandes
+ */
+
+#ifndef HAND_H_
+#define HAND_H_
+#include "Card.h"
+
+class Hand {
+public:
+	Hand(int);
+	virtual ~Hand();
+	void SelectExchange();
+	bool VerifyExchange(int, int, int);
+	void PrintHand();
+private:
+	vector<Card> cards;
+	int numCards;
+	int maxCards;
+};
+
+#endif /* HAND_H_ */
