@@ -1,7 +1,6 @@
 #ifndef COUNTRY_H_
 #define COUNTRY_H_
 
-#include <iostream>
 #include <string>
 #include <vector>
 #include "../Player.h"
@@ -15,7 +14,7 @@ private:
 	string country_name;
 	string continent_name;
 	Player owner;
-	vector<Country> borderingCountries;
+	vector<shared_ptr<Country> > borderingCountries;
 
 public:
 	Country();
@@ -23,7 +22,7 @@ public:
 	Country(string, string);
 	Country(string, string, Player);
 	Country(string, string, Player, int);
-	Country(string, string, Player, int, vector<Country>);
+	Country(string, string, Player, int, vector<shared_ptr<Country> >);
 
 	int getArmies();
 	string getName();
@@ -34,7 +33,7 @@ public:
 	void addArmies(int);
 	void removeArmies(int);
 	void setOwner(Player);
-	void addBorderingCountry(Country);
+	void addBorderingCountry(shared_ptr<Country>);
 };
 
 #endif

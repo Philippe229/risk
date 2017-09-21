@@ -9,6 +9,8 @@ class MapLoader {
 private:
     Map loadedMap;
     string readLine(ifstream&);
+    string strip(string);
+    vector<string> split(string, char);
 
 public:
     MapLoader();
