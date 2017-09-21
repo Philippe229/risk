@@ -1,0 +1,19 @@
+/*
+ * Deck.h
+ *
+ *  Created on: Sep 17, 2017
+ *      Author: dylanfernandes
+ */
+
+#ifndef DECK_H_
+#define DECK_H_
+#include <vector>
+class Deck {
+public:
+	Deck();
+	virtual ~Deck();
+private:
+	std::vector<Card> cards;
+};
+
+#endif /* DECK_H_ */

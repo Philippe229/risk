@@ -1,0 +1,17 @@
+/*
+ * Deck.h
+ *
+ *  Created on: Sep 17, 2017
+ *      Author: dylanfernandes
+ */
+
+#ifndef DECK_H_
+#define DECK_H_
+
+class Deck {
+public:
+	Deck();
+	virtual ~Deck();
+};
+
+#endif /* DECK_H_ */

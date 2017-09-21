@@ -1,0 +1,39 @@
+/*
+ * Deck.cpp
+ *
+ *  Created on: Sep 17, 2017
+ *      Author: dylanfernandes
+ */
+
+#include "Deck.h"
+#include <stdlib.h>
+
+Deck::Deck(int numCountries) {
+	numInfantry = numCountries/3;
+	numArtillery = numCountries/3;
+	numCavalry = numCountries/3;
+	int random;
+	for(int i = 0;i< numCountries;i++)
+	{
+		random = rand() % 3;
+		if(random == 0 && numInfantry > 0)
+		{
+			cards.push_back(Card(Card::Infantry));
+			numInfantry--;
+		}
+		else if (random == 1 && numArtillery > 0)
+		{
+			cards.push_back(Card(Card::Artillery));
+			numArtillery--;
+		}
+		else if (random == 2 && numCavalry > 0)
+		{
+			cards.push_back(Card(Card::Cavalry));
+		}
+	}
+}
+
+Deck::~Deck() {
+	// TODO Auto-generated destructor stub
+}
+

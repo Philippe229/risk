@@ -7,8 +7,8 @@
 
 #include "Card.h"
 
-Card::Card() {
-	// TODO Auto-generated constructor stub
+Card::Card(cardType c) {
+	this->val = c;
 
 }
 
@@ -28,7 +28,4 @@ Card::cardType Card::getCardVal()
 	return this->val;
 }
 
-Card::~Card() {
-	// TODO Auto-generated destructor stub
-}
 

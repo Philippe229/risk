@@ -1,0 +1,18 @@
+/*
+ * Deck.cpp
+ *
+ *  Created on: Sep 17, 2017
+ *      Author: dylanfernandes
+ */
+
+#include "Deck.h"
+
+Deck::Deck() {
+	// TODO Auto-generated constructor stub
+
+}
+
+Deck::~Deck() {
+	// TODO Auto-generated destructor stub
+}
+

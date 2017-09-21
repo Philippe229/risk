@@ -14,7 +14,7 @@ using namespace std;
 class Card {
 public:
 	enum cardType {Infantry, Artillery, Cavalry};
-	Card();
+	Card(cardType);
 	Card(cardType, string);
 	cardType getCardVal();
 	string getTerritory();

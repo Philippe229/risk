@@ -105,3 +105,139 @@ Undefined symbols for architecture x86_64:
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 make: *** [Risk] Error 1
+16:50:51 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Card.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Card.d" -MT"Card.o" -o "Card.o" "../Card.cpp"
+Finished building: ../Card.cpp
+ 
+Building file: ../Deck.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Deck.d" -MT"Deck.o" -o "Deck.o" "../Deck.cpp"
+In file included from ../Deck.cpp:8:
+../Deck.h:16:2: error: no template named 'vector'; did you mean 'std::vector'?
+        vector<Card> cards;
+        ^~~~~~
+        std::vector
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:458:29: note: 'std::vector' declared here
+class _LIBCPP_TYPE_VIS_ONLY vector
+                            ^
+In file included from ../Deck.cpp:8:
+../Deck.h:16:9: error: use of undeclared identifier 'Card'
+        vector<Card> cards;
+               ^
+../Deck.h:16:15: warning: private field 'cards' is not used [-Wunused-private-field]
+        vector<Card> cards;
+                     ^
+1 warning and 2 errors generated.
+make: *** [Deck.o] Error 1
+16:51:52 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Deck.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Deck.d" -MT"Deck.o" -o "Deck.o" "../Deck.cpp"
+In file included from ../Deck.cpp:8:
+../Deck.h:17:9: error: use of undeclared identifier 'Card'
+        vector<Card> cards;
+               ^
+../Deck.h:17:15: warning: private field 'cards' is not used [-Wunused-private-field]
+        vector<Card> cards;
+                     ^
+1 warning and 1 error generated.
+make: *** [Deck.o] Error 1
+16:52:51 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Deck.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Deck.d" -MT"Deck.o" -o "Deck.o" "../Deck.cpp"
+Finished building: ../Deck.cpp
+ 
+Building target: Risk
+Invoking: MacOS X C++ Linker
+g++  -o "Risk"  ./Card.o ./Deck.o   
+Undefined symbols for architecture x86_64:
+  "_main", referenced from:
+     implicit entry/start for main executable
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [Risk] Error 1
+21:40:32 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Deck.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Deck.d" -MT"Deck.o" -o "Deck.o" "../Deck.cpp"
+Finished building: ../Deck.cpp
+ 
+Building target: Risk
+Invoking: MacOS X C++ Linker
+g++  -o "Risk"  ./Card.o ./Deck.o   
+Undefined symbols for architecture x86_64:
+  "_main", referenced from:
+     implicit entry/start for main executable
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [Risk] Error 1
+22:06:23 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Card.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Card.d" -MT"Card.o" -o "Card.o" "../Card.cpp"
+Finished building: ../Card.cpp
+ 
+Building file: ../Deck.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Deck.d" -MT"Deck.o" -o "Deck.o" "../Deck.cpp"
+../Deck.cpp:21:20: error: reference to type 'const value_type' (aka 'const Card') could not bind to an rvalue of type 'Card *'
+                        cards.push_back(new Card(Infantry));
+                                        ^~~~~~~~~~~~~~~~~~
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:686:62: note: passing argument to parameter '__x' here
+    _LIBCPP_INLINE_VISIBILITY void push_back(const_reference __x);
+                                                             ^
+1 error generated.
+make: *** [Deck.o] Error 1
+22:20:36 **** Clean-only build of configuration Debug for project Risk ****
+make clean 
+rm -rf  ./Card.o ./Deck.o  ./Card.d ./Deck.d  Risk
+ 
+22:20:42 **** Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Card.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Card.d" -MT"Card.o" -o "Card.o" "../Card.cpp"
+Finished building: ../Card.cpp
+ 
+Building file: ../Deck.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Deck.d" -MT"Deck.o" -o "Deck.o" "../Deck.cpp"
+../Deck.cpp:37:7: error: expected unqualified-id
+Deck::void PrintStatistics()
+      ^
+1 error generated.
+make: *** [Deck.o] Error 1
+22:21:21 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Deck.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Deck.d" -MT"Deck.o" -o "Deck.o" "../Deck.cpp"
+../Deck.cpp:37:12: error: out-of-line definition of 'PrintStatistics' does not match any declaration in 'Deck'
+void Deck::PrintStatistics()
+           ^~~~~~~~~~~~~~~
+1 error generated.
+make: *** [Deck.o] Error 1
+22:22:22 **** Incremental Build of configuration Debug for project Risk ****
+make all 
+Building file: ../Deck.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Deck.d" -MT"Deck.o" -o "Deck.o" "../Deck.cpp"
+Finished building: ../Deck.cpp
+ 
+Building target: Risk
+Invoking: MacOS X C++ Linker
+g++  -o "Risk"  ./Card.o ./Deck.o   
+Undefined symbols for architecture x86_64:
+  "_main", referenced from:
+     implicit entry/start for main executable
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [Risk] Error 1
