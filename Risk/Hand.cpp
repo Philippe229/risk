@@ -13,6 +13,7 @@ using namespace std;
 Hand::Hand(int max){
 	maxCards = max;
 	numCards = 0;
+	exchange = 3; //3 cards needed to get armies
 
 }
 
@@ -25,7 +26,7 @@ void Hand::getCard(Card c)
 void Hand::PrintHand()
 {
 	cout << "Current Hand"<< endl;
-	cout << "____________"<< endl;
+	cout << "************"<< endl;
 	for(int i = 0;i < maxCards;i++)
 	{
 		if(!cards.empty() && i < cards.size())
@@ -50,7 +51,7 @@ void Hand::PrintHand()
 
 bool Hand::positionTaken(int position, int exchanges[])
 {
-	for(int i = 0;i < 3;i++)
+	for(int i = 0;i < exchange;i++)
 	{
 		if(exchanges[i] == position)
 			return false;
@@ -84,7 +85,7 @@ int Hand::verifyInput(int numIteration, int exchanges[])
 		}
 		else
 		{
-			for(int i = 0;i < 3;++i )
+			for(int i = 0;i < exchange;++i )
 			{
 				if(exchanges[i] == -1)
 				{

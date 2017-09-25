@@ -15,14 +15,24 @@ int armies = 5;
 int playerArmies = 0;
 int main (int argc, char *argv[])
 {
-	cout << "Here" << endl;
+	cout << "Deck content" << endl;
+	cout << "++++++++++++" << endl;
 	Deck myDeck = Deck(COUNTRIES);
-	Hand myHand = Hand(HANDSIZE);
-	myHand.getCard(myDeck.Draw());
-	myHand.getCard(myDeck.Draw());
-	myHand.getCard(myDeck.Draw());
-	myHand.getCard(myDeck.Draw());
-	myHand.getCard(myDeck.Draw());
+	Hand myHand = Hand(COUNTRIES);
+	//Hand demoHand = Hand(HANDSIZE);
+	for(int i = 0;i < COUNTRIES;i++)
+	{
+		myHand.getCard(myDeck.Draw());
+	}
+	myDeck.PrintStatistics();
+	cout << "Hand demo" << endl;
+	cout << "+++++++++" << endl;
+	myDeck = Deck(COUNTRIES);
+	myHand = Hand(HANDSIZE);
+	for(int i = 0;i < HANDSIZE;i++)
+	{
+		myHand.getCard(myDeck.Draw());
+	}
 	if(myHand.SelectExchange())
 	{
 		playerArmies = playerArmies + armies;
@@ -30,6 +40,5 @@ int main (int argc, char *argv[])
 		armies++;
 
 	}
-	myDeck.PrintStatistics();
 	myHand.PrintHand();
 }

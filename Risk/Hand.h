@@ -24,6 +24,7 @@ private:
 	vector<Card> cards;
 	int numCards;
 	int maxCards;
+	int exchange;
 };
 
 #endif /* HAND_H_ */

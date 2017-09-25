@@ -41,7 +41,6 @@ Deck::Deck(int numCountries) {
 		else
 			i--;
 	}
-	cout << "test";
 }
 Card Deck::Draw()
 {
