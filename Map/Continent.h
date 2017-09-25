@@ -11,13 +11,13 @@ class Continent {
 private:
     int worth;
     string name;
-    vector<shared_ptr<Country> > countries;
+    vector<Country*> countries;
 public:
     Continent(int);
     Continent(int, string);
-    Continent(int, string, vector<shared_ptr<Country> >);
+    Continent(int, string, vector<Country*>);
 
-    void addCountry(shared_ptr<Country>);
+    void addCountry(Country*);
     string getName();
     int getWorth();
 };

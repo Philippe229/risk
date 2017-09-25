@@ -9,13 +9,13 @@ Continent::Continent(int w, string n) {
     name = n;
 }
 
-Continent::Continent(int w, string n, vector<shared_ptr<Country> > cs) {
+Continent::Continent(int w, string n, vector<Country*> cs) {
     worth = w;
     name = n;
     countries = cs;
 }
 
-void Continent::addCountry(shared_ptr<Country> c) {
+void Continent::addCountry(Country* c) {
     countries.push_back(c);
 }
 

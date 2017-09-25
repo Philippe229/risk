@@ -75,9 +75,9 @@ void MapLoader::parseMap(string textFileName) {
 
         // Only parse valid lines with format [continent]=[value]
         if (continentInfo.size() == 2) {
-            shared_ptr<Continent> continent;
+            Continent* continent;
             try {
-                continent = shared_ptr<Continent> (new Continent(stoi(continentInfo[1]), continentInfo[0]));
+                continent = new Continent(stoi(continentInfo[1]), continentInfo[0]);
             } catch (invalid_argument e) {
                 throw invalid_argument("Expected integer value for continent but got something else.");
             }
@@ -99,7 +99,7 @@ void MapLoader::parseMap(string textFileName) {
             vector<string> countryInfo = this->split(line, ',');
 
             if (countryInfo.size() > 4) {
-                shared_ptr<Country> country (new Country(countryInfo[0], countryInfo[3]));
+                Country* country = new Country(countryInfo[0], countryInfo[3]);
 
                 // Add country to it's respective continent
                 bool addedToContinent = false;

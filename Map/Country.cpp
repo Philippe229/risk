@@ -33,7 +33,7 @@ Country::Country(string country, string continent, Player player, int army) {
 	owner = player;
 }
 
-Country::Country(string country, string continent, Player player, int army, vector<shared_ptr<Country> > countries) {
+Country::Country(string country, string continent, Player player, int army, vector<Country*> countries) {
 	armies = army;
 	country_name = country;
 	continent_name = continent;
@@ -69,6 +69,6 @@ void Country::setOwner(Player player) {
 	owner = player;
 }
 
-void Country::addBorderingCountry(shared_ptr<Country> country) {
+void Country::addBorderingCountry(Country* country) {
 	borderingCountries.push_back(country);
 }

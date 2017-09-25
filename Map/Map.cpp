@@ -3,27 +3,27 @@
 Map::Map() {
 }
 
-Map::Map(vector<shared_ptr<Country> > c) {
+Map::Map(vector<Country*> c) {
 	countries = c;
 }
 
-Map::Map(vector<shared_ptr<Country> > co, vector<shared_ptr<Continent> > con) {
+Map::Map(vector<Country*> co, vector<Continent*> con) {
 	countries = co;
 	continents = con;
 }
 
-vector<shared_ptr<Country> > Map::getCountries() {
+vector<Country*> Map::getCountries() {
 	return countries;
 }
 
-vector<shared_ptr<Continent> > Map::getContinents() {
+vector<Continent*> Map::getContinents() {
 	return continents;
 }
 
-void Map::addCountry(shared_ptr<Country> c) {
+void Map::addCountry(Country* c) {
 	countries.push_back(c);
 }
 
-void Map::addContinent(shared_ptr<Continent> c) {
+void Map::addContinent(Continent* c) {
 	continents.push_back(c);
 }

@@ -12,18 +12,18 @@ using namespace std;
 class Map {
 
 private:
-	vector<shared_ptr<Country> > countries;
-	vector<shared_ptr<Continent> > continents;
+	vector<Country*> countries;
+	vector<Continent*> continents;
 
 public:
 	Map();
-	Map(vector<shared_ptr<Country> >);
-	Map(vector<shared_ptr<Country> >, vector<shared_ptr<Continent> >);
+	Map(vector<Country*>);
+	Map(vector<Country*>, vector<Continent*>);
 
-	vector<shared_ptr<Country> > getCountries();
-	vector<shared_ptr<Continent> > getContinents();
-	void addCountry(shared_ptr<Country>);
-	void addContinent(shared_ptr<Continent>);
+	vector<Country*> getCountries();
+	vector<Continent*> getContinents();
+	void addCountry(Country*);
+	void addContinent(Continent*);
 };
 
 #endif

@@ -17,14 +17,14 @@ int main() {
 	countries.push_back(Country("England", "Europe", *roosevelt, 5));
 	countries.push_back(Country("China", "Asia", *gandhi, 20));
 
-	countries[0].addBorderingCountry(countries[1]);
-	countries[1].addBorderingCountry(countries[0]);
-	countries[1].addBorderingCountry(countries[2]);
-	countries[2].addBorderingCountry(countries[1]);
-	countries[2].addBorderingCountry(countries[3]);
-	countries[3].addBorderingCountry(countries[2]);
-	countries[3].addBorderingCountry(countries[0]);
-	countries[0].addBorderingCountry(countries[3]);
+	countries[0].addBorderingCountry(&countries[1]);
+	countries[1].addBorderingCountry(&countries[0]);
+	countries[1].addBorderingCountry(&countries[2]);
+	countries[2].addBorderingCountry(&countries[1]);
+	countries[2].addBorderingCountry(&countries[3]);
+	countries[3].addBorderingCountry(&countries[2]);
+	countries[3].addBorderingCountry(&countries[0]);
+	countries[0].addBorderingCountry(&countries[3]);
 
 	Map *world = new Map(countries);
 	world->getCountries();
