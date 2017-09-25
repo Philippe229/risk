@@ -11,10 +11,16 @@
 using namespace std;
 
 MapLoader::MapLoader() {
+    loadedMap = new Map();
 }
 
 MapLoader::MapLoader(string textFileName) {
+    loadedMap = new Map();
     parseMap(textFileName);
+}
+
+MapLoader::~MapLoader() {
+    delete loadedMap;
 }
 
 // Helper function for getting whole lines without carriage returns
@@ -49,14 +55,17 @@ vector<string> MapLoader::split(string s, char delim) {
     return result;
 }
 
-Map MapLoader::getMap() {
+Map* MapLoader::getMap() {
     return loadedMap;
 }
 
 void MapLoader::parseMap(string textFileName) {
     string line;
     ifstream fileReader(textFileName);
-    Map gameMap;
+    if (loadedMap != nullptr) {
+        delete loadedMap;
+        loadedMap = new Map();
+    }
 
     // Verify that [Map] exists but skip over it to continents
     if ((line = this->readLine(fileReader)) != "[Map]") {
@@ -81,7 +90,7 @@ void MapLoader::parseMap(string textFileName) {
             } catch (invalid_argument e) {
                 throw invalid_argument("Expected integer value for continent but got something else.");
             }
-            gameMap.addContinent(continent);
+            loadedMap->addContinent(continent);
         }
     } 
 
@@ -103,10 +112,10 @@ void MapLoader::parseMap(string textFileName) {
 
                 // Add country to it's respective continent
                 bool addedToContinent = false;
-                for (int i = 0; i < gameMap.getContinents().size(); i++) {
-                    if (gameMap.getContinents()[i]->getName() == countryInfo[3]) {
+                for (int i = 0; i < loadedMap->getContinents().size(); i++) {
+                    if (loadedMap->getContinents()[i]->getName() == countryInfo[3]) {
                         addedToContinent = true;
-                        gameMap.getContinents()[i]->addCountry(country);
+                        loadedMap->getContinents()[i]->addCountry(country);
                         break;
                     }
                 }
@@ -115,7 +124,7 @@ void MapLoader::parseMap(string textFileName) {
                     throw invalid_argument("Map file is invalid, continent for country '" + countryInfo[0] + "' does not exist.");
                 }
 
-                gameMap.addCountry(country);
+                loadedMap->addCountry(country);
 
                 // Add bordering countries for later processing
                 vector<string> bordering;
@@ -137,21 +146,20 @@ void MapLoader::parseMap(string textFileName) {
             string borderingCountryName = borderingCountries[countryIndex][borderingCountryIndex];
 
             bool addedBorderingCountry = false;
-            for (int allCountriesIndex = 0; allCountriesIndex < gameMap.getCountries().size(); allCountriesIndex++) {
-                if (gameMap.getCountries()[allCountriesIndex]->getName() == borderingCountryName) {
+            for (int allCountriesIndex = 0; allCountriesIndex < loadedMap->getCountries().size(); allCountriesIndex++) {
+                if (loadedMap->getCountries()[allCountriesIndex]->getName() == borderingCountryName) {
                     addedBorderingCountry = true;
-                    gameMap.getCountries()[countryIndex]->addBorderingCountry(gameMap.getCountries()[allCountriesIndex]);
+                    loadedMap->getCountries()[countryIndex]->addBorderingCountry(loadedMap->getCountries()[allCountriesIndex]);
                     break;
                 }
             }
             
             if (!addedBorderingCountry) {
                 throw invalid_argument("Map file is invalid, bordering country '" + borderingCountryName + "' "
-                                       "for country '" + gameMap.getCountries()[countryIndex]->getName() + "' does not exist");
+                                       "for country '" + loadedMap->getCountries()[countryIndex]->getName() + "' does not exist");
             }
         }
     }
 
-    loadedMap = gameMap;
     fileReader.close();
 }

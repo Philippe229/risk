@@ -19,6 +19,7 @@ public:
 	Map();
 	Map(vector<Country*>);
 	Map(vector<Country*>, vector<Continent*>);
+	~Map();
 
 	vector<Country*> getCountries();
 	vector<Continent*> getContinents();

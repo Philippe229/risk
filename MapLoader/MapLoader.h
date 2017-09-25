@@ -7,7 +7,7 @@
 
 class MapLoader {
 private:
-    Map loadedMap;
+    Map* loadedMap;
     string readLine(ifstream&);
     string strip(string);
     vector<string> split(string, char);
@@ -15,8 +15,9 @@ private:
 public:
     MapLoader();
     MapLoader(string);
+    ~MapLoader();
 
-    Map getMap();
+    Map* getMap();
     void parseMap(string);
 };
 
