@@ -7895,3 +7895,18 @@ Caused by: java.net.UnknownHostException: Dylans-MacBook-Pro.local: nodename nor
 
 !ENTRY org.eclipse.cdt.core 1 0 2017-09-17 00:42:48.577
 !MESSAGE Indexed 'Risk' (0 sources, 0 headers) in 0.004 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.launch 4 104 2017-09-21 11:26:57.623
+!MESSAGE Program file does not exist
+
+!ENTRY org.eclipse.cdt.launch 4 104 2017-09-21 11:35:55.071
+!MESSAGE Program file does not exist
+
+!ENTRY org.eclipse.cdt.launch 4 104 2017-09-21 11:36:58.163
+!MESSAGE Program file does not exist
+
+!ENTRY org.eclipse.cdt.launch 4 104 2017-09-21 11:41:29.769
+!MESSAGE Program file does not exist
+
+!ENTRY org.eclipse.cdt.launch 4 104 2017-09-21 11:42:58.086
+!MESSAGE Program file does not exist

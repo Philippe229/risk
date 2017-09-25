@@ -8,6 +8,7 @@
 #ifndef CARD_H_
 #define CARD_H_
 #include <string>
+#include <map>
 #include <iostream>
 using namespace std;
 
@@ -18,10 +19,11 @@ public:
 	Card(cardType, string);
 	cardType getCardVal();
 	string getTerritory();
-	virtual ~Card();
+	// virtual ~Card();
 private:
 	cardType val;
 	string territory;
+	map<int,string> enumName;
 };
 
 #endif /* CARD_H_ */

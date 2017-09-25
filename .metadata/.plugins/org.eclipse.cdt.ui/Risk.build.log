@@ -1,4 +1,4 @@
-00:57:50 **** Incremental Build of configuration Debug for project Risk ****
+13:18:28 **** Incremental Build of configuration Debug for project Risk ****
 make all 
 Building target: Risk
 Invoking: MacOS X C++ Linker
@@ -18,5 +18,5 @@ ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 make: *** [Risk] Error 1
 
-00:57:50 Build Finished (took 118ms)
+13:18:29 Build Finished (took 319ms)
 

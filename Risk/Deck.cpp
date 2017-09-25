@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <stdlib.h>
+#include <time.h> 
 using namespace std;
 
 Deck::Deck(int numCountries) {
@@ -17,7 +18,9 @@ Deck::Deck(int numCountries) {
 	numArtillery = numCountries/3;
 	numCavalry = numCountries/3;
 	int random;
-	for(int i = 0;i< numCountries;i++)
+	int i;
+	srand (time(NULL));
+	for(i = 0;i< numCountries;i++)
 	{
 		random = rand() % 3;
 		if(random == 0 && numInfantry > 0)
@@ -35,7 +38,10 @@ Deck::Deck(int numCountries) {
 			cards.push_back(Card(Card::Cavalry));
 			numCavalry--;
 		}
+		else
+			i--;
 	}
+	cout << "test";
 }
 Card Deck::Draw()
 {
@@ -66,11 +72,13 @@ Card Deck::Draw()
 }
 void Deck::PrintStatistics()
 {
+	cout << "Deck Statistics" << endl;
+	cout << "***************" << endl;
 	cout << "Number of Infantry: " << numInfantry << "\n";
 	cout << "Number of Artillery: " << numArtillery << "\n";
 	cout << "Number of Cavalry: " << numCavalry << "\n";
 }
-Deck::~Deck() {
-	// TODO Auto-generated destructor stub
-}
+// Deck::~Deck() {
+// 	// TODO Auto-generated destructor stub
+// }
 

@@ -13,12 +13,14 @@
 class Hand {
 public:
 	Hand(int);
-	virtual ~Hand();
+	// virtual ~Hand();
 	bool SelectExchange();
+	int verifyInput(int,int[]);
 	bool VerifyExchange(int, int, int);
 	void PrintHand();
 	void getCard(Card);
 private:
+	bool positionTaken(int, int[]);
 	vector<Card> cards;
 	int numCards;
 	int maxCards;

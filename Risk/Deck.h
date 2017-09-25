@@ -14,7 +14,7 @@ using namespace std;
 class Deck {
 public:
 	Deck(int);
-	virtual ~Deck();
+	// virtual ~Deck();
 	Card Draw();
 	void PrintStatistics();
 private:
