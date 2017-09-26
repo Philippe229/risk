@@ -46,7 +46,7 @@ Card Deck::Draw()
 {
 	if(!cards.empty())
 	{
-		Card::Card draw = cards.back();
+		Card draw = cards.back();
 		cards.pop_back();
 		Card::cardType type = draw.getCardVal();
 		if(type == Card::Infantry)
