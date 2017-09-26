@@ -35,6 +35,9 @@
 /Debug/
 .settings/
 .cproject
+
+# Misc
+/.metadata/
+/test.dSYM/
 .DS_Store
 /Default/
-.vscode
