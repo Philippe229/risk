@@ -40,3 +40,5 @@
 /.metadata/
 /.vscode/
 /test.dSYM/
+.DS_Store
+/Default/
