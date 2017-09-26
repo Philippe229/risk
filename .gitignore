@@ -35,3 +35,8 @@
 /Debug/
 .settings/
 .cproject
+
+# Misc
+/.metadata/
+/.vscode/
+/test.dSYM/
