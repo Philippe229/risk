@@ -35,8 +35,14 @@
 /Debug/
 .settings/
 .cproject
+<<<<<<< HEAD
 
 # Misc
 /.metadata/
 /.vscode/
 /test.dSYM/
+=======
+.DS_Store
+/Default/
+.vscode
+>>>>>>> origin
