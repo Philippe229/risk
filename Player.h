@@ -16,7 +16,8 @@ class Country;
 class Player {
 
 private:
-	string player_name;
+	string name;
+	int unplaced_armies;
 	vector<Country*> countries;
 	DiceRollingFacility* dices;
 	Hand* hand;
@@ -28,15 +29,18 @@ public:
 	Player(string, vector<Country*>);
 
 	string getName();
+	int getArmies();
 	vector<Country*> getCountries();
-	Hand* getHand();
+
+	void addArmies(int); // armies to be placed
 	void addCountry(Country*);
-	void setHand(Hand*);
+	void removeCountry(Country*);
+	void addArmiesToCountry(int, Country*);
+	void removeArmiesFromCountry(int, Country*);
 
 	void reinforce();
 	void attack();
 	void fortify();
-
 };
 
 #endif

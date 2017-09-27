@@ -29,6 +29,9 @@ int main() {
 	Map *world = new Map(countries);
 	world->getCountries();
 
-	cout << "end";
+	for (auto& country : world->getCountries()) {
+		cout << country->getName() << endl;
+	}
+
 	return 0;
 }
