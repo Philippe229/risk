@@ -19,7 +19,6 @@ public:
 	Card(cardType, string);
 	cardType getCardVal();
 	string getTerritory();
-	// virtual ~Card();
 private:
 	cardType val;
 	string territory;

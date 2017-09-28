@@ -14,6 +14,7 @@ using namespace std;
 
 Deck::Deck(int numCountries) {
 	size = numCountries;
+	// set the number of cards for each according to the number of countries
 	numInfantry = numCountries/3;
 	numArtillery = numCountries/3;
 	numCavalry = numCountries/3;
@@ -22,6 +23,7 @@ Deck::Deck(int numCountries) {
 	srand (time(NULL));
 	for(i = 0;i< numCountries;i++)
 	{
+		// set the type of card randomly
 		random = rand() % 3;
 		if(random == 0 && numInfantry > 0)
 		{
@@ -77,7 +79,5 @@ void Deck::PrintStatistics()
 	cout << "Number of Artillery: " << numArtillery << "\n";
 	cout << "Number of Cavalry: " << numCavalry << "\n";
 }
-// Deck::~Deck() {
-// 	// TODO Auto-generated destructor stub
-// }
+
 

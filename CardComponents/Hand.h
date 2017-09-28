@@ -13,7 +13,6 @@
 class Hand {
 public:
 	Hand(int);
-	// virtual ~Hand();
 	bool SelectExchange();
 	int verifyInput(int,int[]);
 	bool VerifyExchange(int, int, int);
