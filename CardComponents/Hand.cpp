@@ -14,7 +14,8 @@ using namespace std;
 Hand::Hand(int max){
 	maxCards = max;
 	numCards = 0;
-	exchange = 3; //3 cards needed to get armies
+	// 3 cards needed to get armies
+	exchange = 3; 
 
 }
 
@@ -59,7 +60,7 @@ bool Hand::positionTaken(int position, int exchanges[])
 	}
 	return true;
 }
-//if true, units will be given to player in the main driver
+// if true, units will be given to player in the main driver
 int Hand::verifyInput(int numIteration, int exchanges[])
 {
 	bool notGood = true;
@@ -69,7 +70,8 @@ int Hand::verifyInput(int numIteration, int exchanges[])
 	{
 		cout << "Select Card " << numIteration << ": ";
 		cin >> raw;
-		if(cin) //handle decimal input
+		 // handle decimal input
+		if(cin)
 		{
 			fractpart = modf (raw, &intpart);
 			input = (int)intpart;
@@ -79,11 +81,14 @@ int Hand::verifyInput(int numIteration, int exchanges[])
 				continue;
 			}
 		}
-		if(!cin) // or if(cin.fail())
+		// or if(cin.fail())
+		if(!cin)
 		{
 			cout << "Invalid Input! Number not numeric" << endl;
-			cin.clear(); // reset failbit
-			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //skip bad input
+			// reset failbit
+			cin.clear(); 
+			// skip bad input
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
 		}
 		else if(input < 1 || input > maxCards)
 		{
@@ -111,7 +116,8 @@ int Hand::verifyInput(int numIteration, int exchanges[])
 }
 bool Hand::SelectExchange()
 {
-	int exchanges[3] = {-1,-1,-1}; //set exchange as not assigned
+	// set exchange as not assigned
+	int exchanges[3] = {-1,-1,-1}; 
 	int card1;
 	int card2;
 	int card3;
@@ -124,7 +130,7 @@ bool Hand::SelectExchange()
 		card3 = verifyInput(3,exchanges);
 		if(VerifyExchange(card1,card2,card3))
 		{
-			//to erase latter elements first
+			// to erase latter elements first
 			if(card2 < card3)
 				swap(card2,card3);
 			if(card1 < card2)
@@ -149,16 +155,18 @@ bool Hand::SelectExchange()
 
 bool Hand::VerifyExchange(int c1, int c2, int c3)
 {
-
-	Card::cardType type1 = cards.at(c1-1).getCardVal(); //index starts at 0
+	// index starts at 0
+	Card::cardType type1 = cards.at(c1-1).getCardVal();
 	Card::cardType type2 = cards.at(c2-1).getCardVal();
 	Card::cardType type3 = cards.at(c3-1).getCardVal();
 
-	if(type1 == type2 && type2 == type3)  //same card type
+	// same card type
+	if(type1 == type2 && type2 == type3)  
 	{
 		return true;
 	}
-	if(type1 != type2 && type1 != type3 && type2 != type3) //unique card type
+	// unique card type
+	if(type1 != type2 && type1 != type3 && type2 != type3) 
 	{
 		return true;
 	}
