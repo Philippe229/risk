@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include "../Player.h"
+#include "../Player/Player.h"
 #include "Country.h"
 #include "Continent.h"
 

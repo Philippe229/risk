@@ -4,9 +4,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Map/Country.h"
-#include "CardComponents/Hand.h"
-#include "DiceRollingFacility/DiceRollingFacility.h"
+#include "../Map/Country.h"
+#include "../CardComponents/Hand.h"
+#include "../CardComponents/Card.h"
+#include "../DiceRollingFacility/DiceRollingFacility.h"
 
 using namespace std;
 
@@ -37,7 +38,10 @@ public:
 	void removeCountry(Country*);
 	void addArmiesToCountry(int, Country*);
 	void removeArmiesFromCountry(int, Country*);
+	void rollDie(); // for a1 demo
+	void showCards(); // for a1 demo
 
+	// 4. each player has: reinforce(), attack(), fortify() interface;
 	void reinforce();
 	void attack();
 	void fortify();

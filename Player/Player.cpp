@@ -68,19 +68,12 @@ void Player::removeCountry(Country* c) {
 	}
 }
 
-void Player::reinforce() {
-	unplaced_armies += (countries.size() / 3); // # countries bonus
-	if (hand->SelectExchange()) {
-		unplaced_armies++; // hardcoded for demo
-	}
-	this->addArmiesToCountry(unplaced_armies, countries[0]); // hardcoded for demo
-}
-
-void Player::attack() {
+// for demo purposes
+void Player::rollDie() {
 	dices->throwDie(3);
 	dices->printDiceRollHistory();
 }
 
-void Player::fortify() {
-	this->addArmiesToCountry(unplaced_armies, countries[0]);
+void Player::showCards() {
+	hand->PrintHand();
 }
