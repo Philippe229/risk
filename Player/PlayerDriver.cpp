@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "Player.h"
 #include "../Map/Map.h"
 #include "../MapLoader/MapLoader.h"
@@ -7,6 +9,8 @@
 using namespace std;
 
 int main(int argc, char **argv) {
+
+	srand(time(0));
 
 	try {
 		cout << "loading map using map loader..." << endl;
@@ -43,6 +47,7 @@ int main(int argc, char **argv) {
 
 		cout << "\n3. each player has their own dice facility;" << endl;
 		one->rollDie();
+		cout << endl;
 		two->rollDie();
 
 	} catch (invalid_argument e) {

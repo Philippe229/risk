@@ -20,7 +20,6 @@ Deck::Deck(int numCountries) {
 	numCavalry = numCountries/3;
 	int random;
 	int i;
-	srand (time(NULL));
 	for(i = 0;i< numCountries;i++)
 	{
 		// set the type of card randomly

@@ -7,6 +7,8 @@
 #include "Deck.h"
 #include "Hand.h"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 const int COUNTRIES = 60;
@@ -15,6 +17,8 @@ int armies = 5;
 int playerArmies = 0;
 int main (int argc, char *argv[])
 {
+	srand(time(0));
+
 	cout << "Deck content" << endl;
 	cout << "++++++++++++" << endl;
 	Deck myDeck = Deck(COUNTRIES);
