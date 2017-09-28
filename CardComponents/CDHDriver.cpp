@@ -19,7 +19,6 @@ int main (int argc, char *argv[])
 	cout << "++++++++++++" << endl;
 	Deck myDeck = Deck(COUNTRIES);
 	Hand myHand = Hand(COUNTRIES);
-	//Hand demoHand = Hand(HANDSIZE);
 	for(int i = 0;i < COUNTRIES;i++)
 	{
 		myHand.getCard(myDeck.Draw());

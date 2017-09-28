@@ -8,12 +8,14 @@
 #include "Hand.h"
 #include <iostream>
 #include <algorithm>
+#include <math.h>
 using namespace std;
 
 Hand::Hand(int max){
 	maxCards = max;
 	numCards = 0;
-	exchange = 3; //3 cards needed to get armies
+	// 3 cards needed to get armies
+	exchange = 3; 
 
 }
 
@@ -58,22 +60,35 @@ bool Hand::positionTaken(int position, int exchanges[])
 	}
 	return true;
 }
-//if true, units will be given to player in the main driver
+// if true, units will be given to player in the main driver
 int Hand::verifyInput(int numIteration, int exchanges[])
 {
 	bool notGood = true;
+	double raw, fractpart, intpart;
 	int input;
 	do
 	{
 		cout << "Select Card " << numIteration << ": ";
-		cin >> input;
-		if(!cin) // or if(cin.fail())
+		cin >> raw;
+		 // handle decimal input
+		if(cin)
+		{
+			fractpart = modf (raw, &intpart);
+			input = (int)intpart;
+			if(fractpart != 0)
+			{
+				cout << "Invalid Input! Number not integer" << endl;
+				continue;
+			}
+		}
+		// or if(cin.fail())
+		if(!cin)
 		{
 			cout << "Invalid Input! Number not numeric" << endl;
-			// user didn't input a number
-			cin.clear(); // reset failbit
-			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //skip bad input
-			// next, request user reinput
+			// reset failbit
+			cin.clear(); 
+			// skip bad input
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
 		}
 		else if(input < 1 || input > maxCards)
 		{
@@ -83,7 +98,7 @@ int Hand::verifyInput(int numIteration, int exchanges[])
 		{
 			cout << "Invalid Input! Number already selected" << endl;
 		}
-		else
+		else 
 		{
 			for(int i = 0;i < exchange;++i )
 			{
@@ -101,7 +116,8 @@ int Hand::verifyInput(int numIteration, int exchanges[])
 }
 bool Hand::SelectExchange()
 {
-	int exchanges[3] = {-1,-1,-1};
+	// set exchange as not assigned
+	int exchanges[3] = {-1,-1,-1}; 
 	int card1;
 	int card2;
 	int card3;
@@ -114,7 +130,7 @@ bool Hand::SelectExchange()
 		card3 = verifyInput(3,exchanges);
 		if(VerifyExchange(card1,card2,card3))
 		{
-			//to erase latter elements first
+			// to erase latter elements first
 			if(card2 < card3)
 				swap(card2,card3);
 			if(card1 < card2)
@@ -139,26 +155,21 @@ bool Hand::SelectExchange()
 
 bool Hand::VerifyExchange(int c1, int c2, int c3)
 {
-	// if(c1 == c2 || c1 == c3 || c2 == c3)
-	// {
-	// 	return false;
-	// }
-	Card::cardType type1 = cards.at(c1-1).getCardVal(); //index starts at 0
+	// index starts at 0
+	Card::cardType type1 = cards.at(c1-1).getCardVal();
 	Card::cardType type2 = cards.at(c2-1).getCardVal();
 	Card::cardType type3 = cards.at(c3-1).getCardVal();
 
-	if(type1 == type2 && type2 == type3)  //same card type
+	// same card type
+	if(type1 == type2 && type2 == type3)  
 	{
 		return true;
 	}
-	if(type1 != type2 && type1 != type3 && type2 != type3) //unique card type
+	// unique card type
+	if(type1 != type2 && type1 != type3 && type2 != type3) 
 	{
 		return true;
 	}
 	return false;
 }
-
-// Hand::~Hand() {
-// 	// TODO Auto-generated destructor stub
-// }
 

@@ -20,21 +20,21 @@ Country::Country(string country, string continent) {
 	continent_name = continent;
 }
 
-Country::Country(string country, string continent, Player player) {
+Country::Country(string country, string continent, Player* player) {
 	armies = 0;
 	country_name = country;
 	continent_name = continent;
 	owner = player;
 }
 
-Country::Country(string country, string continent, Player player, int army) {
+Country::Country(string country, string continent, Player* player, int army) {
 	armies = army;
 	country_name = country;
 	continent_name = continent;
 	owner = player;
 }
 
-Country::Country(string country, string continent, Player player, int army, vector<Country*> countries) {
+Country::Country(string country, string continent, Player* player, int army, vector<Country*> countries) {
 	armies = army;
 	country_name = country;
 	continent_name = continent;
@@ -54,7 +54,7 @@ string Country::getContinent() {
 	return continent_name;
 }
 
-Player Country::getOwner() {
+Player* Country::getOwner() {
 	return owner;
 }
 
@@ -66,7 +66,7 @@ void Country::removeArmies(int army) {
 	armies -= army;
 }
 
-void Country::setOwner(Player player) {
+void Country::setOwner(Player* player) {
 	owner = player;
 }
 

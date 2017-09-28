@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-#include "../Player.h"
+#include "../Player/Player.h"
 #include "../MapLoader/MapLoader.h"
 
 using namespace std;
