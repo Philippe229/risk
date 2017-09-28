@@ -18,7 +18,6 @@ class Map {
 private:
 	vector<Country*> countries;
 	vector<Continent*> continents;
-
 public:
 	Map();
 	Map(vector<Country*>);
@@ -29,6 +28,9 @@ public:
 	vector<Continent*> getContinents();
 	void addCountry(Country*);
 	void addContinent(Continent*);
+	bool verifyCountriesAreConnected();
+	bool verifyContinentsAreConnected();
+	bool isMapValid();
 };
 
 #endif

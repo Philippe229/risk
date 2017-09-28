@@ -38,7 +38,7 @@
 
 # Misc
 /.metadata/
-/test.dSYM/
+test.dSYM/
 .DS_Store
 /Default/
 .vscode
