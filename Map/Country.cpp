@@ -73,3 +73,7 @@ void Country::setOwner(Player player) {
 void Country::addBorderingCountry(Country* country) {
 	borderingCountries.push_back(country);
 }
+
+vector<Country*> Country::getBorderingCountries() {
+	return borderingCountries;
+}

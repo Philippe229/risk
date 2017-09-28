@@ -19,6 +19,10 @@ void Continent::addCountry(Country* c) {
     countries.push_back(c);
 }
 
+vector<Country*> Continent::getCountries() {
+    return countries;
+}
+
 string Continent::getName() {
     return name;
 }

@@ -18,6 +18,7 @@ public:
     Continent(int, string, vector<Country*>);
 
     void addCountry(Country*);
+    vector<Country*> getCountries();
     string getName();
     int getWorth();
 };

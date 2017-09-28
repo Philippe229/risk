@@ -2,33 +2,64 @@
 #include <vector>
 
 #include "../Player.h"
-#include "Country.h"
-#include "Map.h"
+#include "../MapLoader/MapLoader.h"
 
 using namespace std;
 
 int main() {
-	Player *roosevelt = new Player("Teddy Roosevelt");
-	Player *gandhi = new Player("Gandhi");
+	// Proper Map format
+	try {
+		MapLoader loader("./Map/maps/World(small).map");
+		Map* currentMap = loader.getMap();
 
-	vector<Country*> countries;
-	countries.push_back(new Country("USA", "America", *roosevelt, 10));
-	countries.push_back(new Country("India", "Asia", *gandhi, 20));
-	countries.push_back(new Country("England", "Europe", *roosevelt, 5));
-	countries.push_back(new Country("China", "Asia", *gandhi, 20));
+		if (currentMap->isMapValid()) {
+			cout << "The map is completely connected, and the continents are subgraphs." << endl;
+		} else {
+			if (!currentMap->verifyContinentsAreConnected()) {
+				cout << "Some of the continents are not subgraphs, verify that every continent is connected." << endl;
+			} else {
+				cout << "Some of the countries are not connected, this means the map is disjoint when it should not be." << endl;
+			}
+		}
+	} catch (invalid_argument e) {
+		cout << e.what() << endl;
+	}
 
-	countries[0]->addBorderingCountry(countries[1]);
-	countries[1]->addBorderingCountry(countries[0]);
-	countries[1]->addBorderingCountry(countries[2]);
-	countries[2]->addBorderingCountry(countries[1]);
-	countries[2]->addBorderingCountry(countries[3]);
-	countries[3]->addBorderingCountry(countries[2]);
-	countries[3]->addBorderingCountry(countries[0]);
-	countries[0]->addBorderingCountry(countries[3]);
+	// Not all countries are connected
+	try {
+		MapLoader loader("./Map/maps/countries-unconnected.map");
+		Map* currentMap = loader.getMap();
+		
+		if (currentMap->isMapValid()) {
+			cout << "The map is completely connected, and the continents are subgraphs." << endl;
+		} else {
+			if (!currentMap->verifyContinentsAreConnected()) {
+				cout << "Some of the continents are not subgraphs, verify that every continent is connected." << endl;
+			} else {
+				cout << "Some of the countries are not connected, this means the map is disjoint when it should not be." << endl;
+			}
+		}
+	} catch (invalid_argument e) {
+		cout << e.what() << endl;
+	}
 
-	Map *world = new Map(countries);
-	world->getCountries();
-
-	cout << "end";
-	return 0;
+	// Not all continents are connected
+	try{
+		MapLoader loader("./Map/maps/continents-unconnected.map");
+		Map* currentMap = loader.getMap();
+		
+		if (currentMap->isMapValid()) {
+			cout << "The map is completely connected, and the continents are subgraphs." << endl;
+		} else {
+			if (!currentMap->verifyContinentsAreConnected()) {
+				cout << "Some of the continents are not subgraphs, verify that every continent is connected." << endl;
+			} else {
+				cout << "Some of the countries are not connected, this means the map is disjoint when it should not be." << endl;
+			}
+		}
+	} catch (invalid_argument e) {
+		cout << e.what() << endl;
+	}
+	
+    return 0;
 }

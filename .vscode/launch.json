@@ -6,12 +6,12 @@
                 "name": "(lldb) Launch",
                 "type": "cppdbg",
                 "request": "launch",
-                "program": "${workspaceRoot}/Debug/COMP345_Game",
+                "program": "${workspaceRoot}/Default/COMP345_Game",
                 "args": [],
                 "stopAtEntry": false,
                 "cwd": "${workspaceRoot}",
                 "environment": [],
-                "externalConsole": true,
+                "externalConsole": false,
                 "MIMode": "lldb"
             }
         ]
