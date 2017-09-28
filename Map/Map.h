@@ -30,6 +30,7 @@ public:
 	void addContinent(Continent*);
 	bool verifyCountriesAreConnected();
 	bool verifyContinentsAreConnected();
+	bool verifyCountriesBelongToOneContinent();
 	bool isMapValid();
 };
 

@@ -158,6 +158,23 @@ bool Map::verifyContinentsAreConnected() {
 	return true;
 }
 
+bool Map::verifyCountriesBelongToOneContinent() {
+	for (int continentIndex = 0; continentIndex < getContinents().size(); continentIndex++) {
+		Continent* currContinent = getContinents()[continentIndex];
+		vector<Country*> continentsCountries = currContinent->getCountries();
+
+		for (int countryIndex = 0; countryIndex < continentsCountries.size(); countryIndex++) {
+			Country* currCountry = continentsCountries[countryIndex];
+
+			if (currCountry->getContinent() != currContinent->getName()) {
+				return false;
+			}
+		}
+	}
+
+	return true;
+}
+
 bool Map::isMapValid() {
-	return verifyCountriesAreConnected() && verifyContinentsAreConnected();
+	return verifyCountriesBelongToOneContinent() && verifyCountriesAreConnected() && verifyContinentsAreConnected();
 }
