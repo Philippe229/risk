@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-#include "../Player.h"
+#include "../Player/Player.h"
 #include "Country.h"
 #include "Map.h"
 
@@ -12,10 +12,10 @@ int main() {
 	Player *gandhi = new Player("Gandhi");
 
 	vector<Country*> countries;
-	countries.push_back(new Country("USA", "America", *roosevelt, 10));
-	countries.push_back(new Country("India", "Asia", *gandhi, 20));
-	countries.push_back(new Country("England", "Europe", *roosevelt, 5));
-	countries.push_back(new Country("China", "Asia", *gandhi, 20));
+	countries.push_back(new Country("USA", "America", roosevelt, 10));
+	countries.push_back(new Country("India", "Asia", gandhi, 20));
+	countries.push_back(new Country("England", "Europe", roosevelt, 5));
+	countries.push_back(new Country("China", "Asia", gandhi, 20));
 
 	countries[0]->addBorderingCountry(countries[1]);
 	countries[1]->addBorderingCountry(countries[0]);
@@ -29,6 +29,9 @@ int main() {
 	Map *world = new Map(countries);
 	world->getCountries();
 
-	cout << "end";
+	for (auto& country : world->getCountries()) {
+		cout << country->getName() << endl;
+	}
+
 	return 0;
 }

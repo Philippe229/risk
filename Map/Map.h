@@ -4,10 +4,14 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include "../Player/Player.h"
 #include "Country.h"
 #include "Continent.h"
 
 using namespace std;
+
+//forward declaration (circular dependency)
+class Player;
 
 class Map {
 
