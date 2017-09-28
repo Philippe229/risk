@@ -17,6 +17,8 @@ int main() {
 		} else {
 			if (!currentMap->verifyContinentsAreConnected()) {
 				cout << "Some of the continents are not subgraphs, verify that every continent is connected." << endl;
+			} else if(!currentMap->verifyCountriesBelongToOneContinent()) {
+				cout << "Some continents owns a country which does not belong to it" << endl;
 			} else {
 				cout << "Some of the countries are not connected, this means the map is disjoint when it should not be." << endl;
 			}
@@ -35,6 +37,8 @@ int main() {
 		} else {
 			if (!currentMap->verifyContinentsAreConnected()) {
 				cout << "Some of the continents are not subgraphs, verify that every continent is connected." << endl;
+			} else if(!currentMap->verifyCountriesBelongToOneContinent()) {
+				cout << "Some continents owns a country which does not belong to it" << endl;
 			} else {
 				cout << "Some of the countries are not connected, this means the map is disjoint when it should not be." << endl;
 			}
@@ -44,7 +48,7 @@ int main() {
 	}
 
 	// Not all continents are connected
-	try{
+	try {
 		MapLoader loader("./Map/maps/continents-unconnected.map");
 		Map* currentMap = loader.getMap();
 		
@@ -53,6 +57,8 @@ int main() {
 		} else {
 			if (!currentMap->verifyContinentsAreConnected()) {
 				cout << "Some of the continents are not subgraphs, verify that every continent is connected." << endl;
+			} else if(!currentMap->verifyCountriesBelongToOneContinent()) {
+				cout << "Some continents owns a country which does not belong to it" << endl;
 			} else {
 				cout << "Some of the countries are not connected, this means the map is disjoint when it should not be." << endl;
 			}
