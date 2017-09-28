@@ -8,6 +8,7 @@
 #include "Hand.h"
 #include <iostream>
 #include <algorithm>
+#include <math.h>
 using namespace std;
 
 Hand::Hand(int max){
@@ -62,18 +63,27 @@ bool Hand::positionTaken(int position, int exchanges[])
 int Hand::verifyInput(int numIteration, int exchanges[])
 {
 	bool notGood = true;
+	double raw, fractpart, intpart;
 	int input;
 	do
 	{
 		cout << "Select Card " << numIteration << ": ";
-		cin >> input;
+		cin >> raw;
+		if(cin) //handle decimal input
+		{
+			fractpart = modf (raw, &intpart);
+			input = (int)intpart;
+			if(fractpart != 0)
+			{
+				cout << "Invalid Input! Number not integer" << endl;
+				continue;
+			}
+		}
 		if(!cin) // or if(cin.fail())
 		{
 			cout << "Invalid Input! Number not numeric" << endl;
-			// user didn't input a number
 			cin.clear(); // reset failbit
 			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //skip bad input
-			// next, request user reinput
 		}
 		else if(input < 1 || input > maxCards)
 		{
@@ -83,7 +93,7 @@ int Hand::verifyInput(int numIteration, int exchanges[])
 		{
 			cout << "Invalid Input! Number already selected" << endl;
 		}
-		else
+		else 
 		{
 			for(int i = 0;i < exchange;++i )
 			{
@@ -101,7 +111,7 @@ int Hand::verifyInput(int numIteration, int exchanges[])
 }
 bool Hand::SelectExchange()
 {
-	int exchanges[3] = {-1,-1,-1};
+	int exchanges[3] = {-1,-1,-1}; //set exchange as not assigned
 	int card1;
 	int card2;
 	int card3;
@@ -139,10 +149,7 @@ bool Hand::SelectExchange()
 
 bool Hand::VerifyExchange(int c1, int c2, int c3)
 {
-	// if(c1 == c2 || c1 == c3 || c2 == c3)
-	// {
-	// 	return false;
-	// }
+
 	Card::cardType type1 = cards.at(c1-1).getCardVal(); //index starts at 0
 	Card::cardType type2 = cards.at(c2-1).getCardVal();
 	Card::cardType type3 = cards.at(c3-1).getCardVal();
@@ -157,8 +164,4 @@ bool Hand::VerifyExchange(int c1, int c2, int c3)
 	}
 	return false;
 }
-
-// Hand::~Hand() {
-// 	// TODO Auto-generated destructor stub
-// }
 

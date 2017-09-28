@@ -36,13 +36,20 @@
 .settings/
 .cproject
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 65c01612015bb24612a516470dcb2bf6b97c50b0
 
 # Misc
 /.metadata/
-/.vscode/
 /test.dSYM/
+<<<<<<< HEAD
 =======
 .DS_Store
 /Default/
 .vscode
 >>>>>>> origin
+=======
+.DS_Store
+/Default/
+>>>>>>> 65c01612015bb24612a516470dcb2bf6b97c50b0
