@@ -109,7 +109,7 @@ void MapLoader::parseMap(string textFileName) {
             vector<string> countryInfo = this->split(line, ',');
 
             // Make sure there are at least 4 fields and the country name did not already show up
-            if (countryInfo.size() > 4 && !countryNames[countryInfo[0]]) {
+            if (countryInfo.size() > 4 && countryNames.count(countryInfo[0]) == 0) {
                 Country* country = new Country(countryInfo[0], countryInfo[3]);
                 countryNames[country->getName()] = true;
 
