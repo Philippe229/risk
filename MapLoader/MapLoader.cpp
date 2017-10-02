@@ -101,14 +101,17 @@ void MapLoader::parseMap(string textFileName) {
 
     // Add bordering country names to a 2d vector so we can add them once all countries are initialized
     vector<vector<string> > borderingCountries;
+    map<string, bool> countryNames;
 
     line = this->readLine(fileReader);
     while (!fileReader.eof()) {
         if (line != "") {
             vector<string> countryInfo = this->split(line, ',');
 
-            if (countryInfo.size() > 4) {
+            // Make sure there are at least 4 fields and the country name did not already show up
+            if (countryInfo.size() > 4 && !countryNames[countryInfo[0]]) {
                 Country* country = new Country(countryInfo[0], countryInfo[3]);
+                countryNames[country->getName()] = true;
 
                 // Add country to it's respective continent
                 bool addedToContinent = false;
@@ -132,8 +135,10 @@ void MapLoader::parseMap(string textFileName) {
                     bordering.push_back(countryInfo[i]);
                 }
                 borderingCountries.push_back(bordering);
-            } else {
+            } else if (countryInfo.size() <= 4) {
                 throw invalid_argument("Map file is invalid, missing properties for a territory.");
+            } else {
+                throw invalid_argument("Same country cannot show up multiple times in map file.");
             }
         }
 
