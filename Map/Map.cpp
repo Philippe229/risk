@@ -159,6 +159,8 @@ bool Map::verifyContinentsAreConnected() {
 }
 
 bool Map::verifyCountriesBelongToOneContinent() {
+	map<string, string> countryNames;
+
 	for (int continentIndex = 0; continentIndex < getContinents().size(); continentIndex++) {
 		Continent* currContinent = getContinents()[continentIndex];
 		vector<Country*> continentsCountries = currContinent->getCountries();
@@ -166,8 +168,10 @@ bool Map::verifyCountriesBelongToOneContinent() {
 		for (int countryIndex = 0; countryIndex < continentsCountries.size(); countryIndex++) {
 			Country* currCountry = continentsCountries[countryIndex];
 
-			if (currCountry->getContinent() != currContinent->getName()) {
+			if (countryNames.count(currCountry->getName()) > 0) {
 				return false;
+			} else {
+				countryNames[currCountry->getName()] = currCountry->getContinent();
 			}
 		}
 	}
