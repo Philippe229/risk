@@ -39,6 +39,15 @@ vector<Country*> Player::getCountries() {
 	return countries;
 }
 
+Country* Player::getCountry(Country* c) {
+	for (size_t i = 0; i < countries.size(); i++) {
+		if (countries[i] == c) {
+			return c;
+		}
+	}
+	return NULL;
+}
+
 void Player::addArmiesToCountry(int n, Country* c) {
 	if (n <= unplaced_armies && c->getOwner() == this) {
 		c->addArmies(n);
