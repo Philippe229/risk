@@ -35,6 +35,10 @@ int Player::getArmies() {
 	return unplaced_armies;
 }
 
+void Player::addArmies(int newArmies) {
+	unplaced_armies = newArmies;
+}
+
 vector<Country*> Player::getCountries() {
 	return countries;
 }
