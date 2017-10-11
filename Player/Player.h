@@ -32,7 +32,7 @@ public:
 	string getName();
 	int getArmies();
 	vector<Country*> getCountries();
-	Country* getCountry(Country* c);
+	Country* getCountry(string name);
 	void addArmies(int); // armies to be placed
 	void addCountry(Country* c);
 	void removeCountry(Country* c);

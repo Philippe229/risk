@@ -39,10 +39,10 @@ vector<Country*> Player::getCountries() {
 	return countries;
 }
 
-Country* Player::getCountry(Country* c) {
-	for (size_t i = 0; i < countries.size(); i++) {
-		if (countries[i] == c) {
-			return c;
+Country* Player::getCountry(string name) {
+	for (Country* country : countries) {
+		if (country -> getName() == name) {
+			return country;
 		}
 	}
 	return NULL;
