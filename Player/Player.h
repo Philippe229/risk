@@ -32,10 +32,10 @@ public:
 	string getName();
 	int getArmies();
 	vector<Country*> getCountries();
-
-	void addArmies(int); // armies to be placed
-	void addCountry(Country*);
-	void removeCountry(Country*);
+	Country* getCountry(string name);
+	void addArmies(int newArmies); // armies to be placed
+	void addCountry(Country* c);
+	void removeCountry(Country* c);
 	void addArmiesToCountry(int, Country*);
 	void removeArmiesFromCountry(int, Country*);
 	void rollDie(); // for a1 demo
