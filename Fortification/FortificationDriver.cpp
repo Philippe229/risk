@@ -37,6 +37,7 @@ int main() {
 		}
 	}
 
+	// Edge cases
 	cout << "Invalid arguments:" << endl;
 	Fortification::fortify(NULL, "", "", 0);
 	Fortification::fortify(player1, "Western United States", "Western United States", 0);
