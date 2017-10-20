@@ -9,23 +9,18 @@
 
 Card::Card(cardType c) {
 	this->val = c;
-
 }
 
-Card::Card(cardType c, string t)
-{
+Card::Card(cardType c, string t) {
 	this->val = c;
 	this->territory = t;
 }
 
-string Card::getTerritory()
-{
+string Card::getTerritory() {
 	return this->territory;
 }
 
-Card::cardType Card::getCardVal()
-{
+Card::cardType Card::getCardVal() {
 	return this->val;
 }
-
 

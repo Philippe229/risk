@@ -18,6 +18,7 @@ public:
 	bool VerifyExchange(int, int, int);
 	void PrintHand();
 	void getCard(Card);
+
 private:
 	bool positionTaken(int, int[]);
 	vector<Card> cards;

@@ -31,6 +31,7 @@ public:
 
 	string getName();
 	int getArmies();
+	Hand* getHand();
 	vector<Country*> getCountries();
 	Country* getCountry(string name);
 	void addArmies(int newArmies); // armies to be placed
@@ -38,13 +39,7 @@ public:
 	void removeCountry(Country* c);
 	void addArmiesToCountry(int, Country*);
 	void removeArmiesFromCountry(int, Country*);
-	void rollDie(); // for a1 demo
-	void showCards(); // for a1 demo
 
-	// 4. each player has: reinforce(), attack(), fortify() interface;
-	void reinforce();
-	void attack();
-	void fortify();
 };
 
 #endif

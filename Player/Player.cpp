@@ -35,6 +35,10 @@ int Player::getArmies() {
 	return unplaced_armies;
 }
 
+Hand* Player::getHand() {
+	return hand;
+}
+
 void Player::addArmies(int newArmies) {
 	unplaced_armies = newArmies;
 }
@@ -78,14 +82,4 @@ void Player::removeCountry(Country* c) {
 			break;
 		}
 	}
-}
-
-// for demo purposes
-void Player::rollDie() {
-	dices->throwDie(3);
-	dices->printDiceRollHistory();
-}
-
-void Player::showCards() {
-	hand->PrintHand();
 }
