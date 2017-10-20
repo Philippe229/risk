@@ -11,18 +11,7 @@ int main() {
 	try {
 		MapLoader loader("./Map/maps/World(small).map");
 		Map* currentMap = loader.getMap();
-
-		if (currentMap->isMapValid()) {
-			cout << "The map is completely connected, and the continents are subgraphs." << endl;
-		} else {
-			if (!currentMap->verifyCountriesBelongToOneContinent()) {
-				cout << "Some continents own multiple countries." << endl;
-			} else if (!currentMap->verifyContinentsAreConnected()) {
-				cout << "Some of the continents are not subgraphs, verify that every continent is connected." << endl;
-			} else {
-				cout << "Some of the countries are not connected, this means the map is disjoint when it should not be." << endl;
-			}
-		}
+		cout << "The map is completely connected, and the continents are subgraphs." << endl;
 	} catch (invalid_argument e) {
 		cout << e.what() << endl;
 	}
@@ -31,18 +20,7 @@ int main() {
 	try {
 		MapLoader loader("./Map/maps/countries-unconnected.map");
 		Map* currentMap = loader.getMap();
-		
-		if (currentMap->isMapValid()) {
-			cout << "The map is completely connected, and the continents are subgraphs." << endl;
-		} else {
-			if (!currentMap->verifyCountriesBelongToOneContinent()) {
-				cout << "Some continents own multiple countries." << endl;
-			} else if (!currentMap->verifyContinentsAreConnected()) {
-				cout << "Some of the continents are not subgraphs, verify that every continent is connected." << endl;
-			} else {
-				cout << "Some of the countries are not connected, this means the map is disjoint when it should not be." << endl;
-			}
-		}
+		cout << "The map is completely connected, and the continents are subgraphs." << endl;
 	} catch (invalid_argument e) {
 		cout << e.what() << endl;
 	}
@@ -51,18 +29,7 @@ int main() {
 	try {
 		MapLoader loader("./Map/maps/continents-unconnected.map");
 		Map* currentMap = loader.getMap();
-		
-		if (currentMap->isMapValid()) {
-			cout << "The map is completely connected, and the continents are subgraphs." << endl;
-		} else {
-			if (!currentMap->verifyCountriesBelongToOneContinent()) {
-				cout << "Some continents own multiple countries." << endl;
-			} else if (!currentMap->verifyContinentsAreConnected()) {
-				cout << "Some of the continents are not subgraphs, verify that every continent is connected." << endl;
-			} else {
-				cout << "Some of the countries are not connected, this means the map is disjoint when it should not be." << endl;
-			}
-		}
+		cout << "The map is completely connected, and the continents are subgraphs." << endl;
 	} catch (invalid_argument e) {
 		cout << e.what() << endl;
 	}

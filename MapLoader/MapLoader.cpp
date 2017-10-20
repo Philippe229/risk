@@ -166,5 +166,15 @@ void MapLoader::parseMap(string textFileName) {
         }
     }
 
+    if (!loadedMap->isMapValid()) {
+        if (!loadedMap->verifyCountriesBelongToOneContinent()) {
+            throw invalid_argument("Some continents own multiple countries.");
+        } else if (!loadedMap->verifyContinentsAreConnected()) {
+            throw invalid_argument("Some of the continents are not subgraphs, verify that every continent is connected.");
+        } else {
+            throw invalid_argument("Some of the countries are not connected, this means the map is disjoint when it should not be.");
+        }
+    }
+
     fileReader.close();
 }
