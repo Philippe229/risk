@@ -12,7 +12,6 @@
 #include "../Map/Map.h"
 #include "../MapLoader/MapLoader.h"
 #include "../Map/Country.h"
-#include "Fortification.h"
 
 using namespace std;
 
@@ -37,13 +36,13 @@ int main() {
 		}
 	}
 
+	// Edge cases
 	cout << "Invalid arguments:" << endl;
-	Fortification::fortify(NULL, "", "", 0);
-	Fortification::fortify(player1, "Western United States", "Western United States", 0);
-	Fortification::fortify(player1, "Western United States", "India", 0);
-	Fortification::fortify(player1, "Western United States", "India", 3);
-	Fortification::fortify(player1, "Western United States", "Peru", 3);
-	Fortification::fortify(player1, "Western United States", "Siberia", 3);
+	player1 -> fortify("Western United States", "Western United States", 0);
+	player1 -> fortify("Western United States", "India", 0);
+	player1 -> fortify("Western United States", "India", 3);
+	player1 -> fortify("Western United States", "Peru", 3);
+	player1 -> fortify("Western United States", "Siberia", 3);
 
 	// Give unplaced armies to players
 	player1 -> addArmies(1);
@@ -67,7 +66,7 @@ int main() {
 	cout << "\tTarget Country: " + player1TargetCountry -> getName() +
 			" - Troops: " + to_string(player1TargetCountry -> getArmies()) << endl << endl;
 
-	Fortification::fortify(player1, "Western United States", "Siberia", 1);
+	player1 -> fortify("Western United States", "Siberia", 1);
 
 	cout << "\nPlayer 1:" << endl;
 	cout << "\tSource Country: " + player1SourceCountry -> getName() +
@@ -84,7 +83,7 @@ int main() {
 	cout << "\tTarget Country: " + player2TargetCountry -> getName() +
 			" - Troops: " + to_string(player2TargetCountry -> getArmies()) << endl << endl;
 
-	Fortification::fortify(player2, "China", "India", 5);
+	player2 -> fortify("China", "India", 5);
 
 	cout << "\nPlayer 2:" << endl;
 	cout << "\tSource Country: " + player2SourceCountry -> getName() +

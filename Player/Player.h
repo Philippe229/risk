@@ -40,6 +40,9 @@ public:
 	void addArmiesToCountry(int, Country*);
 	void removeArmiesFromCountry(int, Country*);
 
+	void reinforce();
+	void attack();
+	void fortify(string sourceCountry, string targetCountry, int numOfArmies);
 };
 
 #endif

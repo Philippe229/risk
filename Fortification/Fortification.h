@@ -8,7 +8,6 @@
 #ifndef FORTIFICATION_H_
 #define FORTIFICATION_H_
 
-#include <iostream>
 #include "../Player/Player.h"
 
 using namespace std;
