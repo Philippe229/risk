@@ -19,9 +19,16 @@ class Player {
 private:
 	string name;
 	int unplaced_armies;
+	static int nextID;
+	int id;
 	vector<Country*> countries;
+	vector<Country*> attackBase;
+	vector<Country*> attackPossibilities;
 	DiceRollingFacility* dices;
 	Hand* hand;
+	void updateAttack();
+	void attackProcedure();
+	bool isContained(Country*,vector<Country*>);
 
 public:
 	Player();
@@ -31,6 +38,7 @@ public:
 
 	string getName();
 	int getArmies();
+	int getID();
 	vector<Country*> getCountries();
 	Country* getCountry(string name);
 	void addArmies(int newArmies); // armies to be placed
