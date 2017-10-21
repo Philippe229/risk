@@ -14,6 +14,7 @@ using namespace std;
 Hand::Hand(int max) {
 	maxCards = max;
 	numCards = 0;
+	exchangeMultiplier = 0;
 	// 3 cards needed to get armies
 	exchange = 3;
 
@@ -25,7 +26,7 @@ void Hand::getCard(Card c) {
 }
 
 void Hand::PrintHand() {
-	cout << "Current Hand" << endl;
+	cout << "\nCurrent Hand" << endl;
 	cout << "************" << endl;
 	for (int i = 0; i < maxCards; i++) {
 		if (!cards.empty() && i < cards.size()) {
@@ -52,6 +53,11 @@ bool Hand::positionTaken(int position, int exchanges[]) {
 	}
 	return true;
 }
+
+int Hand::getNumberOfCards() {
+	return cards.size();
+}
+
 // if true, units will be given to player in the main driver
 int Hand::verifyInput(int numIteration, int exchanges[]) {
 	bool notGood = true;
@@ -92,7 +98,7 @@ int Hand::verifyInput(int numIteration, int exchanges[]) {
 	} while (notGood);
 	return input;
 }
-bool Hand::SelectExchange() {
+int Hand::SelectExchange() {
 	// set exchange as not assigned
 	int exchanges[3] = { -1, -1, -1 };
 	int card1;
@@ -116,13 +122,14 @@ bool Hand::SelectExchange() {
 			cards.erase(cards.begin() + card2 - 1);
 			cards.erase(cards.begin() + card3 - 1);
 			cout << "Successful exchange." << endl;
-			return true;
+			exchangeMultiplier++;
+			return exchangeMultiplier * 5;
 		} else {
 			cout << "Invalid exchange." << endl;
 		}
 	} else
 		cout << "Not enough cards in hand to exchange" << endl;
-	return false;
+	return 0;
 }
 
 bool Hand::VerifyExchange(int c1, int c2, int c3) {

@@ -17,7 +17,7 @@ private:
 	static int getCardBonus(Player* player);
 
 public:
-	static void reinforcement(Player* player, Map* map);
+	static void reinforcement(Player* player, vector<Continent*> continents);
 
 };
 
