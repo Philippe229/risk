@@ -44,7 +44,7 @@ public:
 	// 4. each player has: reinforce(), attack(), fortify() interface;
 	void reinforce();
 	void attack();
-	void fortify();
+	void fortify(string sourceCountry, string targetCountry, int numOfArmies);
 };
 
 #endif

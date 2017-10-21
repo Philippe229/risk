@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "../Fortification/Fortification.h"
 
 Player::Player() {
 	name = "";
@@ -78,6 +79,10 @@ void Player::removeCountry(Country* c) {
 			break;
 		}
 	}
+}
+
+void Player::fortify(string sourceCountry, string targetCountry, int numOfArmies) {
+	Fortification::fortify(this, sourceCountry, targetCountry, numOfArmies);
 }
 
 // for demo purposes
