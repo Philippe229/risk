@@ -148,13 +148,15 @@ void Player::attackProcedure()
 {
 	double raw, fractpart, intpart;
 	bool good = false;
+	vector<Country*> enemyCountries;
 	int input;
-	cout << "Input Index\t| Country Name\t| Armies" << endl;
+	Country* base;
+	cout << "Input Index\t| Country Name\t| Armies\t| Enemies Around" << endl;
 	cout << endl;
 
 	for(int i = 0;i < attackBase.size();i++)
 	{
-		cout << i+1  << "\t| " << attackBase.at(i)->getName() << "\t| " << attackBase.at(i)->getArmies() << endl;
+		cout << i+1  << "\t| " << attackBase.at(i)->getName() << "\t| " << attackBase.at(i)->getArmies() <<  "\t| " << attackBase.at(i)->getNumEnemiesAround() << endl;
 	}
 	cout << "Select which country you would like to attack from" << endl;
 	do
@@ -162,8 +164,17 @@ void Player::attackProcedure()
 		good = validateNumericInput(input, 1, attackBase.size());
 	}
 	while(!good);
-	cout << "Attacking From " << attackBase.at(input-1)->getName() << endl;
+	base = attackBase.at(input-1);
+	cout << "Attacking From " << base->getName() << endl;
+	cout << "Input Index\t| Country Name\t| Armies\t| Owner" << endl;
+	enemyCountries = base->getBorderingEnemies();
+	for(int i = 0;i < enemyCountries.size();i++)
+	{
+		cout << i+1  << "\t| " << enemyCountries.at(i)->getName() << "\t| " << enemyCountries.at(i)->getArmies() <<  "\t| " << enemyCountries.at(i)->getOwner()->getID() << endl;
+	}
 }
+
+//could optimize, check if country is already in vector
 bool Player::isContained(Country* possibility, vector<Country*> countries)
 {
 	for(int i = 0; i < countries.size();i++)

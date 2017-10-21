@@ -77,3 +77,23 @@ void Country::addBorderingCountry(Country* country) {
 vector<Country*> Country::getBorderingCountries() {
 	return borderingCountries;
 }
+
+vector<Country*> Country::getBorderingEnemies() 
+{
+	return borderingEnemies;
+}
+
+//always called before getBorderingEnemies
+int Country::getNumEnemiesAround()
+{
+	numEnemiesAround = 0;
+	for(int i = 0;i < borderingCountries.size();i++)
+	{
+		if(owner->getID() != borderingCountries.at(i)->getOwner()->getID())
+		{
+			numEnemiesAround++;
+			borderingEnemies.push_back(borderingCountries.at(i));
+		}
+	}
+	return numEnemiesAround;
+}
