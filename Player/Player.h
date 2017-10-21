@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <math.h>
 #include "../Map/Country.h"
 #include "../CardComponents/Hand.h"
 #include "../CardComponents/Card.h"
@@ -29,6 +31,7 @@ private:
 	void updateAttack();
 	void attackProcedure();
 	bool isContained(Country*,vector<Country*>);
+	bool validateNumericInput(int&,int,int);
 
 public:
 	Player();

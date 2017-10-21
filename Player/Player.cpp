@@ -146,14 +146,23 @@ void Player::updateAttack()
 
 void Player::attackProcedure()
 {
-	cout << "Select which country you would like to attack" << endl;
-	cout << "Input Index | Country Name | Owner" << endl;
+	double raw, fractpart, intpart;
+	bool good = false;
+	int input;
+	cout << "Input Index\t| Country Name\t| Armies" << endl;
 	cout << endl;
 
-	for(int i = 0;i < attackPossibilities.size();i++)
+	for(int i = 0;i < attackBase.size();i++)
 	{
-		cout << i+1  << " | " << attackPossibilities.at(i)->getName() << " | " << attackPossibilities.at(i)->getOwner()->getID() << endl;
+		cout << i+1  << "\t| " << attackBase.at(i)->getName() << "\t| " << attackBase.at(i)->getArmies() << endl;
 	}
+	cout << "Select which country you would like to attack from" << endl;
+	do
+	{
+		good = validateNumericInput(input, 1, attackBase.size());
+	}
+	while(!good);
+	cout << "Attacking From " << attackBase.at(input-1)->getName() << endl;
 }
 bool Player::isContained(Country* possibility, vector<Country*> countries)
 {
@@ -163,4 +172,38 @@ bool Player::isContained(Country* possibility, vector<Country*> countries)
 			return true;
 	}
 	return false;
+}
+bool Player::validateNumericInput(int& input,int lower, int upper)
+{
+	double raw, fractpart, intpart;
+	cin >> raw;
+	if(cin)
+	{
+		fractpart = modf (raw, &intpart);
+		input = (int)intpart;
+		if(fractpart != 0)
+		{
+			cout << "Invalid Input! Number not integer" << endl;
+			return false;
+		}
+	}
+	// or if(cin.fail())
+	if(!cin)
+	{
+		cout << "Invalid Input! Number not numeric" << endl;
+		// reset failbit
+		cin.clear(); 
+		// skip bad input
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+		return false;
+	}
+	else if(input < lower || input > upper)
+	{
+		cout << "Invalid Input! Number out of range" << endl;
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
