@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "../Reinforcement/Reinforcement.h"
 #include "../Fortification/Fortification.h"
 
 Player::Player() {
@@ -34,6 +35,10 @@ string Player::getName() {
 
 int Player::getArmies() {
 	return unplaced_armies;
+}
+
+Hand* Player::getHand() {
+	return hand;
 }
 
 void Player::addArmies(int newArmies) {
@@ -81,16 +86,10 @@ void Player::removeCountry(Country* c) {
 	}
 }
 
+void Player::reinforce(vector<Continent*> continents) {
+	Reinforcement::reinforcement(this, continents);
+}
+
 void Player::fortify(string sourceCountry, string targetCountry, int numOfArmies) {
 	Fortification::fortify(this, sourceCountry, targetCountry, numOfArmies);
-}
-
-// for demo purposes
-void Player::rollDie() {
-	dices->throwDie(3);
-	dices->printDiceRollHistory();
-}
-
-void Player::showCards() {
-	hand->PrintHand();
 }

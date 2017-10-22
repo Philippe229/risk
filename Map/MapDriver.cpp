@@ -31,7 +31,7 @@ int main() {
 	try {
 		MapLoader loader("./Map/maps/countries-unconnected.map");
 		Map* currentMap = loader.getMap();
-		
+
 		if (currentMap->isMapValid()) {
 			cout << "The map is completely connected, and the continents are subgraphs." << endl;
 		} else {
@@ -51,7 +51,7 @@ int main() {
 	try {
 		MapLoader loader("./Map/maps/continents-unconnected.map");
 		Map* currentMap = loader.getMap();
-		
+
 		if (currentMap->isMapValid()) {
 			cout << "The map is completely connected, and the continents are subgraphs." << endl;
 		} else {
@@ -66,6 +66,6 @@ int main() {
 	} catch (invalid_argument e) {
 		cout << e.what() << endl;
 	}
-	
+
     return 0;
 }
