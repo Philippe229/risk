@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "../Map/Country.h"
+#include "../Map/Continent.h"
 #include "../CardComponents/Hand.h"
 #include "../CardComponents/Card.h"
 #include "../DiceRollingFacility/DiceRollingFacility.h"
@@ -13,6 +14,7 @@ using namespace std;
 
 //forward declaration (circular dependency)
 class Country;
+class Continent;
 
 class Player {
 
@@ -40,7 +42,7 @@ public:
 	void addArmiesToCountry(int, Country*);
 	void removeArmiesFromCountry(int, Country*);
 
-	void reinforce();
+	void reinforce(vector<Continent*> continents);
 	void attack();
 	void fortify(string sourceCountry, string targetCountry, int numOfArmies);
 };

@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "../Reinforcement/Reinforcement.h"
 #include "../Fortification/Fortification.h"
 
 Player::Player() {
@@ -83,6 +84,10 @@ void Player::removeCountry(Country* c) {
 			break;
 		}
 	}
+}
+
+void Player::reinforce(vector<Continent*> continents) {
+	Reinforcement::reinforcement(this, continents);
 }
 
 void Player::fortify(string sourceCountry, string targetCountry, int numOfArmies) {

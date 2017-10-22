@@ -10,35 +10,45 @@ void Reinforcement::reinforcement(Player* player, vector<Continent*> continents)
 
 	// calculate # of reinforcements
 	bonusArmies += getCountryBonus(player);
+	cout << "Bonus armies;\nCountry Bonus: +" << bonusArmies << endl;
+	int temp = bonusArmies;
 	bonusArmies += getContinentBonus(player, continents);
+	cout << "Continent Bonus: +" << bonusArmies - temp << endl;
+	temp = bonusArmies;
 	bonusArmies += getCardBonus(player);
+	cout << "Card Bonus: +" << bonusArmies - temp << endl;
 
 	// place reinforcements
 	do {
-		for (auto& country : player->getCountries()) {
-			int choice;
-			if (bonusArmies == 0)
-				break;
-
-			cout << "You have " << bonusArmies << " armies to place" << endl;
-			cout << "How many armies do you want to place in: "
-					<< country->getName() << " (which " << country->getArmies()
-					<< " armies)" << endl;
-
-			do {
-				cin >> choice;
-				if (choice < 0 || bonusArmies < choice) {
-					cout << "Please enter a number between 0 and "
-							<< bonusArmies << endl;
-				}
-			} while (choice < 0 || bonusArmies < choice);
-
-			country->addArmies(choice);
-			bonusArmies -= choice;
-
-			cout << country->getName() << " now has " << country->getArmies()
-					<< " armies" << endl;
+		int numberOfCountries = player->getCountries().size();
+		cout << "Selection"  << "\t| " << "Country name" << "\t| " << "Number of armies" << endl;
+		for(int i=0; i < numberOfCountries; i++) {
+			cout << i+1  << "\t| " << player->getCountries().at(i)->getName() << "\t| " << player->getCountries().at(i)->getArmies() << endl;
 		}
+
+		cout << "Select which country you would like to reinforce" << endl;
+		int country;
+		do {
+			cin >> country;
+			if(country < 0 || numberOfCountries < country) {
+				cout << "Select valid number" << endl;
+			}
+		} while (country < 0 || numberOfCountries < country);
+
+		cout << "You have " << bonusArmies << " unplaced armies" << endl;
+		cout << "How many armies would you like to add to: " << player->getCountries().at(country-1)->getName() << endl;
+
+		int number;
+		do {
+			cin >> number;
+			if(number < 0 || bonusArmies < number) {
+				cout << "Select valid number" << endl;
+			}
+		} while (number < 0 || bonusArmies < number);
+
+		bonusArmies -= number;
+		player->getCountries().at(country-1)->addArmies(number);
+
 	} while (bonusArmies > 0);
 }
 
