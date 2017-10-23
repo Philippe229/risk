@@ -7,6 +7,9 @@
 
 using namespace std;
 
+//forward declaration (circular dependency)
+class Country;
+
 class Continent {
 private:
     int worth;

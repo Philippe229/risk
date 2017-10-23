@@ -15,16 +15,14 @@ const int COUNTRIES = 60;
 const int HANDSIZE = 5;
 int armies = 5;
 int playerArmies = 0;
-int main (int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
 	srand(time(0));
 
 	cout << "Deck content" << endl;
 	cout << "++++++++++++" << endl;
 	Deck myDeck = Deck(COUNTRIES);
 	Hand myHand = Hand(COUNTRIES);
-	for(int i = 0;i < COUNTRIES;i++)
-	{
+	for (int i = 0; i < COUNTRIES; i++) {
 		myHand.getCard(myDeck.Draw());
 	}
 	myDeck.PrintStatistics();
@@ -32,12 +30,10 @@ int main (int argc, char *argv[])
 	cout << "+++++++++" << endl;
 	myDeck = Deck(COUNTRIES);
 	myHand = Hand(HANDSIZE);
-	for(int i = 0;i < HANDSIZE;i++)
-	{
+	for (int i = 0; i < HANDSIZE; i++) {
 		myHand.getCard(myDeck.Draw());
 	}
-	if(myHand.SelectExchange())
-	{
+	if (myHand.SelectExchange()) {
 		playerArmies = playerArmies + armies;
 		cout << "Player now has " << playerArmies << " armies" << endl;
 		armies++;
