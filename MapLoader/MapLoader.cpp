@@ -69,6 +69,7 @@ void MapLoader::parseMap(string textFileName) {
 
     // Verify that [Map] exists but skip over it to continents
     if ((line = this->readLine(fileReader)) != "[Map]") {
+        fileReader.close();
         throw invalid_argument("Map file is invalid, missing [Map] section.");
     }
 
@@ -76,6 +77,7 @@ void MapLoader::parseMap(string textFileName) {
 
     // Parse the continents until we reach territories
     if (line != "[Continents]") {
+        fileReader.close();
         throw invalid_argument("Map file is invalid, missing [Continents] section.");
     }
 
@@ -88,6 +90,7 @@ void MapLoader::parseMap(string textFileName) {
             try {
                 continent = new Continent(stoi(continentInfo[1]), continentInfo[0]);
             } catch (invalid_argument e) {
+                fileReader.close();
                 throw invalid_argument("Expected integer value for continent but got something else.");
             }
             loadedMap->addContinent(continent);
@@ -96,6 +99,7 @@ void MapLoader::parseMap(string textFileName) {
 
     // Parse the territories until the end of the map file
     if (line != "[Territories]") {
+        fileReader.close();
         throw invalid_argument("Map file is invalid, missing [Territories] section.");
     }
 
@@ -124,6 +128,7 @@ void MapLoader::parseMap(string textFileName) {
                 }
 
                 if (!addedToContinent) {
+                    fileReader.close();
                     throw invalid_argument("Map file is invalid, continent for country '" + countryInfo[0] + "' does not exist.");
                 }
 
@@ -136,8 +141,10 @@ void MapLoader::parseMap(string textFileName) {
                 }
                 borderingCountries.push_back(bordering);
             } else if (countryInfo.size() <= 4) {
+                fileReader.close();
                 throw invalid_argument("Map file is invalid, missing properties for a territory.");
             } else {
+                fileReader.close();
                 throw invalid_argument("Same country cannot show up multiple times in map file.");
             }
         }
@@ -160,6 +167,7 @@ void MapLoader::parseMap(string textFileName) {
             }
             
             if (!addedBorderingCountry) {
+                fileReader.close();
                 throw invalid_argument("Map file is invalid, bordering country '" + borderingCountryName + "' "
                                        "for country '" + loadedMap->getCountries()[countryIndex]->getName() + "' does not exist");
             }
@@ -168,10 +176,13 @@ void MapLoader::parseMap(string textFileName) {
 
     if (!loadedMap->isMapValid()) {
         if (!loadedMap->verifyCountriesBelongToOneContinent()) {
+            fileReader.close();
             throw invalid_argument("Some continents own multiple countries.");
         } else if (!loadedMap->verifyContinentsAreConnected()) {
+            fileReader.close();
             throw invalid_argument("Some of the continents are not subgraphs, verify that every continent is connected.");
         } else {
+            fileReader.close();
             throw invalid_argument("Some of the countries are not connected, this means the map is disjoint when it should not be.");
         }
     }
