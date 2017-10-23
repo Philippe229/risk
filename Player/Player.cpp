@@ -119,6 +119,7 @@ void Player::updateAttack()
 {
 	//cout << "***********" << id << "***********"<<endl;
 	vector<Country*> borderingCountries;
+	attackBase.clear();
 	bool isAdded = false;
 	for(int i = 0; i < countries.size();i++)
 	{
@@ -148,18 +149,29 @@ void Player::attackProcedure()
 {
 	double raw, fractpart, intpart;
 	bool good = false;
+	int numAttack = 0;
 	vector<Country*> enemyCountries;
 	int input;
 	Country* base;
 	Country* target;
-	cout << "Input Index\t| Country Name\t| Armies\t| Enemies Around" << endl;
+	Player* att;
+	Player* def;
+	cout << "Input Index|Country Name|Armies|Enemies Around" << endl;
 	cout << endl;
 
 	for(int i = 0;i < attackBase.size();i++)
 	{
 		attackBase.at(i)->updateInfo();
 		if(attackBase.at(i)->getCanAttack())
-			cout << i+1  << "\t| " << attackBase.at(i)->getName() << "\t| " << attackBase.at(i)->getArmies() <<  "\t| " << attackBase.at(i)->getNumEnemiesAround() << endl;
+		{
+			cout << i+1  << "\t|" << attackBase.at(i)->getName() << "|" << attackBase.at(i)->getArmies() <<  "|" << attackBase.at(i)->getNumEnemiesAround() << endl;
+			numAttack++;
+		}
+	}
+	if(numAttack < 1)
+	{
+		cout << "No valid country to attack from" << endl;
+		return;
 	}
 	cout << "Select which country you would like to attack from" << endl;
 	do
@@ -169,11 +181,12 @@ void Player::attackProcedure()
 	while(!good);
 	base = attackBase.at(input-1);
 	cout << "Attacking From " << base->getName() << endl;
-	cout << "Input Index\t| Country Name\t| Armies\t| Owner" << endl;
+	cout << "Input Index| Country Name|Armies|Owner" << endl;
+	cout << endl;
 	enemyCountries = base->getBorderingEnemies();
 	for(int i = 0;i < enemyCountries.size();i++)
 	{
-		cout << i+1  << "\t| " << enemyCountries.at(i)->getName() << "\t| " << enemyCountries.at(i)->getArmies() <<  "\t| " << enemyCountries.at(i)->getOwner()->getID() << endl;
+		cout << i+1  << "\t| " << enemyCountries.at(i)->getName() << "| " << enemyCountries.at(i)->getArmies() <<  "|" << enemyCountries.at(i)->getOwner()->getID() << endl;
 	}
 	cout << "Select which country you would like to attack" << endl;
 	good = false;
@@ -183,10 +196,14 @@ void Player::attackProcedure()
 	}
 	while(!good);
 	target = enemyCountries.at(input-1);
+	att = base->getOwner();
+	def = target->getOwner();
 	if(attack(base, target))
 		{
 			good = false;
-			target->setOwner(base->getOwner());
+			def->removeCountry(target);
+			target->setOwner(att);
+			att->addCountry(target);
 			cout << "Select how many armies to move in your new country" << endl;
 			cout << "Armies available: " << base->getArmies() - 1 <<endl;
 			do

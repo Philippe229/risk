@@ -102,6 +102,8 @@ void Country::updateInfo()
 	}
 	if(numEnemiesAround > 0 && armies > 1)
 		canAttack = true;
+	else
+		canAttack = false;
 }
 //always called before getBorderingEnemies
 int Country::getNumEnemiesAround()
