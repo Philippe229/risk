@@ -100,7 +100,7 @@ void Country::updateInfo()
 			borderingEnemies.push_back(borderingCountries.at(i));
 		}
 	}
-	if(numEnemiesAround > 0 && armies >0)
+	if(numEnemiesAround > 0 && armies > 1)
 		canAttack = true;
 }
 //always called before getBorderingEnemies
