@@ -46,9 +46,10 @@ public:
 	int getArmies();
 	int getID();
 	Hand* getHand();
+	DiceRollingFacility* getDiceFacility();
 	vector<Country*> getCountries();
 	Country* getCountry(string name);
-	void addArmies(int newArmies); // armies to be placed
+	void addArmies(int newArmies);
 	void addCountry(Country* c);
 	void removeCountry(Country* c);
 	void addArmiesToCountry(int, Country*);
@@ -56,6 +57,7 @@ public:
 	vector<int> rollDie(int); // for a1 demo
 	void showCards(); // for a1 demo
 
+	// Each player has: reinforce(), attack(), fortify() interface
 	void reinforce(vector<Continent*> continents);
 	void attack();
 	void fortify(string sourceCountry, string targetCountry, int numOfArmies);

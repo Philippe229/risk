@@ -48,6 +48,10 @@ Hand* Player::getHand() {
 	return hand;
 }
 
+DiceRollingFacility* Player::getDiceFacility() {
+	return dices;
+}
+
 void Player::addArmies(int newArmies) {
 	unplaced_armies = newArmies;
 }
