@@ -1,7 +1,9 @@
 #include <vector>
+#include <ctime>
 #include "Initialization.h"
 
 int main() {
+    srand(time(0));
     Initialization ini;
 
     cout << endl << "Current Game State:" << endl;
@@ -10,7 +12,8 @@ int main() {
 
     for (int i = 0; i < players.size(); i++) {
         cout << endl << "Displaying " << players[i]->getName() << "'s information:" << endl;
-        players[i]->showCards();
+        players[i]->getHand()->PrintHand();
+        players[i]->getDiceFacility()->printDiceRollHistory();
     }
 
     return 0;

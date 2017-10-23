@@ -34,6 +34,7 @@ public:
 	string getName();
 	int getArmies();
 	Hand* getHand();
+	DiceRollingFacility* getDiceFacility();
 	vector<Country*> getCountries();
 	Country* getCountry(string name);
 	void addArmies(int newArmies);

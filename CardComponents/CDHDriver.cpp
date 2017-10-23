@@ -21,18 +21,15 @@ int main(int argc, char *argv[]) {
 	cout << "Deck content" << endl;
 	cout << "++++++++++++" << endl;
 	Deck myDeck = Deck(COUNTRIES);
-	Hand myHand = Hand(COUNTRIES);
-	for (int i = 0; i < COUNTRIES; i++) {
-		myHand.getCard(myDeck.Draw());
-	}
+	Hand myHand = Hand(HANDSIZE);
 	myDeck.PrintStatistics();
-	cout << "Hand demo" << endl;
-	cout << "+++++++++" << endl;
-	myDeck = Deck(COUNTRIES);
-	myHand = Hand(HANDSIZE);
 	for (int i = 0; i < HANDSIZE; i++) {
 		myHand.getCard(myDeck.Draw());
 	}
+	cout << "After drawing cards: " << endl;
+	myDeck.PrintStatistics();
+	cout << "Hand demo" << endl;
+	cout << "+++++++++" << endl;
 	if (myHand.SelectExchange()) {
 		playerArmies = playerArmies + armies;
 		cout << "Player now has " << playerArmies << " armies" << endl;

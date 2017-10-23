@@ -39,7 +39,15 @@ void DiceRollingFacility::printDiceRollHistory() {
 	for (int count : diceRollHistory)
 		sum += count;
 
-	for (int index = 0; index < 6; index++)
-			cout << "Percentage of times dice rolled " + to_string(index + 1) + ": " +
-					to_string(diceRollHistory[index] / sum * 100) + "%" << endl;
+	for (int index = 0; index < 6; index++) {
+		string percentage;
+
+		if (sum == 0) {
+			percentage = to_string(0);
+		} else {
+			percentage = to_string(diceRollHistory[index] / sum * 100);
+		}
+
+		cout << "Percentage of times dice rolled " + to_string(index + 1) + ": " + percentage + "%" << endl;
+	}
 }

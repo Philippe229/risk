@@ -123,7 +123,7 @@ void Initialization::createPlayers() {
     int numPlayers = getUserInputInteger("Your choice (-1 to quit): ", 2, 6);
     cout << "Creating players..." << endl;
 
-    currentDeck = new Deck(5 * numPlayers);
+    currentDeck = new Deck(loadedMap->getMap()->getCountries().size());
     for (int i = 0; i < numPlayers; i++) {
         cout << "Created Player " << (i + 1) << "..." << endl;
         Player* currPlayer = new Player("Player " + to_string(i + 1));
