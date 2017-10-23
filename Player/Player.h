@@ -32,6 +32,7 @@ private:
 	void attackProcedure();
 	bool isContained(Country*,vector<Country*>);
 	bool validateNumericInput(int&,int,int);
+	bool attack(Country*, Country*);
 
 public:
 	Player();
@@ -49,7 +50,7 @@ public:
 	void removeCountry(Country* c);
 	void addArmiesToCountry(int, Country*);
 	void removeArmiesFromCountry(int, Country*);
-	void rollDie(); // for a1 demo
+	vector<int> rollDie(int); // for a1 demo
 	void showCards(); // for a1 demo
 
 	// 4. each player has: reinforce(), attack(), fortify() interface;

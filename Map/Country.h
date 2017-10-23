@@ -15,6 +15,7 @@ class Country {
 private:
 	int armies;
 	int numEnemiesAround;
+	bool canAttack;
 	string country_name;
 	string continent_name;
 	Player* owner;
@@ -31,6 +32,8 @@ public:
 
 	int getArmies();
 	int getNumEnemiesAround();
+	void updateInfo();
+	bool getCanAttack();
 	string getName();
 	string getContinent();
 	Player* getOwner();
