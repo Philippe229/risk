@@ -14,10 +14,13 @@ class Country {
 
 private:
 	int armies;
+	int numEnemiesAround;
+	bool canAttack;
 	string country_name;
 	string continent_name;
 	Player* owner;
 	vector<Country*> borderingCountries;
+	vector<Country*> borderingEnemies;
 
 public:
 	Country();
@@ -28,6 +31,9 @@ public:
 	Country(string, string, Player*, int, vector<Country*>);
 
 	int getArmies();
+	int getNumEnemiesAround();
+	void updateInfo();
+	bool getCanAttack();
 	string getName();
 	string getContinent();
 	Player* getOwner();
@@ -38,6 +44,7 @@ public:
 	void setOwner(Player*);
 	void addBorderingCountry(Country*);
 	vector<Country*> getBorderingCountries();
+	vector<Country*> getBorderingEnemies();
 };
 
 #endif
