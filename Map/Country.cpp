@@ -7,17 +7,20 @@ using namespace std;
 
 Country::Country() {
 	armies = 0;
+	owner = NULL;
 }
 
 Country::Country(string country) {
 	armies = 0;
 	country_name = country;
+	owner = NULL;
 }
 
 Country::Country(string country, string continent) {
 	armies = 0;
 	country_name = country;
 	continent_name = continent;
+	owner = NULL;
 }
 
 Country::Country(string country, string continent, Player* player) {
