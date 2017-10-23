@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <math.h>
 #include "../Map/Country.h"
+#include "../Map/Continent.h"
 #include "../CardComponents/Hand.h"
 #include "../CardComponents/Card.h"
 #include "../DiceRollingFacility/DiceRollingFacility.h"
@@ -15,6 +16,7 @@ using namespace std;
 
 //forward declaration (circular dependency)
 class Country;
+class Continent;
 
 class Player {
 
@@ -43,6 +45,7 @@ public:
 	string getName();
 	int getArmies();
 	int getID();
+	Hand* getHand();
 	vector<Country*> getCountries();
 	Country* getCountry(string name);
 	void addArmies(int newArmies); // armies to be placed
@@ -53,10 +56,9 @@ public:
 	vector<int> rollDie(int); // for a1 demo
 	void showCards(); // for a1 demo
 
-	// 4. each player has: reinforce(), attack(), fortify() interface;
-	void reinforce();
+	void reinforce(vector<Continent*> continents);
 	void attack();
-	void fortify();
+	void fortify(string sourceCountry, string targetCountry, int numOfArmies);
 };
 
 #endif

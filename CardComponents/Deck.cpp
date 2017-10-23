@@ -15,68 +15,50 @@ using namespace std;
 Deck::Deck(int numCountries) {
 	size = numCountries;
 	// set the number of cards for each according to the number of countries
-	numInfantry = numCountries/3;
-	numArtillery = numCountries/3;
-	numCavalry = numCountries/3;
+	numInfantry = numCountries / 3;
+	numArtillery = numCountries / 3;
+	numCavalry = numCountries / 3;
 	int random;
 	int i;
-	for(i = 0;i< numCountries;i++)
-	{
+	for (i = 0; i < numCountries; i++) {
 		// set the type of card randomly
 		random = rand() % 3;
-		if(random == 0 && numInfantry > 0)
-		{
+		if (random == 0 && numInfantry > 0) {
 			cards.push_back(Card(Card::Infantry));
 			numInfantry--;
-		}
-		else if (random == 1 && numArtillery > 0)
-		{
+		} else if (random == 1 && numArtillery > 0) {
 			cards.push_back(Card(Card::Artillery));
 			numArtillery--;
-		}
-		else if (random == 2 && numCavalry > 0)
-		{
+		} else if (random == 2 && numCavalry > 0) {
 			cards.push_back(Card(Card::Cavalry));
 			numCavalry--;
-		}
-		else
+		} else
 			i--;
 	}
 }
-Card Deck::Draw()
-{
-	if(!cards.empty())
-	{
+Card Deck::Draw() {
+	if (!cards.empty()) {
 		Card draw = cards.back();
 		cards.pop_back();
 		Card::cardType type = draw.getCardVal();
-		if(type == Card::Infantry)
-		{
+		if (type == Card::Infantry) {
 			numInfantry++;
-		}
-		else if (type == Card::Artillery)
-		{
+		} else if (type == Card::Artillery) {
 			numArtillery++;
-		}
-		else
-		{
+		} else {
 			numCavalry++;
 		}
 		return draw;
-	}
-	else
-	{
+	} else {
 		cout << "The deck is empty\n";
 	}
-	exit (EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
-void Deck::PrintStatistics()
-{
+void Deck::PrintStatistics() {
 	cout << "Deck Statistics" << endl;
 	cout << "***************" << endl;
 	cout << "Number of Infantry: " << numInfantry << "\n";
 	cout << "Number of Artillery: " << numArtillery << "\n";
 	cout << "Number of Cavalry: " << numCavalry << "\n";
 }
-
 

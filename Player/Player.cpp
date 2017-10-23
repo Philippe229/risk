@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "../Reinforcement/Reinforcement.h"
+#include "../Fortification/Fortification.h"
 
 int Player::nextID = 1;
 Player::Player() {
@@ -40,6 +42,10 @@ string Player::getName() {
 
 int Player::getArmies() {
 	return unplaced_armies;
+}
+
+Hand* Player::getHand() {
+	return hand;
 }
 
 void Player::addArmies(int newArmies) {
@@ -92,9 +98,12 @@ vector<int> Player::rollDie(int numDie) {
 	sort (results.begin(), results.begin()+results.size());
 	return results;
 }
+void Player::reinforce(vector<Continent*> continents) {
+	Reinforcement::reinforcement(this, continents);
+}
 
-void Player::showCards() {
-	hand->PrintHand();
+void Player::fortify(string sourceCountry, string targetCountry, int numOfArmies) {
+	Fortification::fortify(this, sourceCountry, targetCountry, numOfArmies);
 }
 
 int Player::getID()
