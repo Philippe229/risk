@@ -18,6 +18,7 @@ private:
 
     void clearScreen();
     int getUserInputInteger(string, int, int);
+    string getUserInputString(string, string, string);
     vector<string> getAndDisplayMapOptions();
 
     void chooseMap();

@@ -33,15 +33,15 @@ public:
 	int getArmies();
 	vector<Country*> getCountries();
 	Country* getCountry(string name);
-	void addArmies(int newArmies); // armies to be placed
+	void addArmies(int newArmies);
 	void addCountry(Country* c);
 	void removeCountry(Country* c);
 	void addArmiesToCountry(int, Country*);
 	void removeArmiesFromCountry(int, Country*);
-	void rollDie(); // for a1 demo
-	void showCards(); // for a1 demo
+	void rollDie();
+	void showCards();
 
-	// 4. each player has: reinforce(), attack(), fortify() interface;
+	// Each player has: reinforce(), attack(), fortify() interface
 	void reinforce();
 	void attack();
 	void fortify();
