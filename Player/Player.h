@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <math.h>
 #include "../Map/Country.h"
 #include "../Map/Continent.h"
 #include "../CardComponents/Hand.h"
@@ -21,9 +23,18 @@ class Player {
 private:
 	string name;
 	int unplaced_armies;
+	static int nextID;
+	int id;
 	vector<Country*> countries;
+	vector<Country*> attackBase;
+	vector<Country*> attackPossibilities;
 	DiceRollingFacility* dices;
 	Hand* hand;
+	void updateAttack();
+	void attackProcedure();
+	bool isContained(Country*,vector<Country*>);
+	bool validateNumericInput(int&,int,int);
+	bool attack(Country*, Country*);
 
 public:
 	Player();
@@ -33,6 +44,7 @@ public:
 
 	string getName();
 	int getArmies();
+	int getID();
 	Hand* getHand();
 	DiceRollingFacility* getDiceFacility();
 	vector<Country*> getCountries();
@@ -42,6 +54,8 @@ public:
 	void removeCountry(Country* c);
 	void addArmiesToCountry(int, Country*);
 	void removeArmiesFromCountry(int, Country*);
+	vector<int> rollDie(int); // for a1 demo
+	void showCards(); // for a1 demo
 
 	// Each player has: reinforce(), attack(), fortify() interface
 	void reinforce(vector<Continent*> continents);
