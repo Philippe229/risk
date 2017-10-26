@@ -84,18 +84,14 @@ vector<Country*> Country::getBorderingCountries() {
 	return borderingCountries;
 }
 
-vector<Country*> Country::getBorderingEnemies() 
-{
+vector<Country*> Country::getBorderingEnemies() {
 	return borderingEnemies;
 }
 
-void Country::updateInfo()
-{
+void Country::updateInfo() {
 	numEnemiesAround = 0;
-	for(int i = 0;i < borderingCountries.size();i++)
-	{
-		if(owner->getID() != borderingCountries.at(i)->getOwner()->getID())
-		{
+	for(int i = 0;i < borderingCountries.size();i++) {
+		if(owner->getID() != borderingCountries.at(i)->getOwner()->getID()) {
 			numEnemiesAround++;
 			borderingEnemies.push_back(borderingCountries.at(i));
 		}
@@ -106,12 +102,10 @@ void Country::updateInfo()
 		canAttack = false;
 }
 //always called before getBorderingEnemies
-int Country::getNumEnemiesAround()
-{
+int Country::getNumEnemiesAround() {
 	return numEnemiesAround;
 }
 
-bool Country::getCanAttack()
-{
+bool Country::getCanAttack() {
 	return canAttack;
 }
