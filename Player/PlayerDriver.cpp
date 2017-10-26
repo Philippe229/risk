@@ -40,21 +40,19 @@ int main(int argc, char **argv) {
 		cout
 				<< "player two has: " + to_string(two->getCountries().size())
 						+ " countries" << endl;
-<<<<<<< Updated upstream
-=======
 		vector<Country*> c = one->getCountries();
 		one->addArmies(3);
 		one->addArmiesToCountry(3, c.at(3));
 		one->attack();
-	// 	cout << "\n2. each player owns a collection of Risk cards;" << endl;
-	// 	one->showCards();
-	// 	two->showCards();
+		cout << "\n2. each player owns a collection of Risk cards;" << endl;
+		one->showCards();
+		two->showCards();
 
-	// 	cout << "\n3. each player has their own dice facility;" << endl;
-	// 	one->rollDie();
-	// 	cout << endl;
-	// 	two->rollDie();
->>>>>>> Stashed changes
+		cout << "\n3. each player has their own dice facility;" << endl;
+		one->rollDie();
+		cout << endl;
+		two->rollDie();
+
 
 	} catch (invalid_argument e) {
 		cout << e.what() << endl;
