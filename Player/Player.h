@@ -30,11 +30,7 @@ private:
 	vector<Country*> attackPossibilities;
 	DiceRollingFacility* dices;
 	Hand* hand;
-	void updateAttack();
-	void attackProcedure();
-	bool isContained(Country*,vector<Country*>);
-	bool validateNumericInput(int&,int,int);
-	bool attack(Country*, Country*);
+	
 
 public:
 	Player();
