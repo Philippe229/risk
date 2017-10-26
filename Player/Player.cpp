@@ -99,6 +99,14 @@ vector<int> Player::rollDie(int numDie) {
 	sort (results.begin(), results.begin()+results.size());
 	return results;
 }
+void Player::showCountries()
+{
+	cout << "**********Player " << id << " Countries**********" << endl;
+	cout << "Country Name|Armies|Enemies Around" << endl;
+	for (int i = 0;i < countries.size();i++) {
+		cout << countries.at(i)->getName() << "|" << countries.at(i)->getArmies() <<  "|" << countries.at(i)->getNumEnemiesAround() << endl;
+	}
+}
 void Player::reinforce(vector<Continent*> continents) {
 	Reinforcement::reinforcement(this, continents);
 }

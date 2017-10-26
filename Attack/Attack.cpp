@@ -91,7 +91,7 @@ void Attack::attackProcedure() {
 			target->setOwner(att);
 			att->addCountry(target);
 			cout << "Select how many armies to move in your new country" << endl;
-			cout << "Armies available: " << base->getArmies() - 1 <<endl;
+            cout << "Armies available: " << base->getArmies() - 1 <<endl;
 			do {
 				good = validateNumericInput(input, 0, base->getArmies() - 1);
 			}
@@ -99,6 +99,7 @@ void Attack::attackProcedure() {
 			base->removeArmies(input);
 			target->addArmies(input);
 		}
+		att->showCountries();
 		char response;
 		cout << "Do you wish to attack again Player " << id << " (Y/y to continue)?" << endl;
 		cin >> response;
@@ -128,14 +129,21 @@ bool Attack::attack(Country* base, Country* target) {
 		if(target->getArmies() > 2)
 			defDice = 2;
 		else
-			defDice = base->getArmies();
+			defDice = target->getArmies();
+
 		attResults= att->rollDie(attDice);
-		defResults= def->rollDie(attDice);
+		defResults= def->rollDie(defDice);
 		if (attResults.size() > defResults.size())
 			checks = defResults.size();
 		else	
 			checks = attResults.size();
+		cout << "*****Dice Roll*****" << endl;
+		cout << "Attack Dice: " << attDice << endl;
+		cout << "Defense Dice: " << defDice << endl;
 		for (int i = 0; i < checks;i++) {
+			cout << "Dice Comparison " << endl;
+			cout << "Attack Dice: " << attResults.at(attResults.size()-1- i) << endl;
+			cout << "Defense Dice: " << defResults.at(defResults.size()-1-i) << endl;
 			if (attResults.at(attResults.size()-1- i) <= defResults.at(defResults.size()-1-i)) {
 				base->removeArmies(1);
 				if (base->getArmies() <= 1) {

@@ -90,6 +90,7 @@ vector<Country*> Country::getBorderingEnemies() {
 
 void Country::updateInfo() {
 	numEnemiesAround = 0;
+	borderingEnemies.clear();
 	for(int i = 0;i < borderingCountries.size();i++) {
 		if(owner->getID() != borderingCountries.at(i)->getOwner()->getID()) {
 			numEnemiesAround++;
