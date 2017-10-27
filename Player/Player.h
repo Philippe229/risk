@@ -30,11 +30,7 @@ private:
 	vector<Country*> attackPossibilities;
 	DiceRollingFacility* dices;
 	Hand* hand;
-	void updateAttack();
-	void attackProcedure();
-	bool isContained(Country*,vector<Country*>);
-	bool validateNumericInput(int&,int,int);
-	bool attack(Country*, Country*);
+	
 
 public:
 	Player();
@@ -54,6 +50,7 @@ public:
 	void removeCountry(Country* c);
 	void addArmiesToCountry(int, Country*);
 	void removeArmiesFromCountry(int, Country*);
+	void showCountries();
 	vector<int> rollDie(int); // for a1 demo
 	void showCards(); // for a1 demo
 
