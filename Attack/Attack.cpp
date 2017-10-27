@@ -49,6 +49,7 @@ void Attack::attackProcedure() {
 	Country* target;
 	Player* att;
 	Player* def;
+	pl->showCountries();
 	cout << "Input Index|Country Name|Armies|Enemies Around" << endl;
 	cout << endl;
 
@@ -149,7 +150,6 @@ bool Attack::attack(Country* base, Country* target) {
 				if (base->getArmies() <= 1) {
 					cout << "Defender wins" <<endl;
 					return false;
-					break;
 				}
 			}
 			else {
@@ -157,10 +157,17 @@ bool Attack::attack(Country* base, Country* target) {
 				if (target->getArmies() == 0) {
 					cout << "Attacker wins" <<endl;
 					return true;
-					break;
 				}
 			}
 
+		}
+		char response;
+		cout << "Do you wish to attack again " << target->getName() << " (Y/y to continue)?" << endl;
+		cin >> response;
+		if (toupper(response) == 'Y') {
+			updateAttack();
+			attackProcedure();
+			return false;
 		}
 	}
 
