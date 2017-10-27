@@ -19,6 +19,7 @@ private:
 	void attackProcedure();
 	bool isContained(Country*,vector<Country*>);
 	bool validateNumericInput(int&,int,int);
+	bool validateSpecNumericInput(int&,vector<int>);
     bool attack(Country*, Country*);
     int id;
     Player* pl;
