@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// Get the winning player, return NULL if no one has won yet
 Player* MainLoop::getWinner() {
     Player* currPlayer = currMap->getCountries()[0]->getOwner();
     int currIndex = 1;
@@ -22,12 +23,14 @@ MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck) {
     currDeck = theDeck;
 }
 
+// Play the game
 void MainLoop::play() {
     Player* winner;
     Player* currPlayer;
     int playingIndex = 0;
     int numTurns = 0;
 
+    // While no one has won keep playing
     while ((winner = getWinner()) == NULL) {
         currPlayer = playerOrder[playingIndex];
 
@@ -38,6 +41,7 @@ void MainLoop::play() {
         playingIndex = (playingIndex + 1) % playerOrder.size();
         numTurns += 1;
 
+        // FOR DEMO: on the sixth turn assign that player as the winner
         if (numTurns == 6) {
             for (int i = 0; i < currMap->getCountries().size(); i++) {
                 currMap->getCountries()[i]->setOwner(currPlayer);
