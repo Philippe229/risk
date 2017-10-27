@@ -86,6 +86,7 @@ vector<string> Initialization::getAndDisplayMapOptions() {
 }
 
 void Initialization::chooseMap() {
+    cout << endl << "*CHOOSING MAP*" << endl;
     vector<string> mapFiles = getAndDisplayMapOptions();
     int mapNumber = getUserInputInteger("Your choice (-1 to quit): ", 1, mapFiles.size());
     MapLoader* map = new MapLoader();
@@ -119,7 +120,8 @@ void Initialization::chooseMap() {
 }
 
 void Initialization::createPlayers() {
-    cout  << "Select amount of players (2 - 6): " << endl;
+    cout << endl << "*CHOOSING AMOUNT OF PLAYERS*" << endl;
+    cout << "Select amount of players (2 - 6): " << endl;
     int numPlayers = getUserInputInteger("Your choice (-1 to quit): ", 2, 6);
     cout << "Creating players..." << endl;
 
@@ -133,7 +135,7 @@ void Initialization::createPlayers() {
 
 Initialization::Initialization() {
     chooseMap();
-    cout << "Successfully chose a map, creating the game state..." << endl;
+    cout << endl << "Successfully chose a map, creating the game state..." << endl;
     createPlayers();
 }
 
