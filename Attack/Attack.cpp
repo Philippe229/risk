@@ -138,8 +138,8 @@ bool Attack::attack(Country* base, Country* target) {
 		else	
 			checks = attResults.size();
 		cout << "*****Dice Roll*****" << endl;
-		cout << "Attack Dice: " << attDice << endl;
-		cout << "Defense Dice: " << defDice << endl;
+		cout << "Dice A/D: " << attDice << "/" << defDice << endl;
+		cout << "Armies A/D: " << base->getArmies() << "/" << target->getArmies() << endl;
 		for (int i = 0; i < checks;i++) {
 			cout << "Dice Comparison " << endl;
 			cout << "Attack Dice: " << attResults.at(attResults.size()-1- i) << endl;

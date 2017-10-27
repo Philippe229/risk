@@ -30,9 +30,16 @@ int main(int argc, char **argv) {
 			}
 		}
 
-		vector<Country*> c = one->getCountries();
+		vector<Country*> c1 = one->getCountries();
+		vector<Country*> c2 = two->getCountries();
 		one->addArmies(3);
-		one->addArmiesToCountry(3, c.at(3));
+        one->addArmiesToCountry(3, c1.at(3));
+        int numToAdd = c2.size();
+        two->addArmies(numToAdd);
+        for(int i = 0; i < numToAdd;i++)
+        {
+            two->addArmiesToCountry(1, c2.at(i));
+        }
 		one->attack();
 
 
