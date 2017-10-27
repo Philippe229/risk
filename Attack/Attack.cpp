@@ -169,8 +169,6 @@ bool Attack::attack(Country* base, Country* target) {
 		cout << "Do you wish to attack again " << target->getName() << " (Y/y to continue)?" << endl;
 		cin >> response;
 		if (toupper(response) != 'Y') {
-			updateAttack();
-			attackProcedure();
 			return false;
 		}
 	}

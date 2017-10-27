@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
         two->addArmies(numToAdd*3);
         for(int i = 0; i < numToAdd;i++)
         {
-            two->addArmiesToCountry(3, c2.at(i));
+            two->addArmiesToCountry(2, c2.at(i));
         }
 		one->attack();
 
