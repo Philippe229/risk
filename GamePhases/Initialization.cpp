@@ -12,18 +12,21 @@ void Initialization::clearScreen() {
     cout << string(100, '\n');
 }
 
+// Helper function for getting user integer input
 int Initialization::getUserInputInteger(string output, int min, int max) {
     int input;
 
     cout << output;
     cin >> input;
 
+    // While the input is invalid
     while (input < min || input > max || cin.fail()) {
         if (input == -1) {
             cout << "Quitting..." << endl;
             exit(1);   
         }
 
+        // Clear the stream
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Invalid input" << endl;
@@ -35,18 +38,21 @@ int Initialization::getUserInputInteger(string output, int min, int max) {
     return input;
 }
 
+// Helper function for getting user string input
 string Initialization::getUserInputString(string output, string choice1, string choice2) {
     string input;
 
     cout << output;
     cin >> input;
 
+    // While the input is invalid
     while ((input != choice1 && input != choice2) || cin.fail() || input == "q" || input == "Q") {
         if (input == "q" || input == "Q") {
             cout << "Quitting..." << endl;
             exit(1);   
         }
 
+        // Clear the stream
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Invalid input" << endl;
@@ -58,11 +64,13 @@ string Initialization::getUserInputString(string output, string choice1, string 
     return input;
 }
 
+// Displays all the available maps
 vector<string> Initialization::getAndDisplayMapOptions() {
     vector<string> mapFiles;
     DIR* directory;
     struct dirent* file;
 
+    // Code for iterating through directories, works for Unix Operating Systems
     if ((directory = opendir(mapDirectory.c_str())) == NULL) {
         cout << "Could not open directory of maps, exiting." << endl;
         exit(1);
@@ -85,6 +93,7 @@ vector<string> Initialization::getAndDisplayMapOptions() {
     return mapFiles;
 }
 
+// Gets user input for choosing an available map
 void Initialization::chooseMap() {
     cout << endl << "*CHOOSING MAP*" << endl;
     vector<string> mapFiles = getAndDisplayMapOptions();
@@ -94,6 +103,7 @@ void Initialization::chooseMap() {
     bool validMap = false;
     string error;
 
+    // Check if it's a valid map
     try {
         map->parseMap(mapDirectory + mapFiles[mapNumber - 1]);
         validMap = true;
@@ -101,6 +111,7 @@ void Initialization::chooseMap() {
         error = e.what();
     }
 
+    // While it's not a valid map keep asking for the user to choose another map
     while (!validMap) {
         clearScreen();
         cout << error;
@@ -119,12 +130,14 @@ void Initialization::chooseMap() {
     loadedMap = map;
 }
 
+// Gets input from the user for the amount of players that should be created
 void Initialization::createPlayers() {
     cout << endl << "*CHOOSING AMOUNT OF PLAYERS*" << endl;
     cout << "Select amount of players (2 - 6): " << endl;
     int numPlayers = getUserInputInteger("Your choice (-1 to quit): ", 2, 6);
     cout << "Creating players..." << endl;
 
+    // Create a new deck and the players
     currentDeck = new Deck(loadedMap->getMap()->getCountries().size());
     for (int i = 0; i < numPlayers; i++) {
         cout << "Created Player " << (i + 1) << "..." << endl;

@@ -30,6 +30,7 @@ void Startup::clearScreen() {
     cout << string(100, '\n');
 }
 
+// Pretty print all the player's countries, their bordering countries, and the amount of armies in them
 void Startup::displayPlayersCountriesAndArmies(Player* thePlayer) {
     printf("%3s | %25s | %6s | %25s | %6s\n", "Num", "Country Owned", "Armies", "Bordering Countries", "Armies");
     for (int i = 0; i < thePlayer->getCountries().size(); i++) {
@@ -55,8 +56,11 @@ Startup::Startup(vector<Player*> players, Map* map) {
         assignArmies();
 }
 
+// Choose a random player order
 void Startup::randomPlayerOrder() {
     cout << endl << "*ASSIGNING RANDOM ORDER*" << endl;
+
+    // Swap random player indexes 100 times
     for (int i = 0; i < 100; i++) {
         int swapIndexOne = rand() % playerOrder.size();
         int swapIndexTwo = rand() % playerOrder.size();
@@ -72,11 +76,13 @@ void Startup::randomPlayerOrder() {
     }
 }
 
+// Give countries to players randomly in a round robin fashion
 void Startup::assignCountries() {
     cout << endl << "*ASSIGNING RANDOM COUNTRIES TO PLAYERS*" << endl;
     int numCountriesAssigned = 0;
     int currPlayerIndex = 0;
 
+    // Pick a random country, if it's not taken give it to the proper player
     while (numCountriesAssigned < currMap->getCountries().size()) {
         int countryIndexToAssign = rand() % currMap->getCountries().size();
 
@@ -89,6 +95,7 @@ void Startup::assignCountries() {
         }
     }
     
+    // Pretty print all the countries assigned
     cout << endl << "Current countries assigned: " << endl;
     for (int i = 0; i < playerOrder.size(); i++) {
         cout << endl << playerOrder[i]->getName() << "(" << playerOrder[i]->getCountries().size() << " countries): " << endl;
@@ -98,6 +105,7 @@ void Startup::assignCountries() {
     }
 }
 
+// Get user input for assigning intial armies to countries
 void Startup::assignArmies() {
     cout << endl << "*ASSIGNING ARMIES TO COUNTRIES*" << endl;
     int numArmies[6] = {0, 40, 35, 30, 25, 20};
@@ -109,6 +117,7 @@ void Startup::assignArmies() {
         playerArmies[playerOrder[i]->getName()] = numArmies[playerOrder.size() - 1];
     }
 
+    // Assign one army to every country
     for (int i = 0; i < currMap->getCountries().size(); i++) {
         currMap->getCountries()[i]->addArmies(1);
         totalTokens -= 1;
@@ -116,9 +125,11 @@ void Startup::assignArmies() {
         playerArmies[currMap->getCountries()[i]->getOwner()->getName()] -= 1;
     }
 
+    // While players still have army tokens keep placing armies
     while (totalTokens > 0) {
         Player* currPlayersTurn = playerOrder[currPlayerIndex];
 
+        // If the player still has armies to place
         if (playerArmies[currPlayersTurn->getName()] > 0) {
             cout << endl << "Current player to place an army unit (" << playerArmies[currPlayersTurn->getName()] << " left): " << currPlayersTurn->getName() << endl;
             displayPlayersCountriesAndArmies(currPlayersTurn);
@@ -128,6 +139,7 @@ void Startup::assignArmies() {
             playerArmies[currPlayersTurn->getName()] -= 1;
         }
 
+        // Move to the next player in the order
         currPlayerIndex = (currPlayerIndex + 1) % playerOrder.size();
     }
 }
