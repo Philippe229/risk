@@ -7,12 +7,14 @@ using namespace std;
 
 Country::Country() {
 	armies = 0;
+	owner = NULL;
 	canAttack = false;
 }
 
 Country::Country(string country) {
 	armies = 0;
 	country_name = country;
+	owner = NULL;
 	canAttack = false;
 }
 
@@ -20,6 +22,7 @@ Country::Country(string country, string continent) {
 	armies = 0;
 	country_name = country;
 	continent_name = continent;
+	owner = NULL;
 	canAttack = false;
 }
 
