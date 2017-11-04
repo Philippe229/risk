@@ -135,7 +135,21 @@ bool Attack::attack(Country* base, Country* target) {
 			defDice = 2;
 		else
 			defDice = target->getArmies();
-
+		cout << "Attack select dice (1-" << attDice << "): " << endl;
+		bool good = false;
+		int input;
+		do {
+			good = validateNumericInput(input, 1, attDice);
+		}
+		while(!good);
+		attDice = input;
+		good = false;
+		cout << "Defender select dice(1-" << defDice << "): "<< endl;
+		do {
+			good = validateNumericInput(input, 1, defDice);
+		}
+		while(!good);
+		defDice = input;
 		attResults= att->rollDie(attDice);
 		defResults= def->rollDie(defDice);
 		if (attResults.size() > defResults.size())
