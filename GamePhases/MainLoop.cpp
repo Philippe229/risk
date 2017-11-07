@@ -36,7 +36,7 @@ void MainLoop::play() {
 
         currPlayer->reinforce(currMap->getContinents());
         currPlayer->attack();
-        currPlayer->fortify(currPlayer->getCountries()[0]->getName(), currPlayer->getCountries()[1]->getName(), 1);
+        currPlayer->fortify(currPlayer->getCountries()[0], currPlayer->getCountries()[1], 1);
 
         playingIndex = (playingIndex + 1) % playerOrder.size();
         numTurns += 1;

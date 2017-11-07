@@ -1,6 +1,14 @@
 # COMP-345-Risk-Game
 
-// attacker has at least 2 die and at most 3 die
-// defender has at least 1 die and at most 2 die
-// best roll vs best roll then second best roll vs second best roll
-// each player has its own dice rolling facility
+**Team Members**
+* Pablo Gonzalez
+* Philippe Li
+* Dylan Fernandes
+* Benjamin Barault
+
+**How to exclude files from project build in Eclipse:**
+
+1) Select all files to be excluded from build.
+2) Right click -> Resource Configurations... -> Exclude from builds
+
+**Eclipse quick fix shortcut:** Ctrl + 1

@@ -11,7 +11,7 @@
 
 using namespace std;
 
-void Fortification::fortify(Player* player, string sourceCountry, string targetCountry, int numOfArmies) {
+void Fortification::fortify(Player* player, Country* sourceCountry, Country* targetCountry, int numOfArmies) {
 	if (player == NULL) {
 		cout << "Invalid player." << endl;
 		return;
@@ -28,26 +28,22 @@ void Fortification::fortify(Player* player, string sourceCountry, string targetC
 	}
 
 	if (verifyTargetCountry(player, sourceCountry, targetCountry) &&
-			verifyNumOfArmies(player, sourceCountry, numOfArmies)) {
-		Country* playerSourceCountry = player -> getCountry(sourceCountry);
-		Country* playerTargetCountry = player -> getCountry(targetCountry);
+			verifyNumOfArmies(sourceCountry, numOfArmies)) {
+		cout << endl << player -> getName() + " is fortifying " + targetCountry -> getName() + "'s " +
+				to_string(targetCountry -> getArmies()) + " army/armies with " +
+				to_string(numOfArmies) + " of " + sourceCountry -> getName() + "'s " +
+				to_string(sourceCountry -> getArmies()) + " armies." << endl;
 
-		cout << player -> getName() + " is fortifying " + targetCountry + "'s " +
-				to_string(playerTargetCountry -> getArmies()) + " army/armies with " +
-				to_string(numOfArmies) + " of " + sourceCountry + "'s " +
-				to_string(playerSourceCountry -> getArmies()) + " armies." << endl;
-
-		playerSourceCountry -> removeArmies(numOfArmies);
-		playerTargetCountry -> addArmies(numOfArmies);
+		sourceCountry -> removeArmies(numOfArmies);
+		targetCountry -> addArmies(numOfArmies);
 	}
 }
 
-bool Fortification::verifyTargetCountry(Player* player, string sourceCountry, string targetCountry) {
-	Country* playerSourceCountry = player -> getCountry(sourceCountry);
-	Country* playerTargetCountry = player -> getCountry(targetCountry);
-
+bool Fortification::verifyTargetCountry(Player* player, Country* sourceCountry, Country* targetCountry) {
+	vector<Country*> playerCountries = player -> getCountries();
 	// verify ownership
-	if (playerSourceCountry == NULL || playerTargetCountry == NULL) {
+	if(find(playerCountries.begin(), playerCountries.end(), sourceCountry) == playerCountries.end() ||
+			find(playerCountries.begin(), playerCountries.end(), targetCountry) == playerCountries.end()) {
 		cout << "One of the countries does not belong to the player." << endl;
 		return false;
 	}
@@ -61,14 +57,14 @@ bool Fortification::verifyTargetCountry(Player* player, string sourceCountry, st
 		visitedCountries.insert({playerCountry, false});
 	}
 
-	queue.push(playerSourceCountry);
+	queue.push(sourceCountry);
 
 	while (!queue.empty()) {
 		Country* currentCountry = queue.front();
 		queue.pop();
 		visitedCountries[currentCountry] = true;
 
-		if (currentCountry == playerTargetCountry)
+		if (currentCountry == targetCountry)
 			return true;
 
 		borderingCountries = currentCountry -> getBorderingCountries();
@@ -84,8 +80,8 @@ bool Fortification::verifyTargetCountry(Player* player, string sourceCountry, st
 	return false;
 }
 
-bool Fortification::verifyNumOfArmies(Player* player, string sourceCountry, int numOfArmies) {
-	int sourceCountryNumOfArmies = player -> getCountry(sourceCountry) -> getArmies();
+bool Fortification::verifyNumOfArmies(Country* sourceCountry, int numOfArmies) {
+	int sourceCountryNumOfArmies = sourceCountry -> getArmies();
 
 	if (sourceCountryNumOfArmies - numOfArmies < 1) {
 		cout << "Not enough armies to move." << endl;

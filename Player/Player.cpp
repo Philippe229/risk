@@ -61,15 +61,6 @@ vector<Country*> Player::getCountries() {
 	return countries;
 }
 
-Country* Player::getCountry(string name) {
-	for (Country* country : countries) {
-		if (country -> getName() == name) {
-			return country;
-		}
-	}
-	return NULL;
-}
-
 void Player::addArmiesToCountry(int n, Country* c) {
 	if (n <= unplaced_armies && c->getOwner() == this) {
 		c->addArmies(n);
@@ -115,7 +106,7 @@ void Player::reinforce(vector<Continent*> continents) {
 	Reinforcement::reinforcement(this, continents);
 }
 
-void Player::fortify(string sourceCountry, string targetCountry, int numOfArmies) {
+void Player::fortify(Country* sourceCountry, Country* targetCountry, int numOfArmies) {
 	Fortification::fortify(this, sourceCountry, targetCountry, numOfArmies);
 }
 
