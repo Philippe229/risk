@@ -12,6 +12,7 @@
 #include "../Map/Map.h"
 #include "../MapLoader/MapLoader.h"
 #include "../Map/Country.h"
+#include "../Common/Common.cpp"
 
 using namespace std;
 
@@ -38,58 +39,49 @@ int main() {
 
 	// Edge cases
 	cout << "Invalid arguments:" << endl;
-	player1 -> fortify("Western United States", "Western United States", 0);
-	player1 -> fortify("Western United States", "India", 0);
-	player1 -> fortify("Western United States", "India", 3);
-	player1 -> fortify("Western United States", "Peru", 3);
-	player1 -> fortify("Western United States", "Siberia", 3);
+	player1 -> fortify(player1 ->  getCountries()[3], player1 ->  getCountries()[3], 0);
+	player1 -> fortify(player1 ->  getCountries()[3], player2 -> getCountries()[14], 0);
+	player1 -> fortify(player1 ->  getCountries()[3], player2 -> getCountries()[14], 3);
+	player1 -> fortify(player1 ->  getCountries()[3], player1 ->  getCountries()[5], 3);
+	player1 -> fortify(player1 ->  getCountries()[3], player1 -> getCountries()[15], 3);
+
+	cout << endl << "-----------------------------------------------------------" << endl;
+
+	// Player 1: Western United States - Alberta - Alaska - Kamchatka - Mongolia - Siberia
+	Country* player1SourceCountry = player1 ->  getCountries()[3];
+	Country* player1TargetCountry = player1 -> getCountries()[15];
+
+	// Player 2: China - India
+	Country* player2SourceCountry = player2 -> getCountries()[15];
+	Country* player2TargetCountry = player2 -> getCountries()[14];
 
 	// Give unplaced armies to players
 	player1 -> addArmies(1);
 	player2 -> addArmies(8);
 
 	// Add unplaced armies to countries
-	player1 -> addArmiesToCountry(1, player1 -> getCountry("Western United States"));
-	player2 -> addArmiesToCountry(8, player2 -> getCountry("China"));
-
-	// Player 1: Western United States - Alberta - Alaska - Kamchatka - Mongolia - Siberia
-	// Player 2: China - India
-	Country* player1SourceCountry = player1 -> getCountry("Western United States");
-	Country* player1TargetCountry = player1 -> getCountry("Siberia");
-	Country* player2SourceCountry = player2 -> getCountry("China");
-	Country* player2TargetCountry = player2 -> getCountry("India");
+	player1 -> addArmiesToCountry(1, player1SourceCountry);
+	player2 -> addArmiesToCountry(8, player2SourceCountry);
 
 	// Test Player 1
-	cout << "\nPlayer 1:" << endl;
-	cout << "\tSource Country: " + player1SourceCountry -> getName() +
-			" - Troops: " + to_string(player1SourceCountry -> getArmies()) << endl;
-	cout << "\tTarget Country: " + player1TargetCountry -> getName() +
-			" - Troops: " + to_string(player1TargetCountry -> getArmies()) << endl << endl;
+	cout << endl << "Player 1:" << endl;
+	Common::displayPlayersCountriesAndArmies(player1);
 
-	player1 -> fortify("Western United States", "Siberia", 1);
+	player1 -> fortify(player1SourceCountry, player1TargetCountry, 1);
 
-	cout << "\nPlayer 1:" << endl;
-	cout << "\tSource Country: " + player1SourceCountry -> getName() +
-			" - Troops: " + to_string(player1SourceCountry -> getArmies()) << endl;
-	cout << "\tTarget Country: " + player1TargetCountry -> getName() +
-			" - Troops: " + to_string(player1TargetCountry -> getArmies()) << endl;
+	cout << endl << "Player 1:" << endl;
+	Common::displayPlayersCountriesAndArmies(player1);
 
 	cout << endl << "-----------------------------------------------------------" << endl;
 
 	// Test Player 2
-	cout << "\nPlayer 2:" << endl;
-	cout << "\tSource Country: " + player2SourceCountry -> getName() +
-			" - Troops: " + to_string(player2SourceCountry -> getArmies()) << endl;
-	cout << "\tTarget Country: " + player2TargetCountry -> getName() +
-			" - Troops: " + to_string(player2TargetCountry -> getArmies()) << endl << endl;
+	cout << endl << "Player 2:" << endl;
+	Common::displayPlayersCountriesAndArmies(player2);
 
-	player2 -> fortify("China", "India", 5);
+	player2 -> fortify(player2SourceCountry, player2TargetCountry, 5);
 
-	cout << "\nPlayer 2:" << endl;
-	cout << "\tSource Country: " + player2SourceCountry -> getName() +
-			" - Troops: " + to_string(player2SourceCountry -> getArmies()) << endl;
-	cout << "\tTarget Country: " + player2TargetCountry -> getName() +
-			" - Troops: " + to_string(player2TargetCountry -> getArmies()) << endl;
+	cout << endl << "Player 2:" << endl;
+	Common::displayPlayersCountriesAndArmies(player2);
 
 	return 0;
 }

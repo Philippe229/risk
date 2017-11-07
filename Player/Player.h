@@ -46,7 +46,6 @@ public:
 	Hand* getHand();
 	DiceRollingFacility* getDiceFacility();
 	vector<Country*> getCountries();
-	Country* getCountry(string name);
 	void addArmies(int newArmies);
 	void addCountry(Country* c);
 	void removeCountry(Country* c);
@@ -59,7 +58,7 @@ public:
 	// Each player has: reinforce(), attack(), fortify() interface
 	void reinforce(vector<Continent*> continents);
 	void attack(Deck* deck);
-	void fortify(string sourceCountry, string targetCountry, int numOfArmies);
+	void fortify(Country* sourceCountry, Country* targetCountry, int numOfArmies);
 };
 
 #endif
