@@ -41,7 +41,6 @@ int main(int argc, char **argv) {
         {
             two->addArmiesToCountry(2, c2.at(i));
         }
-		one->attack();
 
 
 	} catch (invalid_argument e) {

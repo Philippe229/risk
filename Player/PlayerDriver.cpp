@@ -41,7 +41,7 @@ int main(int argc, char **argv) {
 				<< "player two has: " + to_string(two->getCountries().size())
 						+ " countries" << endl;
 		vector<Country*> c = one->getCountries();
-		
+
 		cout << "\n2. each player owns a collection of Risk cards;" << endl;
 		one->showCards();
 		two->showCards();

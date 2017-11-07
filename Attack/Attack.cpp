@@ -1,28 +1,34 @@
 #include "Attack.h"
-void Attack::attackInitalization(Player* player) {
-    pl = player;
-    countries = pl->getCountries();
-    id = pl->getID();
+void Attack::attackInitalization(Player* player, Deck* d) {
+	pl = player;
+	deck = d;
+	countries = pl->getCountries();
+	id = pl->getID();
+	int countriesOwnedBeforeAttackPhase = player->getCountries().size();
 	char response;
-	cout << "Do you wish to attack during this turn Player " << id << " (Y/y to continue)?" << endl;
+	cout << "Do you wish to attack during this turn Player " << id
+			<< " (Y/y to continue)?" << endl;
 	cin >> response;
-	if (toupper(response) == 'Y')
-	{
+	if (toupper(response) == 'Y') {
 		updateAttack();
 		attackProcedure();
+	}
+	// draw a card if player conquered at least one country during attack phase
+	if (player->getCountries().size() > countriesOwnedBeforeAttackPhase) {
+		player->getHand()->getCard(deck->Draw());
 	}
 	cout << "End of the attack phase.";
 }
 
 void Attack::updateAttack() {
-    //cout << "***********" << id << "***********"<<endl;
+	//cout << "***********" << id << "***********"<<endl;
 	vector<Country*> borderingCountries;
 	attackBase.clear();
 	bool isAdded = false;
-	for (int i = 0; i < countries.size();i++) {
+	for (int i = 0; i < countries.size(); i++) {
 		isAdded = false;
 		borderingCountries = countries.at(i)->getBorderingCountries();
-		for (int j = 0;j < borderingCountries.size();j++) {
+		for (int j = 0; j < borderingCountries.size(); j++) {
 			// add attack possibility if the player isn't the owner
 			if (id != borderingCountries.at(j)->getOwner()->getID()) {
 				//add attack base country 
@@ -31,7 +37,7 @@ void Attack::updateAttack() {
 					isAdded = true;
 				}
 				//add country if it is unique
-				if (!isContained(borderingCountries.at(j),attackPossibilities))
+				if (!isContained(borderingCountries.at(j), attackPossibilities))
 					attackPossibilities.push_back(borderingCountries.at(j));
 				//cout << borderingCountries.at(j)->getName()<< " " << borderingCountries.at(j)->getOwner()->getName() << endl;
 			}
@@ -54,11 +60,13 @@ void Attack::attackProcedure() {
 	cout << "Input Index|Country Name|Armies|Enemies Around" << endl;
 	cout << endl;
 
-	for (int i = 0;i < attackBase.size();i++) {
+	for (int i = 0; i < attackBase.size(); i++) {
 		attackBase.at(i)->updateInfo();
-		if(attackBase.at(i)->getCanAttack()) {
-			cout << i+1  << "\t|" << attackBase.at(i)->getName() << "|" << attackBase.at(i)->getArmies() <<  "|" << attackBase.at(i)->getNumEnemiesAround() << endl;
-			valid.push_back(i+1);
+		if (attackBase.at(i)->getCanAttack()) {
+			cout << i + 1 << "\t|" << attackBase.at(i)->getName() << "|"
+					<< attackBase.at(i)->getArmies() << "|"
+					<< attackBase.at(i)->getNumEnemiesAround() << endl;
+			valid.push_back(i + 1);
 			numAttack++;
 		}
 	}
@@ -69,50 +77,50 @@ void Attack::attackProcedure() {
 	cout << "Select which country you would like to attack from" << endl;
 	do {
 		good = validateSpecNumericInput(input, valid);
-	}
-	while(!good);
-	base = attackBase.at(input-1);
+	} while (!good);
+	base = attackBase.at(input - 1);
 	cout << "Attacking From " << base->getName() << endl;
 	cout << "Input Index| Country Name|Armies|Owner" << endl;
 	cout << endl;
 	enemyCountries = base->getBorderingEnemies();
 	valid.clear();
-	for (int i = 0;i < enemyCountries.size();i++) {
-		cout << i+1  << "\t| " << enemyCountries.at(i)->getName() << "| " << enemyCountries.at(i)->getArmies() <<  "|" << enemyCountries.at(i)->getOwner()->getID() << endl;
-		valid.push_back(i+1);
+	for (int i = 0; i < enemyCountries.size(); i++) {
+		cout << i + 1 << "\t| " << enemyCountries.at(i)->getName() << "| "
+				<< enemyCountries.at(i)->getArmies() << "|"
+				<< enemyCountries.at(i)->getOwner()->getID() << endl;
+		valid.push_back(i + 1);
 	}
 	cout << "Select which country you would like to attack" << endl;
 	good = false;
 	do {
 		good = validateSpecNumericInput(input, valid);
-	}
-	while(!good);
-	target = enemyCountries.at(input-1);
+	} while (!good);
+	target = enemyCountries.at(input - 1);
 	att = base->getOwner();
 	def = target->getOwner();
 	if (attack(base, target)) {
-			good = false;
-			def->removeCountry(target);
-			target->setOwner(att);
-			att->addCountry(target);
-			cout << "Select how many armies to move in your new country" << endl;
-            cout << "Armies available: " << base->getArmies() - 1 <<endl;
-			do {
-				good = validateNumericInput(input, 1, base->getArmies() - 1);
-			}
-			while(!good);
-			base->removeArmies(input);
-			target->addArmies(input);
-		}
-		att->showCountries();
-		char response;
-		cout << "Do you wish to attack again Player " << id << " (Y/y to continue)?" << endl;
-		cin >> response;
-		if (toupper(response) == 'Y') {
-			updateAttack();
-			attackProcedure();
-			return;
-		}
+		good = false;
+		def->removeCountry(target);
+		target->setOwner(att);
+		att->addCountry(target);
+		cout << "Select how many armies to move in your new country" << endl;
+		cout << "Armies available: " << base->getArmies() - 1 << endl;
+		do {
+			good = validateNumericInput(input, 1, base->getArmies() - 1);
+		} while (!good);
+		base->removeArmies(input);
+		target->addArmies(input);
+	}
+	att->showCountries();
+	char response;
+	cout << "Do you wish to attack again Player " << id << " (Y/y to continue)?"
+			<< endl;
+	cin >> response;
+	if (toupper(response) == 'Y') {
+		updateAttack();
+		attackProcedure();
+		return;
+	}
 }
 bool Attack::attack(Country* base, Country* target) {
 	Player* att = base->getOwner();
@@ -122,16 +130,17 @@ bool Attack::attack(Country* base, Country* target) {
 	int checks = 0;
 	vector<int> attResults;
 	vector<int> defResults;
-	cout <<  "***** " <<base->getName() << " is attacking " << target->getName() << " *****" << endl;
+	cout << "***** " << base->getName() << " is attacking " << target->getName()
+			<< " *****" << endl;
 	while (true) {
-		if(base->getArmies() > 3)
+		if (base->getArmies() > 3)
 			attDice = 3;
 		else if (base->getArmies() == 1)
 			attDice = 1;
 		else
 			attDice = base->getArmies() - 1;
 
-		if(target->getArmies() > 2)
+		if (target->getArmies() > 2)
 			defDice = 2;
 		else
 			defDice = target->getArmies();
@@ -140,47 +149,49 @@ bool Attack::attack(Country* base, Country* target) {
 		int input;
 		do {
 			good = validateNumericInput(input, 1, attDice);
-		}
-		while(!good);
+		} while (!good);
 		attDice = input;
 		good = false;
-		cout << "Defender select dice(1-" << defDice << "): "<< endl;
+		cout << "Defender select dice(1-" << defDice << "): " << endl;
 		do {
 			good = validateNumericInput(input, 1, defDice);
-		}
-		while(!good);
+		} while (!good);
 		defDice = input;
-		attResults= att->rollDie(attDice);
-		defResults= def->rollDie(defDice);
+		attResults = att->rollDie(attDice);
+		defResults = def->rollDie(defDice);
 		if (attResults.size() > defResults.size())
 			checks = defResults.size();
-		else	
+		else
 			checks = attResults.size();
 		cout << "*****Dice Roll*****" << endl;
 		cout << "Dice A/D: " << attDice << "/" << defDice << endl;
-		cout << "Armies A/D: " << base->getArmies() << "/" << target->getArmies() << endl;
-		for (int i = 0; i < checks;i++) {
+		cout << "Armies A/D: " << base->getArmies() << "/"
+				<< target->getArmies() << endl;
+		for (int i = 0; i < checks; i++) {
 			cout << "Dice Comparison " << endl;
-			cout << "Attack Dice: " << attResults.at(attResults.size()-1- i) << endl;
-			cout << "Defense Dice: " << defResults.at(defResults.size()-1-i) << endl;
-			if (attResults.at(attResults.size()-1- i) <= defResults.at(defResults.size()-1-i)) {
+			cout << "Attack Dice: " << attResults.at(attResults.size() - 1 - i)
+					<< endl;
+			cout << "Defense Dice: " << defResults.at(defResults.size() - 1 - i)
+					<< endl;
+			if (attResults.at(attResults.size() - 1 - i)
+					<= defResults.at(defResults.size() - 1 - i)) {
 				base->removeArmies(1);
 				if (base->getArmies() <= 1) {
-					cout << "Defender wins" <<endl;
+					cout << "Defender wins" << endl;
 					return false;
 				}
-			}
-			else {
+			} else {
 				target->removeArmies(1);
 				if (target->getArmies() == 0) {
-					cout << "Attacker wins" <<endl;
+					cout << "Attacker wins" << endl;
 					return true;
 				}
 			}
 
 		}
 		char response;
-		cout << "Do you wish to attack again " << target->getName() << " (Y/y to continue)?" << endl;
+		cout << "Do you wish to attack again " << target->getName()
+				<< " (Y/y to continue)?" << endl;
 		cin >> response;
 		if (toupper(response) != 'Y') {
 			return false;
@@ -190,18 +201,18 @@ bool Attack::attack(Country* base, Country* target) {
 }
 //could optimize, check if country is already in vector
 bool Attack::isContained(Country* possibility, vector<Country*> c) {
-	for (int i = 0; i < c.size();i++) {
-		if(possibility->getName() == c.at(i)->getName())
+	for (int i = 0; i < c.size(); i++) {
+		if (possibility->getName() == c.at(i)->getName())
 			return true;
 	}
 	return false;
 }
-bool Attack::validateSpecNumericInput(int& input,vector<int> poss) {
+bool Attack::validateSpecNumericInput(int& input, vector<int> poss) {
 	double raw, fractpart, intpart;
 	cin >> raw;
 	if (cin) {
-		fractpart = modf (raw, &intpart);
-		input = (int)intpart;
+		fractpart = modf(raw, &intpart);
+		input = (int) intpart;
 		if (fractpart != 0) {
 			cout << "Invalid Input! Number not integer" << endl;
 			return false;
@@ -211,27 +222,25 @@ bool Attack::validateSpecNumericInput(int& input,vector<int> poss) {
 	if (!cin) {
 		cout << "Invalid Input! Number not numeric" << endl;
 		// reset failbit
-		cin.clear(); 
+		cin.clear();
 		// skip bad input
-		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		return false;
-	}
-	else if (!(std::find(poss.begin(), poss.end(), input) != poss.end())) {
+	} else if (!(std::find(poss.begin(), poss.end(), input) != poss.end())) {
 		cout << "Invalid Input! Number not valid" << endl;
-		cin.clear(); 
+		cin.clear();
 		// skip bad input
-		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		return false;
-	}
-	else
+	} else
 		return true;
 }
-bool Attack::validateNumericInput(int& input,int lower, int upper) {
+bool Attack::validateNumericInput(int& input, int lower, int upper) {
 	double raw, fractpart, intpart;
 	cin >> raw;
 	if (cin) {
-		fractpart = modf (raw, &intpart);
-		input = (int)intpart;
+		fractpart = modf(raw, &intpart);
+		input = (int) intpart;
 		if (fractpart != 0) {
 			cout << "Invalid Input! Number not integer" << endl;
 			return false;
@@ -241,18 +250,16 @@ bool Attack::validateNumericInput(int& input,int lower, int upper) {
 	if (!cin) {
 		cout << "Invalid Input! Number not numeric" << endl;
 		// reset failbit
-		cin.clear(); 
+		cin.clear();
 		// skip bad input
-		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		return false;
-	}
-	else if (input < lower || input > upper) {
+	} else if (input < lower || input > upper) {
 		cout << "Invalid Input! Number out of range" << endl;
-		cin.clear(); 
+		cin.clear();
 		// skip bad input
-		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		return false;
-	}
-	else
+	} else
 		return true;
 }

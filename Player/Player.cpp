@@ -119,9 +119,9 @@ void Player::fortify(string sourceCountry, string targetCountry, int numOfArmies
 	Fortification::fortify(this, sourceCountry, targetCountry, numOfArmies);
 }
 
-void Player::attack() {
+void Player::attack(Deck* deck) {
 	Attack a;
-	a.attackInitalization(this);
+	a.attackInitalization(this, deck);
 }
 int Player::getID()
 {
