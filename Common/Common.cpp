@@ -17,7 +17,7 @@ void Common::displayPlayersCountriesAndArmies(Player* thePlayer) {
 	}
 }
 
-int Common::getUserInputInteger(string output, int min, int max) {
+int Common::getUserInputIntegerInRange(string output, int min, int max) {
 	int input;
 	
 	cout << output;
@@ -42,7 +42,7 @@ int Common::getUserInputInteger(string output, int min, int max) {
 	return input;
 }
 
-string Common::getUserInputString(string output, string choice1, string choice2) {
+string Common::getUserInputStringTwoChoices(string output, string choice1, string choice2) {
     string input;
 
     cout << output;
