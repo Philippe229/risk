@@ -104,7 +104,7 @@ void Player::showCountries()
 	}
 }
 void Player::reinforce(vector<Continent*> continents) {
-	Reinforcement::reinforcement(this, continents);
+	Reinforcement::playerReinforcement(this, continents);
 }
 
 void Player::fortify(Country* sourceCountry, Country* targetCountry, int numOfArmies) {

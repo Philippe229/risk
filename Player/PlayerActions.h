@@ -9,14 +9,15 @@
 class Country;
 class Continent;
 class Deck;
+class Map;
 
 class PlayerActions {
 public:
-	virtual void reinforce(Map*, Deck*) = 0;
+	virtual void reinforce(Map*) = 0;
 	virtual void reinforce(vector<Continent*>) = 0;
-	virtual void attack(Map*, Deck*) = 0;
+	virtual void attack(Map*) = 0;
 	virtual void attack(Deck* deck) = 0;
-	virtual void fortify(Map*, Deck*) = 0;
+	virtual void fortify(Map*) = 0;
 	virtual void fortify(Country*, Country*, int) = 0;
 };
 

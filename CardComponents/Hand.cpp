@@ -17,7 +17,6 @@ Hand::Hand(int max) {
 	exchangeMultiplier = 0;
 	// 3 cards needed to get armies
 	exchange = 3;
-
 }
 
 void Hand::getCard(Card c) {
@@ -98,6 +97,7 @@ int Hand::verifyInput(int numIteration, int exchanges[]) {
 	} while (notGood);
 	return input;
 }
+
 int Hand::SelectExchange() {
 	// set exchange as not assigned
 	int exchanges[3] = { -1, -1, -1 };
@@ -111,7 +111,6 @@ int Hand::SelectExchange() {
 		card2 = verifyInput(2, exchanges);
 		card3 = verifyInput(3, exchanges);
 		if (VerifyExchange(card1, card2, card3)) {
-			// to erase latter elements first
 			if (card2 < card3)
 				swap(card2, card3);
 			if (card1 < card2)
@@ -149,3 +148,54 @@ bool Hand::VerifyExchange(int c1, int c2, int c3) {
 	return false;
 }
 
+// Gets any exchanges prioritizing unique exchanges over same card types
+int Hand::getAnyExchange() {
+	vector<vector<int>> indexes;
+	bool validExchangeFound = false;
+
+	for (int i = 0; i < 3; i++) {
+		vector<int> temp;
+		indexes.push_back(temp);
+	}
+
+	for (int i = 0; i < getNumberOfCards(); i++) {
+		indexes[cards[i].getCardVal()].push_back(i);
+
+		// Unique exchange
+		if (indexes[0].size() >= 1 && indexes[1].size() >= 1 && indexes[2].size() >= 1) {
+			if (VerifyExchange(indexes[0][0], indexes[1][0], indexes[2][0])) {
+				if (indexes[1][0] < indexes[2][0])
+					swap(indexes[1][0], indexes[2][0]);
+				if (indexes[0][0] < indexes[1][0])
+					swap(indexes[0][0], indexes[1][0]);
+				if (indexes[1][0] < indexes[2][0])
+					swap(indexes[1][0], indexes[2][0]);
+				cards.erase(cards.begin() + indexes[0][0] - 1);
+				cards.erase(cards.begin() + indexes[1][0] - 1);
+				cards.erase(cards.begin() + indexes[2][0] - 1);
+				break;
+			}
+		} else if (indexes[cards[i].getCardVal()].size() >= 3) {
+			// Same card type exchange
+			if (VerifyExchange(indexes[i][0], indexes[i][1], indexes[i][2])) {
+				if (indexes[i][1] < indexes[i][2])
+					swap(indexes[i][1], indexes[i][2]);
+				if (indexes[i][0] < indexes[i][1])
+					swap(indexes[i][0], indexes[i][1]);
+				if (indexes[i][1] < indexes[i][2])
+					swap(indexes[i][1], indexes[i][2]);
+				cards.erase(cards.begin() + indexes[i][0] - 1);
+				cards.erase(cards.begin() + indexes[i][1] - 1);
+				cards.erase(cards.begin() + indexes[i][2] - 1);
+				break;
+			}
+		}
+	}
+
+	if (validExchangeFound) {
+		exchangeMultiplier++;
+		return exchangeMultiplier * 5;
+	}
+
+	return 0;
+}
