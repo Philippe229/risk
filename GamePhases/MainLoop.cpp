@@ -35,14 +35,14 @@ void MainLoop::play() {
         currPlayer = playerOrder[playingIndex];
 
         currPlayer->reinforce(currMap->getContinents());
-        currPlayer->attack();
+        currPlayer->attack(currDeck);
         currPlayer->fortify(currPlayer->getCountries()[0], currPlayer->getCountries()[1], 1);
 
         playingIndex = (playingIndex + 1) % playerOrder.size();
         numTurns += 1;
 
         // FOR DEMO: on the sixth turn assign that player as the winner
-        if (numTurns == 6) {
+        if (numTurns == 15) {
             for (int i = 0; i < currMap->getCountries().size(); i++) {
                 currMap->getCountries()[i]->setOwner(currPlayer);
             }

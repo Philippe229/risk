@@ -5,7 +5,7 @@
 using namespace std;
 
 void Reinforcement::reinforcement(Player* player, vector<Continent*> continents) {
-
+	cout << player->getName() + "'s Reinforcement Phase" << endl;
 	int bonusArmies = 0;
 
 	// calculate # of reinforcements

@@ -33,6 +33,6 @@ int main() {
 	} catch (invalid_argument e) {
 		cout << e.what() << endl;
 	}
-	
+
     return 0;
 }

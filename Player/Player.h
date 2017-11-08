@@ -10,6 +10,7 @@
 #include "../Map/Continent.h"
 #include "../CardComponents/Hand.h"
 #include "../CardComponents/Card.h"
+#include "../CardComponents/Deck.h"
 #include "../DiceRollingFacility/DiceRollingFacility.h"
 
 using namespace std;
@@ -17,6 +18,7 @@ using namespace std;
 //forward declaration (circular dependency)
 class Country;
 class Continent;
+class Deck;
 
 class Player {
 
@@ -55,7 +57,7 @@ public:
 
 	// Each player has: reinforce(), attack(), fortify() interface
 	void reinforce(vector<Continent*> continents);
-	void attack();
+	void attack(Deck* deck);
 	void fortify(Country* sourceCountry, Country* targetCountry, int numOfArmies);
 };
 
