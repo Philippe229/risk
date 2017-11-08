@@ -11,6 +11,7 @@
 #include <vector>
 #include <stdexcept>
 #include "../Player/Player.h"
+#include "../Player/PlayerStrategies/Human.h"
 #include "../MapLoader/MapLoader.h"
 #include "../CardComponents/Deck.h"
 

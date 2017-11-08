@@ -153,7 +153,7 @@ void Initialization::createPlayers() {
     currentDeck = new Deck(loadedMap->getMap()->getCountries().size());
     for (int i = 0; i < numPlayers; i++) {
         cout << "Created Player " << (i + 1) << "..." << endl;
-        Player* currPlayer = new Player("Player " + to_string(i + 1));
+        Player* currPlayer = new Human("Player " + to_string(i + 1));
         gamePlayers.push_back(currPlayer);
     }
 }

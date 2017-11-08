@@ -3,15 +3,17 @@
 
 #include <string>
 #include "../Player.h"
-#include "../PlayerActions.h"
+#include "../../Fortification/Fortification.h"
+#include "../../Reinforcement/Reinforcement.h"
+#include "../../Attack/Attack.h"
 
-class Human : public Player, public PlayerActions {
+class Human : public Player {
 public:
     Human();
     Human(string);
-    void reinforce(vector<Continent*> continents);
-	void attack(Deck* deck);
-	void fortify(Country* sourceCountry, Country* targetCountry, int numOfArmies);
+    void reinforce(Map*, Deck*);
+    void attack(Map*, Deck*);
+    void fortify(Map*, Deck*);
 };
 
 #endif

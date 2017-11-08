@@ -12,6 +12,8 @@ using namespace std;
 
 //forward declaration (circular dependency)
 class Player;
+class Country;
+class Continent;
 
 class Map {
 

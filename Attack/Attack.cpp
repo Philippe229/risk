@@ -98,7 +98,7 @@ void Attack::attackProcedure() {
 	target = enemyCountries.at(input - 1);
 	att = base->getOwner();
 	def = target->getOwner();
-	if (attack(base, target)) {
+	if (userAttack(base, target)) {
 		good = false;
 		def->removeCountry(target);
 		target->setOwner(att);
@@ -123,7 +123,7 @@ void Attack::attackProcedure() {
 	}
 }
 
-bool Attack::attack(Country* base, Country* target) {
+bool Attack::userAttack(Country* base, Country* target) {
 	Player* att = base->getOwner();
 	Player* def = target->getOwner();
 	int attDice = 0;
@@ -266,4 +266,59 @@ bool Attack::validateNumericInput(int& input, int lower, int upper) {
 		return false;
 	} else
 		return true;
+}
+
+void Attack::attack(Deck* currDeck, Player* player, Country* sourceCountry, Country* destinationCountry, int numDice, int numArmiesToMove) {
+	if (numDice > 3 || numDice > min(3, sourceCountry->getArmies() - 1)) {
+		cout << "Invalid amount of dice chosen." << endl;
+		return;
+	}
+
+	if (player == NULL) {
+		cout << "Player must be set." << endl;
+		return;
+	}
+
+	if (sourceCountry->getOwner() != player) {
+		cout << "You cannot attack with a country you do not own." << endl;
+		return;
+	}
+
+	if (sourceCountry == NULL || destinationCountry == NULL) {
+		cout << "Source and destination must be set when attacking." << endl;
+		return;
+	}
+
+	bool successfulTakeover = false;
+	// Roll the dice
+	vector<int> attackResults = sourceCountry->getOwner()->rollDie(numDice);
+	vector<int> defenseResults = destinationCountry->getOwner()->rollDie(min(2, destinationCountry->getArmies()));
+
+	// Remove the appropriate amount of armies
+	for (int i = 0; i < min(attackResults.size(), defenseResults.size()); i++) {
+		// Successful attack
+		if (attackResults[attackResults.size() - 1 - i] > defenseResults[defenseResults.size() - 1 -i]) {
+			destinationCountry->removeArmies(1);
+
+			if (destinationCountry->getArmies() == 0) {
+				destinationCountry->setOwner(player);
+				int numMoving = min(numArmiesToMove, sourceCountry->getArmies() - 1);
+				destinationCountry->addArmies(numMoving);
+				sourceCountry->removeArmies(numMoving);
+
+				successfulTakeover = true;
+			}
+		} else {
+			// Failed attack
+			sourceCountry->removeArmies(1);
+		}
+	}
+
+	sourceCountry->updateInfo();
+	destinationCountry->updateInfo();
+
+	// Get a card if a country was successfully attacked
+	if (player->getHand()->getNumberOfCards() < 5 && successfulTakeover) {
+		player->getHand()->getCard(currDeck->Draw());
+	}
 }

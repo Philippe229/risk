@@ -1,17 +1,18 @@
 #ifndef AGGRESSIVE_BOT_H_
 #define AGGRESSIVE_BOT_H_
 
-#include "../PlayerActions.h"
+#include "../Player.h"
 #include "../../Fortification/Fortification.h"
 #include "../../Reinforcement/Reinforcement.h"
+#include "../../Attack/Attack.h"
 
-class AggressiveBot : public Player, public PlayerActions {
+class AggressiveBot : public Player {
 public:
     AggressiveBot();
     AggressiveBot(string);
-    void reinforce(Map*);
-	void attack(Map*);
-	void fortify(Map*);
+    void reinforce(Map*, Deck*);
+    void attack(Map*, Deck*);
+    void fortify(Map*, Deck*);
 };
 
 #endif

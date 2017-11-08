@@ -8,11 +8,11 @@
 #include <math.h>
 #include "../Map/Country.h"
 #include "../Map/Continent.h"
+#include "../Map/Map.h"
 #include "../CardComponents/Hand.h"
 #include "../CardComponents/Card.h"
 #include "../CardComponents/Deck.h"
 #include "../DiceRollingFacility/DiceRollingFacility.h"
-#include "./PlayerActions.h"
 
 using namespace std;
 
@@ -20,6 +20,7 @@ using namespace std;
 class Country;
 class Continent;
 class Deck;
+class Map;
 
 class Player {
 
@@ -54,10 +55,9 @@ public:
 	void showCountries();
 	vector<int> rollDie(int);
 
-	// Each player has: reinforce(), attack(), fortify() interface
-	void reinforce(vector<Continent*> continents);
-	void attack(Deck* deck);
-	void fortify(Country* sourceCountry, Country* targetCountry, int numOfArmies);
+	virtual void reinforce(Map*, Deck*) = 0;
+	virtual void attack(Map*, Deck*) = 0;
+	virtual void fortify(Map*, Deck*) = 0;
 };
 
 #endif

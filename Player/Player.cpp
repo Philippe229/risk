@@ -95,25 +95,12 @@ vector<int> Player::rollDie(int numDie) {
 	return results;
 }
 
-void Player::showCountries()
-{
+void Player::showCountries() {
 	cout << "**********Player " << id << " Countries**********" << endl;
 	cout << "Country Name|Armies" << endl;
 	for (int i = 0;i < countries.size();i++) {
 		cout << countries.at(i)->getName() << "|" << countries.at(i)->getArmies() << endl;
 	}
-}
-void Player::reinforce(vector<Continent*> continents) {
-	Reinforcement::playerReinforcement(this, continents);
-}
-
-void Player::fortify(Country* sourceCountry, Country* targetCountry, int numOfArmies) {
-	Fortification::fortify(this, sourceCountry, targetCountry, numOfArmies);
-}
-
-void Player::attack(Deck* deck) {
-	Attack a;
-	a.attackInitalization(this, deck);
 }
 
 int Player::getID() {
