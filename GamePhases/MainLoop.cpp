@@ -40,13 +40,6 @@ void MainLoop::play() {
 
         playingIndex = (playingIndex + 1) % playerOrder.size();
         numTurns += 1;
-
-        // FOR DEMO: on the sixth turn assign that player as the winner
-        if (numTurns == 15) {
-            for (int i = 0; i < currMap->getCountries().size(); i++) {
-                currMap->getCountries()[i]->setOwner(currPlayer);
-            }
-        }
     }
 
     cout << "Winner: " << winner->getName() << endl;
