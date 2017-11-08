@@ -1,7 +1,9 @@
 #ifndef STARTUP_H_
 #define STARTUP_H_
 
+#include <iostream>
 #include <vector>
+#include <stdexcept>
 #include "../Player/Player.h"
 #include "../Map/Map.h"
 

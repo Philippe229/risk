@@ -7,6 +7,7 @@
 
 #ifndef HAND_H_
 #define HAND_H_
+
 #include "Card.h"
 #include <vector>
 #include <map>
@@ -21,6 +22,7 @@ public:
 	void PrintHand();
 	void getCard(Card);
 	int getNumberOfCards();
+	int getAnyExchange();
 
 private:
 	bool positionTaken(int, int[]);

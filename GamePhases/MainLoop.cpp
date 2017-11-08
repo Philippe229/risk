@@ -34,19 +34,12 @@ void MainLoop::play() {
     while ((winner = getWinner()) == NULL) {
         currPlayer = playerOrder[playingIndex];
 
-        currPlayer->reinforce(currMap->getContinents());
-        currPlayer->attack(currDeck);
-        currPlayer->fortify(currPlayer->getCountries()[0], currPlayer->getCountries()[1], 1);
+        currPlayer->reinforce(currMap, currDeck);
+        currPlayer->attack(currMap, currDeck);
+        currPlayer->fortify(currMap, currDeck);
 
         playingIndex = (playingIndex + 1) % playerOrder.size();
         numTurns += 1;
-
-        // FOR DEMO: on the sixth turn assign that player as the winner
-        if (numTurns == 15) {
-            for (int i = 0; i < currMap->getCountries().size(); i++) {
-                currMap->getCountries()[i]->setOwner(currPlayer);
-            }
-        }
     }
 
     cout << "Winner: " << winner->getName() << endl;

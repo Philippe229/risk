@@ -1,10 +1,43 @@
-#include <iostream>
-#include <map>
 #include "Reinforcement.h"
 
-using namespace std;
+int Reinforcement::staticBonusArmies = 0;
 
-void Reinforcement::reinforcement(Player* player, vector<Continent*> continents) {
+int Reinforcement::getTotalBonusArmies(Player* player, vector<Continent*> continents) {
+	int bonusArmies = 0;
+	
+	// calculate # of reinforcements
+	bonusArmies += getCountryBonus(player);
+	bonusArmies += getContinentBonus(player, continents);
+	bonusArmies += getMaxCardBonus(player);
+
+	return bonusArmies;
+}
+
+void Reinforcement::reinforcement(Player* player, Country* country, int numArmies) {
+	if (numArmies <= staticBonusArmies) {
+		if (player == NULL) {
+			cout << "Invalid player." << endl;
+			return;
+		}
+
+		if (country == NULL) {
+			cout << "Invalid country." << endl;
+			return;
+		}
+	
+		if (numArmies < 1) {
+			cout <<"Need one or more armies to move." << endl;
+			return;
+		}
+
+		country->addArmies(numArmies);
+		staticBonusArmies -= numArmies;
+	} else {
+		cout << "Not enough armies to place." << endl;
+	}
+}
+
+void Reinforcement::playerReinforcement(Player* player, vector<Continent*> continents) {
 	cout << player->getName() + "'s Reinforcement Phase" << endl;
 	int bonusArmies = 0;
 
@@ -84,21 +117,28 @@ int Reinforcement::getContinentBonus(Player* player, vector<Continent*> continen
 
 int Reinforcement::getCardBonus(Player* player) {
 	int numberOfCards = player->getHand()->getNumberOfCards();
-	if(numberOfCards < 3) {
+	
+	if (numberOfCards < 3) {
 		return 0;
 	}
-	if(numberOfCards == 5) {
+
+	if (numberOfCards == 5) {
 		cout << "You have " << numberOfCards << " cards you need to exchange them" << endl;
 		return player->getHand()->SelectExchange();
 	} else {
 		cout << "You have " << numberOfCards << " cards would you like to view them? (y/n)";
 		string answer;
 		cin >> answer;
-		if(answer == "y" || answer == "Y") {
+		if (answer == "y" || answer == "Y") {
 			return player->getHand()->SelectExchange();
 		} else {
 			return 0;
 		}
 	}
+
 	return 0;
+}
+
+int Reinforcement::getMaxCardBonus(Player* player) {
+	return player->getHand()->getAnyExchange();
 }

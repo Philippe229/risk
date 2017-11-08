@@ -22,17 +22,18 @@ private:
 	bool isContained(Country*,vector<Country*>);
 	bool validateNumericInput(int&,int,int);
 	bool validateSpecNumericInput(int&,vector<int>);
-    bool attack(Country*, Country*);
-    int id;
+    bool userAttack(Country*, Country*);
+	int id;
+	
     Player* pl;
-    Deck* deck; // get gameloop's deck
+    Deck* deck;
     vector<Country*> countries;
     vector<Country*> attackBase;
 	vector<Country*> attackPossibilities;
 
 public:
 	void attackInitalization(Player*, Deck* deck);
-
+	static void attack(Deck*, Player*, Country*, Country*, int, int);
 };
 
 #endif /* ATTACK_H_ */

@@ -8,6 +8,7 @@
 #include <math.h>
 #include "../Map/Country.h"
 #include "../Map/Continent.h"
+#include "../Map/Map.h"
 #include "../CardComponents/Hand.h"
 #include "../CardComponents/Card.h"
 #include "../CardComponents/Deck.h"
@@ -15,10 +16,11 @@
 
 using namespace std;
 
-//forward declaration (circular dependency)
+// forward declaration (circular dependency)
 class Country;
 class Continent;
 class Deck;
+class Map;
 
 class Player {
 
@@ -32,7 +34,6 @@ private:
 	vector<Country*> attackPossibilities;
 	DiceRollingFacility* dices;
 	Hand* hand;
-	
 
 public:
 	Player();
@@ -52,13 +53,11 @@ public:
 	void addArmiesToCountry(int, Country*);
 	void removeArmiesFromCountry(int, Country*);
 	void showCountries();
-	vector<int> rollDie(int); // for a1 demo
-	void showCards(); // for a1 demo
+	vector<int> rollDie(int);
 
-	// Each player has: reinforce(), attack(), fortify() interface
-	void reinforce(vector<Continent*> continents);
-	void attack(Deck* deck);
-	void fortify(Country* sourceCountry, Country* targetCountry, int numOfArmies);
+	virtual void reinforce(Map*, Deck*) = 0;
+	virtual void attack(Map*, Deck*) = 0;
+	virtual void fortify(Map*, Deck*) = 0;
 };
 
 #endif

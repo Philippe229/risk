@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 #include "../Player/Player.h"
 #include "../Map/Map.h"
 #include "../Map/Continent.h"
@@ -10,15 +11,16 @@
 using namespace std;
 
 class Reinforcement {
-
 private:
-	static int getCountryBonus(Player* player);
-	static int getContinentBonus(Player* player, vector<Continent*> continents);
-	static int getCardBonus(Player* player);
-
+	static int getCountryBonus(Player*);
+	static int getContinentBonus(Player*, vector<Continent*>);
+	static int getCardBonus(Player*);
+	static int getMaxCardBonus(Player*);
 public:
-	static void reinforcement(Player* player, vector<Continent*> continents);
-
+	static int staticBonusArmies;
+	static void playerReinforcement(Player*, vector<Continent*>);
+	static void reinforcement(Player*, Country*, int);
+	static int getTotalBonusArmies(Player*, vector<Continent*>);
 };
 
 #endif /* REINFORCEMENT_REINFORCEMENT_H_ */
