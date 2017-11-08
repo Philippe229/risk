@@ -6,16 +6,16 @@
 
 using namespace std;
 
-class Attack {
+class AttackAI {
 
 private:
-	// void updateAttack();
+	void updateAttack();
 	// int numberOfCountriesConquered;
 	// void attackProcedure();
-	// bool isContained(Country*,vector<Country*>);
-	// bool validateNumericInput(int&,int,int);
+	bool isContained(Country*,vector<Country*>);
+	bool validateNumericInput(int&,int,int);
 	// bool validateSpecNumericInput(int&,vector<int>);
-    // bool attack(Country*, Country*);
+    bool attack(Country*, Country*);
     int id;
     Player* pl;
     Deck* deck; // get gameloop's deck
