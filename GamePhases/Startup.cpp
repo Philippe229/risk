@@ -1,15 +1,24 @@
-#include <iostream>
 #include "Startup.h"
 
 using namespace std;
 
 int Startup::getUserInputInteger(string output, int min, int max) {
-    int input;
+    string inputString;
+	int input;
+	bool failFlag;
+	
+	cout << output;
+	cin >> inputString;
+	
+	try {
+		input = stoi(inputString);
+		failFlag = false;
+	} catch (invalid_argument e) {
+		failFlag = true;
+	}
 
-    cout << output;
-    cin >> input;
-
-    while (input < min || input > max || cin.fail()) {
+	// While the input is invalid
+	while (input < min || input > max || cin.fail() || failFlag || inputString.find(".") != string::npos) {
         if (input == -1) {
             cout << "Quitting..." << endl;
             exit(1);   
@@ -18,9 +27,21 @@ int Startup::getUserInputInteger(string output, int min, int max) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Invalid input" << endl;
-        cout << "Must be greater than " << min - 1 << " and less than " << max + 1 << " and must be an integer" << endl;
+
+        if (inputString.find(".") == string::npos) {
+            cout << "Must be greater than " << min - 1 << " and less than " << max + 1 << " and must be an integer" << endl;
+        } else {
+            cout << "Must be an integer" << endl;
+        }
         cout << "Try again (-1 to quit): ";
-        cin >> input;
+		cin >> inputString;
+		
+		try {
+			input = stoi(inputString);
+			failFlag = false;
+		} catch (invalid_argument e) {
+			failFlag = true;
+		}
     }
 
     return input;

@@ -18,28 +18,48 @@ void Common::displayPlayersCountriesAndArmies(Player* thePlayer) {
 }
 
 int Common::getUserInputIntegerInRange(string output, int min, int max) {
+	string inputString;
 	int input;
+	bool failFlag;
 	
 	cout << output;
-	cin >> input;
-
-	// While the input is invalid
-	while (input < min || input > max || cin.fail()) {
-		if (input == -1) {
-			cout << "Quitting..." << endl;
-			exit(1);   
-		}
-
-		// Clear the stream
-		cin.clear();
-		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		cout << "Invalid input" << endl;
-		cout << "Must be greater than " << min - 1 << " and less than " << max + 1 << " and must be an integer" << endl;
-		cout << "Try again (-1 to quit): ";
-		cin >> input;
+	cin >> inputString;
+	
+	try {
+		input = stoi(inputString);
+		failFlag = false;
+	} catch (invalid_argument e) {
+		failFlag = true;
 	}
 
-	return input;
+	// While the input is invalid
+	while (input < min || input > max || cin.fail() || failFlag || inputString.find(".") != string::npos) {
+        if (input == -1) {
+            cout << "Quitting..." << endl;
+            exit(1);   
+        }
+
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Invalid input" << endl;
+
+        if (inputString.find(".") == string::npos) {
+            cout << "Must be greater than " << min - 1 << " and less than " << max + 1 << " and must be an integer" << endl;
+        } else {
+            cout << "Must be an integer" << endl;
+        }
+        cout << "Try again (-1 to quit): ";
+		cin >> inputString;
+		
+		try {
+			input = stoi(inputString);
+			failFlag = false;
+		} catch (invalid_argument e) {
+			failFlag = true;
+		}
+    }
+
+    return input;
 }
 
 string Common::getUserInputStringTwoChoices(string output, string choice1, string choice2) {

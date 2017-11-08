@@ -2,6 +2,7 @@
 #define COMMON_H_
 
 #include <iostream>
+#include <stdexcept>
 #include "../Player/Player.h"
 #include "../Map/Country.h"
 
