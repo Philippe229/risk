@@ -12,7 +12,7 @@
 #include "../Map/Map.h"
 #include "../MapLoader/MapLoader.h"
 #include "../Map/Country.h"
-#include "../Common/Common.cpp"
+#include "../Common/Common.h"
 
 using namespace std;
 

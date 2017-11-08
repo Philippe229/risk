@@ -122,6 +122,7 @@ void Attack::attackProcedure() {
 		return;
 	}
 }
+
 bool Attack::attack(Country* base, Country* target) {
 	Player* att = base->getOwner();
 	Player* def = target->getOwner();
@@ -199,6 +200,7 @@ bool Attack::attack(Country* base, Country* target) {
 	}
 
 }
+
 //could optimize, check if country is already in vector
 bool Attack::isContained(Country* possibility, vector<Country*> c) {
 	for (int i = 0; i < c.size(); i++) {
@@ -207,6 +209,7 @@ bool Attack::isContained(Country* possibility, vector<Country*> c) {
 	}
 	return false;
 }
+
 bool Attack::validateSpecNumericInput(int& input, vector<int> poss) {
 	double raw, fractpart, intpart;
 	cin >> raw;
@@ -235,6 +238,7 @@ bool Attack::validateSpecNumericInput(int& input, vector<int> poss) {
 	} else
 		return true;
 }
+
 bool Attack::validateNumericInput(int& input, int lower, int upper) {
 	double raw, fractpart, intpart;
 	cin >> raw;

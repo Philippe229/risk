@@ -1,7 +1,15 @@
 #ifndef INITIALIZATION_H_
 #define INITIALIZATION_H_
 
+#include <iostream>
+#include <limits>
+#include <dirent.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <string>
 #include <vector>
+#include <stdexcept>
 #include "../Player/Player.h"
 #include "../MapLoader/MapLoader.h"
 #include "../CardComponents/Deck.h"

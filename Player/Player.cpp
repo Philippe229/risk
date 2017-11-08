@@ -94,6 +94,7 @@ vector<int> Player::rollDie(int numDie) {
 	sort (results.begin(), results.begin()+results.size());
 	return results;
 }
+
 void Player::showCountries()
 {
 	cout << "**********Player " << id << " Countries**********" << endl;
@@ -114,7 +115,7 @@ void Player::attack(Deck* deck) {
 	Attack a;
 	a.attackInitalization(this, deck);
 }
-int Player::getID()
-{
+
+int Player::getID() {
 	return id;
 }

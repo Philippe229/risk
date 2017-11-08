@@ -12,10 +12,11 @@
 #include "../CardComponents/Card.h"
 #include "../CardComponents/Deck.h"
 #include "../DiceRollingFacility/DiceRollingFacility.h"
+#include "./PlayerActions.h"
 
 using namespace std;
 
-//forward declaration (circular dependency)
+// forward declaration (circular dependency)
 class Country;
 class Continent;
 class Deck;
@@ -32,7 +33,6 @@ private:
 	vector<Country*> attackPossibilities;
 	DiceRollingFacility* dices;
 	Hand* hand;
-	
 
 public:
 	Player();
@@ -52,8 +52,7 @@ public:
 	void addArmiesToCountry(int, Country*);
 	void removeArmiesFromCountry(int, Country*);
 	void showCountries();
-	vector<int> rollDie(int); // for a1 demo
-	void showCards(); // for a1 demo
+	vector<int> rollDie(int);
 
 	// Each player has: reinforce(), attack(), fortify() interface
 	void reinforce(vector<Continent*> continents);
