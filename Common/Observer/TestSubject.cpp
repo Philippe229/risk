@@ -5,7 +5,7 @@
  *      Author: Philippe
  */
 
-#include "TestSubject.h";
+#include "TestSubject.h"
 
 TestSubject::TestSubject() : someData(42) {
 

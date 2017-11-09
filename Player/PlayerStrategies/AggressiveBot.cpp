@@ -50,20 +50,26 @@ void AggressiveBot::attack(Map* currMap, Deck* currDeck) {
 }
 
 void AggressiveBot::fortify(Map* currMap, Deck* currDeck) {
-    // Get the country with the most bordering enemies
     vector<Country*> myCountries = Player::getCountries();
-    Country* mostSurroundedCountry = NULL;
+    Country* strongestCountry = NULL;
 
+    // Get the strongest country (most armies)
     for (int i = 0; i < myCountries.size(); i++) {
-        if (mostSurroundedCountry == NULL || myCountries[i]->getNumEnemiesAround() > mostSurroundedCountry->getNumEnemiesAround()) {
-            mostSurroundedCountry = myCountries[i];
+        if (strongestCountry == NULL || myCountries[i]->getArmies() > strongestCountry->getArmies()) {
+            strongestCountry = myCountries[i];
         }
     }
 
-    // Try to fortify the country with the most bordering enemies with every other country
-    for (int i = 0; i < myCountries.size(); i++) {
-        if (myCountries[i] != mostSurroundedCountry) {
-            Fortification::fortify(this, myCountries[i], mostSurroundedCountry, myCountries[i]->getArmies() - 1);
+    // Sort countries by amount of armies that surround it
+    sort(myCountries.begin(), myCountries.end(), [](Country* lhs,Country* rhs) {
+        return lhs->getBorderingEnemies().size() < rhs->getBorderingEnemies().size();
+    });
+
+    // Try to fortify the country with the most bordering country with the strongest country
+    for (int i = myCountries.size() - 1; i >= 0; i--) {
+        if (strongestCountry != myCountries[i] && Fortification::verifyTargetCountry(this, strongestCountry, myCountries[i])) {
+            Fortification::fortify(this, strongestCountry, myCountries[i], strongestCountry->getArmies() - 1);
+            break;
         }
     }
 }

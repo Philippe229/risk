@@ -1,6 +1,7 @@
 #ifndef AGGRESSIVE_BOT_H_
 #define AGGRESSIVE_BOT_H_
 
+#include <algorithm>
 #include "../Player.h"
 #include "../../Fortification/Fortification.h"
 #include "../../Reinforcement/Reinforcement.h"
