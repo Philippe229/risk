@@ -41,18 +41,19 @@ void DomObserver::display() {
         p = players.at(j);
         totalCountries += p->getCountries().size();
     }
+    cout << "###GAME STATISTICS###" << endl;
     //Build bar graph
     for(int i = 0;i < players.size();i++) {
         p = players.at(i);
         numCountries = p->getCountries().size();
         rPercentage = ((double)numCountries / (double)totalCountries)*100;
         cout << "| Player " << p->getID() << " Dominance: ";
-        for(int i = 0; i < (rPercentage/10);i++)
-            cout << "X";
-        // for(int i = 0; i < ((int)rPercentage%10);i++)
-        //     cout << "I";
+        for(int i = 0; i < 10;i++)
+            if(i < (rPercentage/10))
+                cout << "+";
+            else
+                cout << "-";
         cout << endl;
-       // cout << numCountries << "/" << totalCountries << endl;
     }
 	//cout << testSubject -> getData() << endl;
 }
