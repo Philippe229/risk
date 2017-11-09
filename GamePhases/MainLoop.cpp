@@ -22,7 +22,6 @@ MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck) {
     currMap = theMap;
     currDeck = theDeck;
     d = new DomObserver(this);
-    addObserver(d);
 }
 
 // Play the game

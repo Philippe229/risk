@@ -63,6 +63,7 @@ void DomObserver::display() {
         cout << "| Player " << p->getID() << ": ";
         buildGraph((rPercentage/10),10);
     }
+    cout << "#####################" << endl;
 }
 
 void DomObserver::buildGraph(int numPlus, int numTot) {
