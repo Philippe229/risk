@@ -7,10 +7,11 @@
 #include "../Player/Player.h"
 #include "../Map/Map.h"
 #include "../Map/Continent.h"
+#include "../PhaseObserver/Phase.h"
 
 using namespace std;
 
-class Reinforcement {
+class Reinforcement : public Phase {
 private:
 	static int getCountryBonus(Player*);
 	static int getContinentBonus(Player*, vector<Continent*>);

@@ -38,7 +38,9 @@ void Reinforcement::reinforcement(Player* player, Country* country, int numArmie
 }
 
 void Reinforcement::playerReinforcement(Player* player, vector<Continent*> continents) {
-	cout << player->getName() + "'s Reinforcement Phase" << endl;
+
+	notify(player, "Reinforcement", "");
+
 	int bonusArmies = 0;
 
 	// calculate # of reinforcements
@@ -78,6 +80,11 @@ void Reinforcement::playerReinforcement(Player* player, vector<Continent*> conti
 				cout << "Select valid number" << endl;
 			}
 		} while (number < 0 || bonusArmies < number);
+
+		Country* targetCountry = player -> getCountries().at(country - 1);
+		string message = "Reinforcing " + targetCountry -> getName() + "'s " +
+				to_string(targetCountry -> getArmies()) + " armies with " +  to_string(number) + " armies.";
+		notify(player, "Reinforcement", message);
 
 		bonusArmies -= number;
 		player->getCountries().at(country-1)->addArmies(number);

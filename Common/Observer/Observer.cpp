@@ -15,8 +15,4 @@ Observer::~Observer() {
 
 }
 
-void Observer::update() {
-
-}
-
 
