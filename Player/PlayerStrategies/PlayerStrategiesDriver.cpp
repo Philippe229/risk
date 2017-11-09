@@ -2,10 +2,12 @@
 #include "../PlayerContext.h"
 #include "Human.h"
 #include "AggressiveBot.h"
+#include "DefensiveBot.h"
 
 int main() {
     Player* human = new Human("Player 1");
     Player* aggressiveBot = new AggressiveBot("Player 2");
+    Player* defensiveBot = new DefensiveBot("Player 3");
 
     Map* currMap;
     Deck* currDeck;
@@ -18,12 +20,15 @@ int main() {
         Country* currCountry = currMap->getCountries()[i];
         currCountry->addArmies(1);
 
-        if (i % 2 == 0) {
+        if (i % 3 == 0) {
             currCountry->setOwner(human);
             human->addCountry(currCountry);
-        } else {
+        } else if(i % 3 == 1){
             currCountry->setOwner(aggressiveBot);
             aggressiveBot->addCountry(currCountry);
+        } else {
+            currCountry->setOwner(defensiveBot);
+            defensiveBot->addCountry(currCountry);
         }
     }
 
