@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include "../Player/Player.h"
+#include "../Common/Observer/Subject.h"
 #include "Country.h"
 #include "Continent.h"
 
@@ -15,7 +16,7 @@ class Player;
 class Country;
 class Continent;
 
-class Map {
+class Map : public Subject {
 
 private:
 	vector<Country*> countries;

@@ -4,18 +4,20 @@
 #include <string>
 #include <vector>
 #include "../Player/Player.h"
+#include "../Common/Observer/DomObserver.h"
 
 using namespace std;
 
 //forward declaration (circular dependency)
 class Player;
-
+class DomObserver;
 class Country {
 
 private:
 	int armies;
 	int numEnemiesAround;
 	bool canAttack;
+	DomObserver* d;
 	string country_name;
 	string continent_name;
 	Player* owner;
