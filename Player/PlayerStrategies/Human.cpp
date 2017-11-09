@@ -18,7 +18,28 @@ void Human::attack(Map* currMap, Deck* currDeck) {
 }
 
 void Human::fortify(Map* currMap, Deck* currDeck) {
-    Country* sourceCountry = getCountries()[0];
-    Country* targetCountry = sourceCountry->getBorderingEnemies()[0];
+    bool good = false;
+    int input;
+    cout << "Input Index|Country Name|Armies|Enemies Around" << endl;
+	cout << endl;
+    vector<Country*> base = getCountries();
+
+	for (int i = 0; i < base.size(); i++) {
+		base.at(i)->updateInfo();
+		cout << i + 1 << "\t|" << base.at(i)->getName() << "|" << base.at(i)->getArmies() << "|" << base.at(i)->getNumEnemiesAround() << endl;
+		
+    }
+    cout << "Select a source contry" << endl;
+    do {
+        good = Common::validateNumericInput(input, 1, base.size());
+     } while (!good);
+     Country* sourceCountry = getCountries()[input -1];
+     cout << "Select a target contry" << endl;
+     do {
+         good = Common::validateNumericInput(input, 1, base.size());
+      } while (!good);
+    Country* targetCountry = getCountries()[input -1];
+    cout << sourceCountry->getName() << endl;
+    cout << targetCountry->getName() << endl;
     Fortification::fortify(this, sourceCountry, targetCountry, 1);
 }
