@@ -32,6 +32,7 @@ int main() {
 
 		if ((&country - &*(map -> getCountries().begin())) % 2 == 0) {
 			country -> setOwner(player1);
+			country ->addArmies(5);
 			player1 -> addCountry(country);
 		} else {
 			country -> setOwner(player2);

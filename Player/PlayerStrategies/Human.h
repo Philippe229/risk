@@ -9,6 +9,8 @@
 #include "../../Attack/Attack.h"
 
 class Human : public Player {
+private:
+    bool verifyTargetCountry(Country*, Country*);
 public:
     Human();
     Human(string);

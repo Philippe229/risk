@@ -1,4 +1,5 @@
 #include "Human.h"
+#include <queue>
 
 Human::Human() : Player() {
 
@@ -23,8 +24,16 @@ void Human::fortify(Map* currMap, Deck* currDeck) {
     int armies = 0;
     cout << "Input Index|Country Name|Armies|Enemies Around" << endl;
 	cout << endl;
-    vector<Country*> base = getCountries();
-
+    vector<Country*> allCountries = getCountries();
+    vector<Country*> base;
+    for(int j = 0; j < allCountries.size(); j++) {
+        if(allCountries.at(j)->getArmies() > 1)
+            base.push_back(allCountries.at(j));
+    }
+    if(base.size() < 1) {
+        cout << "No Fortification Options." << endl;
+        return;
+    }
 	for (int i = 0; i < base.size(); i++) {
 		base.at(i)->updateInfo();
 		cout << i + 1 << "\t|" << base.at(i)->getName() << "|" << base.at(i)->getArmies() << "|" << base.at(i)->getNumEnemiesAround() << endl;
@@ -41,6 +50,16 @@ void Human::fortify(Map* currMap, Deck* currDeck) {
         good = Common::validateNumericInput(input, 1, sourceCountry->getArmies() -1);
      } while (!good);
      armies = input;
+     base.clear();
+     for(int j = 0; j < allCountries.size(); j++) {
+        if(verifyTargetCountry(sourceCountry, allCountries.at(j)) && sourceCountry != allCountries.at(j))
+            base.push_back(allCountries.at(j));
+    }
+     for (int i = 0; i < base.size(); i++) {
+		base.at(i)->updateInfo();
+		cout << i + 1 << "\t|" << base.at(i)->getName() << "|" << base.at(i)->getArmies() << "|" << base.at(i)->getNumEnemiesAround() << endl;
+		
+    }
      cout << "Select a target country" << endl;
      good = false;
      do {
@@ -52,6 +71,39 @@ void Human::fortify(Map* currMap, Deck* currDeck) {
     Fortification::fortify(this, sourceCountry, targetCountry, 1);
 }
 
+bool Human::verifyTargetCountry(Country* sourceCountry, Country* targetCountry) {
+	vector<Country*> playerCountries = getCountries();
+	
+
+	// verify link between countries with BFS
+	queue<Country*> queue;
+	vector<Country*> borderingCountries;
+	map<Country*, bool> visitedCountries;
+
+	for (Country* playerCountry : playerCountries) {
+		visitedCountries.insert({playerCountry, false});
+	}
+
+	queue.push(sourceCountry);
+
+	while (!queue.empty()) {
+		Country* currentCountry = queue.front();
+		queue.pop();
+		visitedCountries[currentCountry] = true;
+
+		if (currentCountry == targetCountry)
+			return true;
+
+		borderingCountries = currentCountry -> getBorderingCountries();
+
+		for (Country* borderingCountry : borderingCountries) {
+			if (!visitedCountries[borderingCountry])
+				queue.push(borderingCountry);
+		}
+	}
+
+	return false;
+}
 int Human::defensiveDice(int max) {
     bool good = false;
     int input;
