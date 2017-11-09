@@ -33,7 +33,7 @@ void Subject::notify(Observer* o) {
 void Subject::notifyAll() {
 	list<Observer*>::iterator i = observers -> begin();
 
-	for( ; i != observers -> end(); ++i)
+	for( ; i != observers -> end(); i++)
 		(*i) -> update();
 }
 

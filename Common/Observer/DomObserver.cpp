@@ -34,26 +34,42 @@ bool DomObserver::sawPlayer(Player* player) {
 
 void DomObserver::display() {
     int totalCountries = 0;
+    int totalArmies = 0;
     int numCountries= 0;
+    int numArmies = 0; 
     double rPercentage = 0;
     Player* p;
+
     for(int j = 0;j < players.size();j++) {
         p = players.at(j);
         totalCountries += p->getCountries().size();
+        totalArmies += p->getPlacedArmies();
     }
     cout << "###GAME STATISTICS###" << endl;
+    cout << "--Dominance--" << endl;
     //Build bar graph
     for(int i = 0;i < players.size();i++) {
         p = players.at(i);
         numCountries = p->getCountries().size();
         rPercentage = ((double)numCountries / (double)totalCountries)*100;
-        cout << "| Player " << p->getID() << " Dominance: ";
-        for(int i = 0; i < 10;i++)
-            if(i < (rPercentage/10))
-                cout << "+";
-            else
-                cout << "-";
-        cout << endl;
+        cout << "| Player " << p->getID() << ": ";
+        buildGraph((rPercentage/10),10);
     }
-	//cout << testSubject -> getData() << endl;
+    cout << "--Army Force--" << endl;
+	for(int i = 0;i < players.size();i++) {
+        p = players.at(i);
+        numArmies = p->getPlacedArmies();
+        rPercentage = ((double)numArmies / (double)totalArmies)*100;
+        cout << "| Player " << p->getID() << ": ";
+        buildGraph((rPercentage/10),10);
+    }
+}
+
+void DomObserver::buildGraph(int numPlus, int numTot) {
+    for(int i = 0; i < numTot;i++)
+        if(i < numPlus)
+            cout << "+";
+        else
+            cout << "-";
+    cout << endl;
 }

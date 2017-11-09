@@ -45,6 +45,13 @@ int Player::getArmies() {
 	return unplaced_armies;
 }
 
+int Player::getPlacedArmies() {
+	int placedArmies = 0;
+	for(int i = 0; i < countries.size();i++) {
+		placedArmies += countries.at(i)->getArmies();
+	}
+	return placedArmies;
+}
 Hand* Player::getHand() {
 	return hand;
 }
