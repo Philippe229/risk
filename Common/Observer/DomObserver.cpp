@@ -6,8 +6,8 @@ DomObserver::DomObserver() {
 	m = NULL;
 }
 
-DomObserver::DomObserver(Map* pMap) {
-	m = pMap;
+DomObserver::DomObserver(MainLoop* mLoop) {
+	m = mLoop;
 	m -> addObserver(this);
 }
 
@@ -17,14 +17,8 @@ DomObserver::~DomObserver() {
 }
 
 void DomObserver::update() {
-    vector<Country*> countries = m->getCountries();
-    players.clear();
-    Player* player;
-    for(int i = 0; i < countries.size();i++) {
-        player = countries.at(i)->getOwner();
-        if (!sawPlayer(player))
-            players.push_back(player);
-    }
+    players = m->getPlayers();
+    display();
 }
 
 //Has player already been added to array
@@ -39,21 +33,26 @@ bool DomObserver::sawPlayer(Player* player) {
 }
 
 void DomObserver::display() {
-    int totalCountries = m->getCountries().size();
-    Player* p;
+    int totalCountries = 0;
     int numCountries= 0;
-    int rPercentage = 0;
+    double rPercentage = 0;
+    Player* p;
+    for(int j = 0;j < players.size();j++) {
+        p = players.at(j);
+        totalCountries += p->getCountries().size();
+    }
     //Build bar graph
     for(int i = 0;i < players.size();i++) {
         p = players.at(i);
         numCountries = p->getCountries().size();
-        rPercentage = (numCountries / totalCountries)*100;
-        cout << "| " << p->getID() << " Dominance: ";
+        rPercentage = ((double)numCountries / (double)totalCountries)*100;
+        cout << "| Player " << p->getID() << " Dominance: ";
         for(int i = 0; i < (rPercentage/10);i++)
             cout << "X";
-        for(int i = 0; i < (rPercentage%10);i++)
-            cout << "I";
-        cout << numCountries << "/" << totalCountries << endl;
+        // for(int i = 0; i < ((int)rPercentage%10);i++)
+        //     cout << "I";
+        cout << endl;
+       // cout << numCountries << "/" << totalCountries << endl;
     }
 	//cout << testSubject -> getData() << endl;
 }

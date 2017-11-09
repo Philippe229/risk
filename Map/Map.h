@@ -16,7 +16,7 @@ class Player;
 class Country;
 class Continent;
 
-class Map : public Subject {
+class Map {
 
 private:
 	vector<Country*> countries;

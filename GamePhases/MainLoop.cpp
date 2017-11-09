@@ -21,6 +21,8 @@ MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck) {
     playerOrder = players;
     currMap = theMap;
     currDeck = theDeck;
+    d = new DomObserver(this);
+    addObserver(d);
 }
 
 // Play the game
@@ -36,6 +38,7 @@ void MainLoop::play() {
 
         currPlayer->reinforce(currMap, currDeck);
         currPlayer->attack(currMap, currDeck);
+        notifyAll();
         currPlayer->fortify(currMap, currDeck);
 
         playingIndex = (playingIndex + 1) % playerOrder.size();
@@ -43,4 +46,8 @@ void MainLoop::play() {
     }
 
     cout << "Winner: " << winner->getName() << endl;
+}
+
+vector<Player*> MainLoop::getPlayers() {
+    return playerOrder;
 }

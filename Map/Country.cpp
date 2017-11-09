@@ -77,8 +77,6 @@ void Country::removeArmies(int army) {
 
 void Country::setOwner(Player* player) {
 	owner = player;
-	d->update();
-	d->display();
 }
 
 void Country::addBorderingCountry(Country* country) {
