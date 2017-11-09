@@ -14,9 +14,9 @@ void DefensiveBot::reinforce(Map* currMap, Deck* currDeck) {
 
     // Sort the player's country in ascending number of armies
     vector<Country*> myCountries = Player::getCountries();
-    std::sort( myCountries.begin(), myCountries.end(), [ ]( const Country& lhs, const Country& rhs )
+    std::sort( myCountries.begin(), myCountries.end(), [ ]( const auto& lhs, const auto& rhs )
     {
-       return lhs.armies < rhs.armies;
+       return lhs->getArmies() < rhs->getArmies();
     });
 
 
@@ -42,14 +42,13 @@ void DefensiveBot::attack(Map* currMap, Deck* currDeck) {
 }
 
 void DefensiveBot::fortify(Map* currMap, Deck* currDeck) {
-
 	int incrementBy;
 
-	// Sort the player's country in ascending number of armies
+	// Sort the player's countries in ascending number of armies
     vector<Country*> myCountries = Player::getCountries();
-    std::sort( myCountries.begin(), myCountries.end(), [ ]( const Country& lhs, const Country& rhs )
+    std::sort( myCountries.begin(), myCountries.end(), [ ]( const auto& lhs, const auto& rhs )
     {
-       return lhs.armies < rhs.armies;
+       return lhs->getArmies() < rhs->getArmies();
     });
 
     int size = myCountries.size();
