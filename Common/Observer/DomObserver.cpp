@@ -41,9 +41,19 @@ bool DomObserver::sawPlayer(Player* player) {
 void DomObserver::display() {
     int totalCountries = m->getCountries().size();
     Player* p;
+    int numCountries= 0;
+    int rPercentage = 0;
+    //Build bar graph
     for(int i = 0;i < players.size();i++) {
         p = players.at(i);
-        cout << "| " << p->getID() << " Dominance: " << p->getCountries().size() << "/" << totalCountries << endl;
+        numCountries = p->getCountries().size();
+        rPercentage = (numCountries / totalCountries)*100;
+        cout << "| " << p->getID() << " Dominance: ";
+        for(int i = 0; i < (rPercentage/10);i++)
+            cout << "X";
+        for(int i = 0; i < (rPercentage%10);i++)
+            cout << "I";
+        cout << numCountries << "/" << totalCountries << endl;
     }
 	//cout << testSubject -> getData() << endl;
 }
