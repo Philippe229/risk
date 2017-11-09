@@ -65,6 +65,7 @@ void AggressiveBot::fortify(Map* currMap, Deck* currDeck) {
     for (int i = myCountries.size() - 1; i >= 0; i--) {
         if (strongestCountry != myCountries[i] && Fortification::verifyTargetCountry(this, strongestCountry, myCountries[i])) {
             Fortification::fortify(this, strongestCountry, myCountries[i], strongestCountry->getArmies() - 1);
+            break;
         }
     }
 }
