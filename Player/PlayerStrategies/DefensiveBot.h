@@ -1,21 +1,21 @@
-#ifndef AGGRESSIVE_BOT_H_
-#define AGGRESSIVE_BOT_H_
+#ifndef PLAYER_PLAYERSTRATEGIES_DEFENSIVEBOT_H_
+#define PLAYER_PLAYERSTRATEGIES_DEFENSIVEBOT_H_
 
-#include <algorithm>
 #include "../Player.h"
 #include "../../Fortification/Fortification.h"
 #include "../../Reinforcement/Reinforcement.h"
 #include "../../Attack/Attack.h"
+#include <algorithm>
 
-class AggressiveBot : public Player {
+class DefensiveBot : public Player {
 public:
-    AggressiveBot();
-    virtual ~AggressiveBot();
-    AggressiveBot(string);
+	DefensiveBot();
+	virtual ~DefensiveBot();
+	DefensiveBot(string);
+    int defensiveDice(int);
     void reinforce(Map*, Deck*);
     void attack(Map*, Deck*);
     void fortify(Map*, Deck*);
-    int defensiveDice(int);
 };
 
 #endif
