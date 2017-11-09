@@ -9,6 +9,7 @@
 class AggressiveBot : public Player {
 public:
     AggressiveBot();
+    virtual ~AggressiveBot();
     AggressiveBot(string);
     void reinforce(Map*, Deck*);
     void attack(Map*, Deck*);

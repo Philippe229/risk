@@ -10,7 +10,9 @@
 class DefensiveBot : public Player {
 public:
 	DefensiveBot();
+	virtual ~DefensiveBot();
 	DefensiveBot(string);
+    int defensiveDice(int);
     void reinforce(Map*, Deck*);
     void attack(Map*, Deck*);
     void fortify(Map*, Deck*);

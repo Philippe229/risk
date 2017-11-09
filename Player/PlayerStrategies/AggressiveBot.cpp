@@ -4,6 +4,10 @@ AggressiveBot::AggressiveBot() : Player() {
 
 }
 
+AggressiveBot::~AggressiveBot() {
+
+}
+
 AggressiveBot::AggressiveBot(string n) : Player(n) {
 
 }

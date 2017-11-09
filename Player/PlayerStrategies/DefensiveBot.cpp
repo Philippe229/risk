@@ -4,8 +4,16 @@ DefensiveBot::DefensiveBot() : Player() {
 
 }
 
+DefensiveBot::~DefensiveBot() {
+
+}
+
 DefensiveBot::DefensiveBot(string n) : Player(n) {
 
+}
+
+int DefensiveBot::defensiveDice(int max) {
+    return max;
 }
 
 void DefensiveBot::reinforce(Map* currMap, Deck* currDeck) {
@@ -52,8 +60,8 @@ void DefensiveBot::fortify(Map* currMap, Deck* currDeck) {
     });
 
     int size = myCountries.size();
-    for (int i = 0; i < (size / 2); i++) {
-        incrementBy = (myCountries[size - i]->getArmies() - myCountries[i]->getArmies()) / 2;
-        Fortification::fortify(this, myCountries[size - i], myCountries[i], incrementBy);
-    }
+
+    incrementBy = (myCountries[size - 1]->getArmies() - myCountries[0]->getArmies()) / 2;
+    Fortification::fortify(this, myCountries[size - 1], myCountries[0], incrementBy);
+
 }
