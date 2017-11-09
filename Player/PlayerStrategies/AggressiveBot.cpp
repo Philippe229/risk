@@ -41,7 +41,6 @@ void AggressiveBot::attack(Map* currMap, Deck* currDeck) {
     }
 
     // Attack all bordering enemies and assign 1 army if take over is successful
-    strongestCountry->updateInfo();
     vector<Country*> borderingEnemies = strongestCountry->getBorderingEnemies();
     for (int i = 0; i < borderingEnemies.size() && strongestCountry->getArmies() > 1; i++) {
         while (strongestCountry->getArmies() > 1 && borderingEnemies[i]->getOwner() != this) {

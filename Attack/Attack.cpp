@@ -289,6 +289,8 @@ void Attack::attack(Deck* currDeck, Player* player, Country* sourceCountry, Coun
 		return;
 	}
 
+	cout << sourceCountry->getName() << " is attacking " << destinationCountry->getName() << endl;
+
 	bool successfulTakeover = false;
 	// Roll the dice
 	vector<int> attackResults = sourceCountry->getOwner()->rollDie(numDice);
@@ -296,11 +298,16 @@ void Attack::attack(Deck* currDeck, Player* player, Country* sourceCountry, Coun
 
 	// Remove the appropriate amount of armies
 	for (int i = 0; i < min(attackResults.size(), defenseResults.size()); i++) {
+		cout << "Attack dice: " << attackResults[attackResults.size() - 1 - i] << endl;
+		cout << "Defense dice: " << defenseResults[defenseResults.size() - 1 -i] << endl;
 		// Successful attack
 		if (attackResults[attackResults.size() - 1 - i] > defenseResults[defenseResults.size() - 1 -i]) {
+			cout << "Attacker wins removing one army from " << destinationCountry->getName() << endl;
 			destinationCountry->removeArmies(1);
 
 			if (destinationCountry->getArmies() == 0) {
+				cout << player->getName() << " captured new country " << destinationCountry->getName() << endl;
+				destinationCountry->getOwner()->removeCountry(destinationCountry);
 				destinationCountry->setOwner(player);
 				int numMoving = min(numArmiesToMove, sourceCountry->getArmies() - 1);
 				destinationCountry->addArmies(numMoving);
@@ -309,6 +316,7 @@ void Attack::attack(Deck* currDeck, Player* player, Country* sourceCountry, Coun
 				successfulTakeover = true;
 			}
 		} else {
+			cout << "Defender wins removing one army from " << sourceCountry->getName() << endl;
 			// Failed attack
 			sourceCountry->removeArmies(1);
 		}

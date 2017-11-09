@@ -1,10 +1,14 @@
+#include <ctime>
 #include "../../GamePhases/Initialization.h"
 #include "../PlayerContext.h"
 #include "Human.h"
 #include "AggressiveBot.h"
 #include "DefensiveBot.h"
+#include "../../Common/Common.h"
 
 int main() {
+    srand(time(0));
+
 	Player* aggressiveBot = new AggressiveBot("Agressive Bot");
     Player* defensiveBot = new AggressiveBot("Defensive Bot");
     Player* human = new Human("Human");
@@ -35,6 +39,10 @@ int main() {
     // DEMO: two turns each player
     // TURN 1
 
+    cout << "Aggressive Bot Countries and Armies: " << endl;
+    Common::displayPlayersCountriesAndArmies(aggressiveBot);
+
+    cout << endl;
     PlayerContext agressive(aggressiveBot);
     cout << "Agressive Bot Reinforcing: " << endl;
     agressive.reinforce(currMap, currDeck);
@@ -45,6 +53,10 @@ int main() {
     cout << "Agressive Bot Fortifying: " << endl;
     agressive.fortify(currMap, currDeck);
 
+    cout << "Defensive Bot Countries and Armies: " << endl;
+    Common::displayPlayersCountriesAndArmies(defensiveBot);
+
+    cout << endl;
     PlayerContext defensive(defensiveBot);
     cout << "Defensive Bot Reinforcing: " << endl;
     defensive.reinforce(currMap, currDeck);
@@ -55,6 +67,10 @@ int main() {
     cout << "Defensive Bot Fortifying: " << endl;
     defensive.fortify(currMap, currDeck);
 
+    cout << "Human Countries and Armies: " << endl;
+    Common::displayPlayersCountriesAndArmies(human);
+
+    cout << endl;
     PlayerContext player(human);
     cout << "Human Reinforcing: " << endl;
     player.reinforce(currMap, currDeck);
@@ -67,6 +83,10 @@ int main() {
 
     // TURN 2
 
+    cout << "Aggressive Bot Countries and Armies: " << endl;
+    Common::displayPlayersCountriesAndArmies(aggressiveBot);
+    
+    cout << endl;
     cout << "Agressive Bot Reinforcing: " << endl;
     agressive.reinforce(currMap, currDeck);
 
@@ -76,6 +96,10 @@ int main() {
     cout << "Agressive Bot Fortifying: " << endl;
     agressive.fortify(currMap, currDeck);
 
+    cout << "Defensive Bot Countries and Armies: " << endl;
+    Common::displayPlayersCountriesAndArmies(defensiveBot);
+    
+    cout << endl;
     cout << "Defensive Bot Reinforcing: " << endl;
     defensive.reinforce(currMap, currDeck);
 
@@ -85,6 +109,10 @@ int main() {
     cout << "Defensive Bot Fortifying: " << endl;
     defensive.fortify(currMap, currDeck);
 
+    cout << "Human Countries and Armies: " << endl;
+    Common::displayPlayersCountriesAndArmies(human);
+    
+    cout << endl;
     cout << "Human Reinforcing: " << endl;
     player.reinforce(currMap, currDeck);
 
