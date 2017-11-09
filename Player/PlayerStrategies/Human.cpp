@@ -20,6 +20,7 @@ void Human::attack(Map* currMap, Deck* currDeck) {
 void Human::fortify(Map* currMap, Deck* currDeck) {
     bool good = false;
     int input;
+    int armies = 0;
     cout << "Input Index|Country Name|Armies|Enemies Around" << endl;
 	cout << endl;
     vector<Country*> base = getCountries();
@@ -29,12 +30,19 @@ void Human::fortify(Map* currMap, Deck* currDeck) {
 		cout << i + 1 << "\t|" << base.at(i)->getName() << "|" << base.at(i)->getArmies() << "|" << base.at(i)->getNumEnemiesAround() << endl;
 		
     }
-    cout << "Select a source contry" << endl;
+    cout << "Select a source country" << endl;
     do {
         good = Common::validateNumericInput(input, 1, base.size());
      } while (!good);
      Country* sourceCountry = getCountries()[input -1];
-     cout << "Select a target contry" << endl;
+     good = false;
+     cout << "Select number of armies to move (1 - " <<  sourceCountry->getArmies() -1 << ")" << endl;
+     do {
+        good = Common::validateNumericInput(input, 1, sourceCountry->getArmies() -1);
+     } while (!good);
+     armies = input;
+     cout << "Select a target country" << endl;
+     good = false;
      do {
          good = Common::validateNumericInput(input, 1, base.size());
       } while (!good);
