@@ -13,6 +13,7 @@ public:
     void reinforce(Map*, Deck*);
     void attack(Map*, Deck*);
     void fortify(Map*, Deck*);
+    int defensiveDice(int);
 };
 
 #endif
