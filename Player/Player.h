@@ -58,6 +58,7 @@ public:
 	virtual void reinforce(Map*, Deck*) = 0;
 	virtual void attack(Map*, Deck*) = 0;
 	virtual void fortify(Map*, Deck*) = 0;
+	virtual int defensiveDice(int) = 0;
 };
 
 #endif
