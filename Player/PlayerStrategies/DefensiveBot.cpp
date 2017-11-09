@@ -18,6 +18,7 @@ int DefensiveBot::defensiveDice(int max) {
 
 void DefensiveBot::reinforce(Map* currMap, Deck* currDeck) {
     Reinforcement::staticBonusArmies = Reinforcement::getTotalBonusArmies(this, currMap->getContinents());
+    cout << "Bonus armies:" << Reinforcement::staticBonusArmies << endl;
     int incrementBy;
 
     // Sort countries in ascending according to the number of armies
@@ -31,8 +32,11 @@ void DefensiveBot::reinforce(Map* currMap, Deck* currDeck) {
     // and assign that difference to every country that is less or equal to (i)
     for (int i = 0; i < myCountries.size(); i++) {
 
-    	cout << myCountries[i]->getArmies() << endl;
         incrementBy = myCountries[i+1]->getArmies() - myCountries[i]->getArmies();
+
+        if (incrementBy == 0) {
+        	break; // (i) and (i+1) have same number of countries
+        }
 
         if ((incrementBy*(i+1)) <= Reinforcement::staticBonusArmies) {
         	for (int j = 0; j <= i; j++) {
@@ -44,8 +48,22 @@ void DefensiveBot::reinforce(Map* currMap, Deck* currDeck) {
         	}
         	break; // all the bonus armies allocated
         }
-
     }
+
+    // all countries have the same number of armies
+    // or there is a remainder of bonus armies
+    // assign 1 army to each country
+    if (Reinforcement::staticBonusArmies != 0) {
+    	do {
+    		for(int j = 0; j < myCountries.size(); j++) {
+    			if (Reinforcement::staticBonusArmies == 0) {
+    				break;
+    			}
+    			Reinforcement::reinforcement(this, myCountries[j], 1);
+    		}
+    	} while (Reinforcement::staticBonusArmies != 0);
+    }
+    cout << "remaining armies: " << Reinforcement::staticBonusArmies << endl;
 }
 
 void DefensiveBot::attack(Map* currMap, Deck* currDeck) {
