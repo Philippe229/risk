@@ -18,7 +18,7 @@ private:
     MainLoop* m;
     vector<Player*> players;
     bool sawPlayer(Player*);
-    void buildGraph(int, int);
+    void buildGraph(double, int);
 public:
 	DomObserver();
 	DomObserver(MainLoop*);
