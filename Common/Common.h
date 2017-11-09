@@ -10,6 +10,7 @@ class Common {
 public:
     static void displayPlayersCountriesAndArmies(Player* thePlayer);
     static int getUserInputIntegerInRange(string output, int min, int max);
+    static bool validateNumericInput(int&,int,int);
     static string getUserInputStringTwoChoices(string output, string choice1, string choice2);
     static void clearScreen();
 };

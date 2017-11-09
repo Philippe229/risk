@@ -90,3 +90,32 @@ string Common::getUserInputStringTwoChoices(string output, string choice1, strin
 void Common::clearScreen() {
     cout << string(100, '\n');
 }
+
+bool Common::validateNumericInput(int& input, int lower, int upper) {
+	double raw, fractpart, intpart;
+	cin >> raw;
+	if (cin) {
+		fractpart = modf(raw, &intpart);
+		input = (int) intpart;
+		if (fractpart != 0) {
+			cout << "Invalid Input! Number not integer" << endl;
+			return false;
+		}
+	}
+	// or if(cin.fail())
+	if (!cin) {
+		cout << "Invalid Input! Number not numeric" << endl;
+		// reset failbit
+		cin.clear();
+		// skip bad input
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return false;
+	} else if (input < lower || input > upper) {
+		cout << "Invalid Input! Number out of range" << endl;
+		cin.clear();
+		// skip bad input
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return false;
+	} else
+		return true;
+}

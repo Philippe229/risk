@@ -63,3 +63,7 @@ void AggressiveBot::fortify(Map* currMap, Deck* currDeck) {
         }
     }
 }
+
+int AggressiveBot::defensiveDice(int max) {
+    return max;
+}

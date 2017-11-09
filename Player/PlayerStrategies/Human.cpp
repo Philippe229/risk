@@ -22,3 +22,14 @@ void Human::fortify(Map* currMap, Deck* currDeck) {
     Country* targetCountry = sourceCountry->getBorderingEnemies()[0];
     Fortification::fortify(this, sourceCountry, targetCountry, 1);
 }
+
+int Human::defensiveDice(int max) {
+    bool good = false;
+    int input;
+    cout << "Defender select dice(1-" << max << "): " << endl;
+    do {
+        good = Common::validateNumericInput(input, 1, max);
+    } while (!good);
+    return input;
+}
+
