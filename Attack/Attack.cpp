@@ -312,7 +312,7 @@ void Attack::attack(Deck* currDeck, Player* player, Country* sourceCountry, Coun
 	bool successfulTakeover = false;
 	// Roll the dice
 	vector<int> attackResults = sourceCountry->getOwner()->rollDie(numDice);
-	vector<int> defenseResults = destinationCountry->getOwner()->rollDie(min(2, destinationCountry->getArmies()));
+	vector<int> defenseResults = destinationCountry->getOwner()->rollDie(destinationCountry->getOwner()->defensiveDice(min(2, destinationCountry->getArmies())));
 
 	// Remove the appropriate amount of armies
 	for (int i = 0; i < min(attackResults.size(), defenseResults.size()); i++) {
