@@ -21,7 +21,7 @@ void Attack::attackInitalization(Player* player, Deck* d) {
 	if (player->getCountries().size() > countriesOwnedBeforeAttackPhase) {
 		player->getHand()->getCard(deck->Draw());
 	}
-	cout << "End of the attack phase.";
+	cout << "End of the attack phase." << endl;
 }
 
 void Attack::updateAttack() {
