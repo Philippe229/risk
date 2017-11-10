@@ -164,6 +164,15 @@ Initialization::Initialization() {
     createPlayers();
 }
 
+Initialization::Initialization(bool cPlayer) {
+    chooseMap();
+    cout << endl << "Successfully chose a map, creating the game state..." << endl;
+    if(cPlayer)
+        createPlayers();
+    else
+        currentDeck = new Deck(loadedMap->getMap()->getCountries().size());
+}
+
 Deck* Initialization::getDeck() {
     return currentDeck;
 }
