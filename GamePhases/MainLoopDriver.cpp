@@ -1,3 +1,4 @@
+#include <ctime>
 #include "Initialization.h"
 #include "Startup.h"
 #include "MainLoop.h"
