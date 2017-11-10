@@ -1,6 +1,9 @@
 #include "Attack.h"
 
 void Attack::attackInitalization(Player* player, Deck* d) {
+
+	notify(player, "Attack", "");
+
 	pl = player;
 	deck = d;
 	countries = pl->getCountries();
@@ -71,10 +74,12 @@ void Attack::attackProcedure() {
 			numAttack++;
 		}
 	}
+
 	if (numAttack < 1) {
 		cout << "No valid country to attack from" << endl;
 		return;
 	}
+
 	cout << "Select which country you would like to attack from" << endl;
 	do {
 		good = validateSpecNumericInput(input, valid);
@@ -91,14 +96,17 @@ void Attack::attackProcedure() {
 				<< enemyCountries.at(i)->getOwner()->getID() << endl;
 		valid.push_back(i + 1);
 	}
+
 	cout << "Select which country you would like to attack" << endl;
 	good = false;
 	do {
 		good = validateSpecNumericInput(input, valid);
 	} while (!good);
+
 	target = enemyCountries.at(input - 1);
 	att = base->getOwner();
 	def = target->getOwner();
+
 	if (userAttack(base, target)) {
 		good = false;
 		def->removeCountry(target);
@@ -112,7 +120,9 @@ void Attack::attackProcedure() {
 		base->removeArmies(input);
 		target->addArmies(input);
 	}
+
 	att->showCountries();
+
 	char response;
 	cout << "Do you wish to attack again Player " << id << " (Y/y to continue)?"
 			<< endl;
@@ -132,8 +142,12 @@ bool Attack::userAttack(Country* base, Country* target) {
 	int checks = 0;
 	vector<int> attResults;
 	vector<int> defResults;
-	cout << "***** " << base->getName() << " is attacking " << target->getName()
-			<< " *****" << endl;
+
+	string message = "Attacking " + target -> getName() + "'s " +
+			to_string(target -> getArmies()) + " armies (owned by " + def -> getName() + ") with " +
+			base -> getName() + "'s " +to_string(base -> getArmies()) + " armies.";
+	notify(att, "Attack", message);
+
 	while (true) {
 		if (base->getArmies() > 3)
 			attDice = 3;

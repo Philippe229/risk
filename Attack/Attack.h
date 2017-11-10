@@ -10,10 +10,11 @@
 
 #include "../Player/Player.h"
 #include "../CardComponents/Deck.h"
+#include "../PhaseObserver/Phase.h"
 
 using namespace std;
 
-class Attack {
+class Attack : public Phase {
 
 private:
 	void updateAttack();
