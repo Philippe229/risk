@@ -65,7 +65,7 @@ void Human::fortify(Map* currMap, Deck* currDeck) {
     } while (!good);
 
     // Select the amount of armies
-    Country* sourceCountry = getCountries()[input -1];
+    Country* sourceCountry = base[input -1];
     good = false;
     cout << "Select number of armies to move (1 - " <<  sourceCountry->getArmies() - 1 << ")" << endl;
     do {
