@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdio>
 #include "DomObserver.h"
 
 DomObserver::DomObserver() {
@@ -66,11 +67,12 @@ void DomObserver::display() {
     cout << "#####################" << endl;
 }
 
-void DomObserver::buildGraph(int numPlus, int numTot) {
+void DomObserver::buildGraph(double numPlus, int numTot) {
     for(int i = 0; i < numTot;i++)
-        if(i < numPlus)
+        if(i < (int)numPlus)
             cout << "+";
         else
             cout << "-";
-    cout << endl;
+    printf("\t %.2f ", numPlus*10 );
+    cout << "%"<< endl;
 }
