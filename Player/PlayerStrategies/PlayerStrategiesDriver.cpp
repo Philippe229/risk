@@ -10,7 +10,7 @@ int main() {
     srand(time(0));
 
 	Player* aggressiveBot = new AggressiveBot("Agressive Bot");
-    Player* defensiveBot = new AggressiveBot("Defensive Bot");
+    Player* defensiveBot = new DefensiveBot("Defensive Bot");
     Player* human = new Human("Human");
 
     Map* currMap;
