@@ -44,18 +44,20 @@ void Human::fortify(Map* currMap, Deck* currDeck) {
         return;
     }
 
-    // Update all the surrounding enemies of fortifiable countries
-	for (int i = 0; i < base.size(); i++) {
-		base[i]->updateInfo();
-		cout << i + 1 << "\t|" << base.at(i)->getName() << "|" << base.at(i)->getArmies() << "|" << base.at(i)->getNumEnemiesAround() << endl;
-    }
-
+    Fortification::startFortify(this);
+    
     char doFortify;
     cout << "Do you wish to fortify (y/n)? " << endl;
     cin >> doFortify;
 
     if (toupper(doFortify) == 'N') {
         return;
+    }
+
+    // Update all the surrounding enemies of fortifiable countries
+	for (int i = 0; i < base.size(); i++) {
+		base[i]->updateInfo();
+		cout << i + 1 << "\t|" << base.at(i)->getName() << "|" << base.at(i)->getArmies() << "|" << base.at(i)->getNumEnemiesAround() << endl;
     }
 
     // Select the source
@@ -65,7 +67,7 @@ void Human::fortify(Map* currMap, Deck* currDeck) {
     } while (!good);
 
     // Select the amount of armies
-    Country* sourceCountry = getCountries()[input -1];
+    Country* sourceCountry = base[input -1];
     good = false;
     cout << "Select number of armies to move (1 - " <<  sourceCountry->getArmies() - 1 << ")" << endl;
     do {
@@ -97,7 +99,7 @@ void Human::fortify(Map* currMap, Deck* currDeck) {
     Country* targetCountry = base[input -1];
     cout << sourceCountry->getName() << endl;
     cout << targetCountry->getName() << endl;
-    Fortification::fortify(this, sourceCountry, targetCountry, 1);
+    Fortification::fortify(this, sourceCountry, targetCountry, armies);
 }
 
 bool Human::verifyTargetCountry(Country* sourceCountry, Country* targetCountry) {

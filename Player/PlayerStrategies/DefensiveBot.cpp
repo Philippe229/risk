@@ -17,6 +17,7 @@ int DefensiveBot::defensiveDice(int max) {
 }
 
 void DefensiveBot::reinforce(Map* currMap, Deck* currDeck) {
+	Reinforcement::startReinforcement(this);
     Reinforcement::staticBonusArmies = Reinforcement::getTotalBonusArmies(this, currMap->getContinents());
     cout << "Bonus armies:" << Reinforcement::staticBonusArmies << endl;
     int incrementBy;
@@ -30,12 +31,11 @@ void DefensiveBot::reinforce(Map* currMap, Deck* currDeck) {
 
     // take the difference between the (i+1)th country armies and the (i)th country armies
     // and assign that difference to every country that is less or equal to (i)
-    for (int i = 0; i < myCountries.size(); i++) {
-
+    for (int i = 0; i < myCountries.size() - 1; i++) {
         incrementBy = myCountries[i+1]->getArmies() - myCountries[i]->getArmies();
 
         if (incrementBy == 0) {
-        	break; // (i) and (i+1) have same number of countries
+        	break;
         }
 
         if ((incrementBy*(i+1)) <= Reinforcement::staticBonusArmies) {
@@ -71,6 +71,7 @@ void DefensiveBot::attack(Map* currMap, Deck* currDeck) {
 }
 
 void DefensiveBot::fortify(Map* currMap, Deck* currDeck) {
+    Fortification::startFortify(this);
     vector<Country*> myCountries = Player::getCountries();
     Country* weakestCountry = NULL;
 

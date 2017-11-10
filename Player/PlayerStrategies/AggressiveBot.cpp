@@ -50,6 +50,7 @@ void AggressiveBot::attack(Map* currMap, Deck* currDeck) {
 }
 
 void AggressiveBot::fortify(Map* currMap, Deck* currDeck) {
+    Fortification::startFortify(this);
     vector<Country*> myCountries = Player::getCountries();
     Country* strongestCountry = NULL;
 
