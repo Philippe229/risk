@@ -94,7 +94,7 @@ void Human::fortify(Map* currMap, Deck* currDeck) {
         good = Common::validateNumericInput(input, 1, base.size());
     } while (!good);
 
-    Country* targetCountry = getCountries()[input -1];
+    Country* targetCountry = base[input -1];
     cout << sourceCountry->getName() << endl;
     cout << targetCountry->getName() << endl;
     Fortification::fortify(this, sourceCountry, targetCountry, 1);
