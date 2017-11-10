@@ -7,9 +7,11 @@
 
 #ifndef CARD_H_
 #define CARD_H_
+
 #include <string>
 #include <map>
 #include <iostream>
+
 using namespace std;
 
 class Card {
