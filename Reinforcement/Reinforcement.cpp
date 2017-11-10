@@ -14,6 +14,8 @@ int Reinforcement::getTotalBonusArmies(Player* player, vector<Continent*> contin
 }
 
 void Reinforcement::reinforcement(Player* player, Country* country, int numArmies) {
+	notify(player, "Reinforcement", "");
+
 	if (numArmies <= staticBonusArmies) {
 		if (player == NULL) {
 			cout << "Invalid player." << endl;

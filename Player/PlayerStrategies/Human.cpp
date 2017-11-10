@@ -49,7 +49,7 @@ void Human::fortify(Map* currMap, Deck* currDeck) {
     Country* targetCountry = getCountries()[input -1];
     cout << sourceCountry->getName() << endl;
     cout << targetCountry->getName() << endl;
-    Fortification::fortify(this, sourceCountry, targetCountry, 1);
+    Fortification::fortify(this, sourceCountry, targetCountry, armies);
 }
 
 int Human::defensiveDice(int max) {

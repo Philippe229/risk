@@ -304,7 +304,10 @@ void Attack::attack(Deck* currDeck, Player* player, Country* sourceCountry, Coun
 		return;
 	}
 
-	cout << sourceCountry->getName() << " is attacking " << destinationCountry->getName() << endl;
+	string message = "Attacking " + destinationCountry->getName() + "'s " +
+		to_string(destinationCountry->getArmies()) + " armies (owned by " + destinationCountry->getOwner()->getName() + ") with " +
+		sourceCountry->getName() + "'s " + to_string(sourceCountry->getArmies()) + " armies.";
+	notify(player, "Attack", message);
 
 	bool successfulTakeover = false;
 	// Roll the dice
