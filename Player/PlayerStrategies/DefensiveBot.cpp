@@ -71,6 +71,7 @@ void DefensiveBot::attack(Map* currMap, Deck* currDeck) {
 }
 
 void DefensiveBot::fortify(Map* currMap, Deck* currDeck) {
+    Fortification::startFortify(this);
     vector<Country*> myCountries = Player::getCountries();
     Country* weakestCountry = NULL;
 
