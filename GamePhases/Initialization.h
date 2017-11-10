@@ -34,6 +34,7 @@ private:
     void createPlayers();
 public:
     Initialization();
+    Initialization(bool);
     Deck* getDeck();
     vector<Player*> getPlayers();
     Map* getMap();

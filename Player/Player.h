@@ -43,6 +43,7 @@ public:
 
 	string getName();
 	int getArmies();
+	int getPlacedArmies();
 	int getID();
 	Hand* getHand();
 	DiceRollingFacility* getDiceFacility();

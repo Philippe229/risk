@@ -3,6 +3,7 @@
 #include <ctime>
 #include "Attack.h"
 #include "../Player/Player.h"
+#include "../Player/PlayerStrategies/Human.h"
 #include "../Map/Map.h"
 #include "../MapLoader/MapLoader.h"
 #include "../Map/Country.h"
@@ -16,8 +17,8 @@ int main(int argc, char **argv) {
 	try {
 		MapLoader loader("./Map/maps/World(small).map");
 		Map *map = loader.getMap();
-		Player* one = new Player("one");
-		Player* two = new Player("two");
+		Player* one = new Human("one");
+		Player* two = new Human("two");
 
 		for (auto& country : map->getCountries()) {
 			country->addArmies(1); // each country start with one army

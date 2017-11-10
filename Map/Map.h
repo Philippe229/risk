@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include "../Player/Player.h"
+#include "../Common/Observer/Subject.h"
 #include "Country.h"
 #include "Continent.h"
 
