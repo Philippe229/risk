@@ -19,6 +19,7 @@ private:
 	static int getMaxCardBonus(Player*);
 public:
 	static int staticBonusArmies;
+	static void startReinforcement(Player* p);
 	static void playerReinforcement(Player*, vector<Continent*>);
 	static void reinforcement(Player*, Country*, int);
 	static int getTotalBonusArmies(Player*, vector<Continent*>);

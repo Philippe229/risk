@@ -17,6 +17,7 @@ int DefensiveBot::defensiveDice(int max) {
 }
 
 void DefensiveBot::reinforce(Map* currMap, Deck* currDeck) {
+	Reinforcement::startReinforcement(this);
     Reinforcement::staticBonusArmies = Reinforcement::getTotalBonusArmies(this, currMap->getContinents());
     cout << "Bonus armies:" << Reinforcement::staticBonusArmies << endl;
     int incrementBy;

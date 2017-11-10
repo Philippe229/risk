@@ -2,6 +2,10 @@
 
 int Reinforcement::staticBonusArmies = 0;
 
+void Reinforcement::startReinforcement(Player* player) {
+	notify(player, "Reinforcement", "");
+}
+
 int Reinforcement::getTotalBonusArmies(Player* player, vector<Continent*> continents) {
 	int bonusArmies = 0;
 	
@@ -14,8 +18,6 @@ int Reinforcement::getTotalBonusArmies(Player* player, vector<Continent*> contin
 }
 
 void Reinforcement::reinforcement(Player* player, Country* country, int numArmies) {
-	notify(player, "Reinforcement", "");
-
 	if (numArmies <= staticBonusArmies) {
 		if (player == NULL) {
 			cout << "Invalid player." << endl;
@@ -35,8 +37,10 @@ void Reinforcement::reinforcement(Player* player, Country* country, int numArmie
 		country->addArmies(numArmies);
 		staticBonusArmies -= numArmies;
 
-		cout << player->getName() << " reinforced " << country->getName()
-				<< " with " << numArmies << " armies.... " << staticBonusArmies << " remaining bonus armies to place." << endl;
+		string message = "Reinforcing " + country -> getName() + " with " + to_string(numArmies) + " armies.... "
+				+ to_string(staticBonusArmies) + " remaining bonus armies to place.";
+		notify(player, "Reinforcement", message);
+
 	} else {
 		cout << "Not enough armies to place." << endl;
 	}
