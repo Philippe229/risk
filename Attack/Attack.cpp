@@ -1,4 +1,5 @@
 #include "Attack.h"
+
 void Attack::attackInitalization(Player* player, Deck* d) {
 	pl = player;
 	deck = d;
