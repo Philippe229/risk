@@ -88,6 +88,7 @@ vector<Country*> Country::getBorderingCountries() {
 }
 
 vector<Country*> Country::getBorderingEnemies() {
+	updateInfo();
 	return borderingEnemies;
 }
 

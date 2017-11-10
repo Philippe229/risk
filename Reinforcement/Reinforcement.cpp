@@ -32,6 +32,9 @@ void Reinforcement::reinforcement(Player* player, Country* country, int numArmie
 
 		country->addArmies(numArmies);
 		staticBonusArmies -= numArmies;
+
+		cout << player->getName() << " reinforced " << country->getName()
+				<< " with " << numArmies << " armies.... " << staticBonusArmies << " remaining bonus armies to place." << endl;
 	} else {
 		cout << "Not enough armies to place." << endl;
 	}
