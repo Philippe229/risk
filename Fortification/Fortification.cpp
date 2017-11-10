@@ -11,6 +11,10 @@
 
 using namespace std;
 
+void Fortification::startFortify(Player* player) {
+	notify(player, "Fortification", "");
+}
+
 void Fortification::fortify(Player* player, Country* sourceCountry, Country* targetCountry, int numOfArmies) {
 	if (player == NULL) {
 		cout << "Invalid player." << endl;
@@ -29,10 +33,13 @@ void Fortification::fortify(Player* player, Country* sourceCountry, Country* tar
 
 	if (verifyTargetCountry(player, sourceCountry, targetCountry) &&
 			verifyNumOfArmies(sourceCountry, numOfArmies)) {
-		cout << endl << player -> getName() + " is fortifying " + targetCountry -> getName() + "'s " +
+
+		string message = "Fortifying " + targetCountry -> getName() + "'s " +
 				to_string(targetCountry -> getArmies()) + " army/armies with " +
 				to_string(numOfArmies) + " of " + sourceCountry -> getName() + "'s " +
-				to_string(sourceCountry -> getArmies()) + " armies." << endl;
+				to_string(sourceCountry -> getArmies()) + " armies.";
+
+		notify(player, "Fortification", message);
 
 		sourceCountry -> removeArmies(numOfArmies);
 		targetCountry -> addArmies(numOfArmies);

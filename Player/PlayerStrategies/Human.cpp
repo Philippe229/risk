@@ -58,6 +58,10 @@ void Human::fortify(Map* currMap, Deck* currDeck) {
         return;
     }
 
+    Fortification::startFortify(this);
+
+    Common::displayPlayersCountriesAndArmies(this);
+
     // Select the source
     cout << "Select a source country" << endl;
     do {
