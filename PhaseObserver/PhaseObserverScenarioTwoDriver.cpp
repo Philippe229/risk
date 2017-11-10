@@ -1,3 +1,4 @@
+#include <ctime>
 #include <iostream>
 #include <vector>
 #include "../Player/Player.h"
@@ -11,6 +12,7 @@
 #include "../GamePhases/MainLoop.h"
 
 int main() {
+    srand(time(0));
 
 	// Load map, create deck, create player, assign countries
 	MapLoader loader("./Map/maps/World(small).map");
@@ -38,10 +40,6 @@ int main() {
 	// Start game
     MainLoop mainLoop(players, map, deck);
     mainLoop.play();
-
-	delete player1;
-	delete player2;
-	delete deck;
 
 	return 0;
 }

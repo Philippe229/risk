@@ -5,6 +5,7 @@
  *      Author: Philippe
  */
 
+#include <ctime>
 #include <iostream>
 #include <vector>
 #include "../Player/Player.h"
@@ -16,10 +17,8 @@
 #include "../CardComponents/Deck.h"
 #include "../GamePhases/MainLoop.h"
 
-// Small map has 42 countries
-// TODO observer startup phase?
-
 int main() {
+	srand(time(0));
 
 	// Load map, create deck, create player, assign countries
 	MapLoader loader("./Map/maps/World(small).map");
