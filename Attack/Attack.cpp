@@ -326,11 +326,11 @@ void Attack::attack(Deck* currDeck, Player* player, Country* sourceCountry, Coun
 			if (destinationCountry->getArmies() == 0) {
 				cout << player->getName() << " captured new country " << destinationCountry->getName() << endl;
 				destinationCountry->getOwner()->removeCountry(destinationCountry);
+				player->addCountry(destinationCountry);
 				destinationCountry->setOwner(player);
 				int numMoving = min(numArmiesToMove, sourceCountry->getArmies() - 1);
 				destinationCountry->addArmies(numMoving);
 				sourceCountry->removeArmies(numMoving);
-
 				successfulTakeover = true;
 			}
 		} else {
