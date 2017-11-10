@@ -163,7 +163,7 @@ int Hand::getAnyExchange() {
 
 		// Unique exchange
 		if (indexes[0].size() >= 1 && indexes[1].size() >= 1 && indexes[2].size() >= 1) {
-			if (VerifyExchange(indexes[0][0], indexes[1][0], indexes[2][0])) {
+			if (VerifyExchange(indexes[0][0] + 1, indexes[1][0] + 1, indexes[2][0] + 1)) {
 				if (indexes[1][0] < indexes[2][0])
 					swap(indexes[1][0], indexes[2][0]);
 				if (indexes[0][0] < indexes[1][0])
@@ -177,16 +177,17 @@ int Hand::getAnyExchange() {
 			}
 		} else if (indexes[cards[i].getCardVal()].size() >= 3) {
 			// Same card type exchange
-			if (VerifyExchange(indexes[i][0], indexes[i][1], indexes[i][2])) {
-				if (indexes[i][1] < indexes[i][2])
-					swap(indexes[i][1], indexes[i][2]);
-				if (indexes[i][0] < indexes[i][1])
-					swap(indexes[i][0], indexes[i][1]);
-				if (indexes[i][1] < indexes[i][2])
-					swap(indexes[i][1], indexes[i][2]);
-				cards.erase(cards.begin() + indexes[i][0] - 1);
-				cards.erase(cards.begin() + indexes[i][1] - 1);
-				cards.erase(cards.begin() + indexes[i][2] - 1);
+			int cardVal = cards[i].getCardVal();
+			if (VerifyExchange(indexes[cardVal][0] + 1, indexes[cardVal][1] + 1, indexes[cardVal][2] + 1)) {
+				if (indexes[cardVal][1] < indexes[cardVal][2])
+					swap(indexes[cardVal][1], indexes[cardVal][2]);
+				if (indexes[cardVal][0] < indexes[cardVal][1])
+					swap(indexes[cardVal][0], indexes[cardVal][1]);
+				if (indexes[cardVal][1] < indexes[cardVal][2])
+					swap(indexes[cardVal][1], indexes[cardVal][2]);
+				cards.erase(cards.begin() + indexes[cardVal][0] - 1);
+				cards.erase(cards.begin() + indexes[cardVal][1] - 1);
+				cards.erase(cards.begin() + indexes[cardVal][2] - 1);
 				break;
 			}
 		}

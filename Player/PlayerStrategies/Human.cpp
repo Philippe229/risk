@@ -50,6 +50,8 @@ void Human::fortify(Map* currMap, Deck* currDeck) {
 		cout << i + 1 << "\t|" << base.at(i)->getName() << "|" << base.at(i)->getArmies() << "|" << base.at(i)->getNumEnemiesAround() << endl;
     }
 
+    Fortification::startFortify(this);
+
     char doFortify;
     cout << "Do you wish to fortify (y/n)? " << endl;
     cin >> doFortify;
@@ -57,8 +59,6 @@ void Human::fortify(Map* currMap, Deck* currDeck) {
     if (toupper(doFortify) == 'N') {
         return;
     }
-
-    Fortification::startFortify(this);
 
     Common::displayPlayersCountriesAndArmies(this);
 
