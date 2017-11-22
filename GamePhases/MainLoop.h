@@ -17,12 +17,17 @@ private:
     Map* currMap;
     Deck* currDeck;
     DomObserver* d;
-
+    int turnsPerPlayer;
     Player* getWinner();
+    bool isMaxTurns;
+    int maxTurns;
+
 public:
     MainLoop(vector<Player*>, Map*, Deck*);
+    MainLoop(vector<Player*>, Map*, Deck*, int);
     vector<Player*> getPlayers();
     void play();
+    int playSeveral();
 };
 
 #endif

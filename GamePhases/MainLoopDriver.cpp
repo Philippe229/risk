@@ -2,10 +2,12 @@
 #include "Initialization.h"
 #include "Startup.h"
 #include "MainLoop.h"
+#include "../Player/PlayerStrategies/AggressiveBot.h"
+#include "../Player/PlayerStrategies/DefensiveBot.h"
 
 int main() {
-    Player* human = new Human("Player 1");
-    Player* h2 = new Human("Player 2");
+    Player* human = new AggressiveBot();
+    Player* h2 = new DefensiveBot();
     vector<Player*> players;
     players.push_back(human);
     players.push_back(h2);
@@ -28,7 +30,7 @@ int main() {
             h2->addCountry(currCountry);
         }
     }
-    MainLoop mainLoop(players, currMap , currDeck);
-    mainLoop.play();
+    MainLoop mainLoop(players, currMap , currDeck,0);
+    cout << "The winner is: " << mainLoop.playSeveral() << endl;
     return 0;
 }
