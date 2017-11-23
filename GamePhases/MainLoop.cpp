@@ -21,28 +21,33 @@ MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck) {
     playerOrder = players;
     currMap = theMap;
     currDeck = theDeck;
-    d = new DomObserver(this);
+    observer = new GameStatsObserver(this);
+    turn = 1;
 }
 
 // Play the game
 void MainLoop::play() {
     Player* winner;
     Player* currPlayer;
-    int playingIndex = 0;
-    int numTurns = 0;
+    size_t playingIndex = 0;
+    notifyAll();
 
     // While no one has won keep playing
     while ((winner = getWinner()) == NULL) {
         currPlayer = playerOrder[playingIndex];
-        notifyAll();
+//        notifyAll();
         currPlayer->reinforce(currMap, currDeck);
-        notifyAll();
+//        notifyAll();
         currPlayer->attack(currMap, currDeck);
-        notifyAll();
+//        notifyAll();
         currPlayer->fortify(currMap, currDeck);
 
+        if (playingIndex + 1 == playerOrder.size()) {
+        	turn++;
+        	notifyAll();
+        }
+
         playingIndex = (playingIndex + 1) % playerOrder.size();
-        numTurns += 1;
     }
 
     cout << "Winner: " << winner->getName() << endl;
@@ -50,4 +55,8 @@ void MainLoop::play() {
 
 vector<Player*> MainLoop::getPlayers() {
     return playerOrder;
+}
+
+int MainLoop::getTurn() {
+	return turn;
 }

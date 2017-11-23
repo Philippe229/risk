@@ -6,23 +6,29 @@
 #include "../Map/Map.h"
 #include "../CardComponents/Deck.h"
 #include "../Common/Observer/Subject.h"
-#include "../Common/Observer/DomObserver.h"
+#include "GameStatsObserver/GameStatsObserver.h"
+
 class Subject;
 class Player;
-class DomObserver;
+class GameStatsObserver;
 
-class MainLoop : public Subject { 
+class MainLoop : public Subject {
+
 private:
+    GameStatsObserver* observer;
     vector<Player*> playerOrder;
     Map* currMap;
     Deck* currDeck;
-    DomObserver* d;
+    int turn;
 
     Player* getWinner();
+
 public:
     MainLoop(vector<Player*>, Map*, Deck*);
     vector<Player*> getPlayers();
     void play();
+    int getTurn();
+
 };
 
 #endif
