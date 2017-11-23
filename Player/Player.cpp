@@ -89,7 +89,6 @@ void Player::addCountry(Country* c) {
 void Player::removeCountry(Country* c) {
 	for (size_t i = 0; i < countries.size(); i++) {
 		if (countries[i] == c) {
-			//TODO: update new country's owner
 			countries.erase(countries.begin() + i);
 			break;
 		}

@@ -23,6 +23,7 @@ public:
 	static void playerReinforcement(Player*, vector<Continent*>);
 	static void reinforcement(Player*, Country*, int);
 	static int getTotalBonusArmies(Player*, vector<Continent*>);
+	static void notifyObserver(Player*, string);
 };
 
 #endif /* REINFORCEMENT_REINFORCEMENT_H_ */
