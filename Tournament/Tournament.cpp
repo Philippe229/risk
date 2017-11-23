@@ -3,6 +3,8 @@
 #include "../Common/Common.h"
 #include "../Player/PlayerStrategies/AggressiveBot.h"
 #include "../Player/PlayerStrategies/DefensiveBot.h"
+#include "../Player/PlayerStrategies/RandomBot.h"
+#include "../Player/PlayerStrategies/CheaterBot.h"
 #include <limits>
 
 void Tournament::tournamentInitialization () {
@@ -34,12 +36,10 @@ void Tournament::setUpComputers(int numCpu) {
                 players.push_back(new DefensiveBot());
                 break;
             case 3:
-                //to do switch with random
-                players.push_back(new AggressiveBot());
+                players.push_back(new RandomBot());
                 break;
             case 4:
-                //to do switch with cheater
-                players.push_back(new DefensiveBot());
+                players.push_back(new CheaterBot());
                 break;
             default:
                 cout << "Invalid computer choice" << endl;
