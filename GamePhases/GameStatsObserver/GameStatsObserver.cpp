@@ -13,6 +13,7 @@ using namespace std;
 GameStatsObserver::GameStatsObserver(MainLoop* m) {
 	mainLoop = m;
 	mainLoop -> addObserver(this);
+	locked = false;
 }
 
 GameStatsObserver::~GameStatsObserver() {
@@ -29,4 +30,12 @@ void GameStatsObserver::update() {
 
 MainLoop* GameStatsObserver::getMainLoop() {
 	return mainLoop;
+}
+
+void GameStatsObserver::lock() {
+	locked = true;
+}
+
+bool GameStatsObserver::getLock() {
+	return locked;
 }

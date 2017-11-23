@@ -13,6 +13,7 @@
 #include "../CardComponents/Card.h"
 #include "../CardComponents/Deck.h"
 #include "../DiceRollingFacility/DiceRollingFacility.h"
+#include "../GamePhases/GameStatsObserver/GameStatsObserver.h"
 
 using namespace std;
 
@@ -21,6 +22,7 @@ class Country;
 class Continent;
 class Deck;
 class Map;
+class GameStatsObserver;
 
 class Player {
 
@@ -34,6 +36,7 @@ private:
 	vector<Country*> attackPossibilities;
 	DiceRollingFacility* dices;
 	Hand* hand;
+	GameStatsObserver* gameStatsObserver;
 
 public:
 	Player();
@@ -55,6 +58,8 @@ public:
 	void removeArmiesFromCountry(int, Country*);
 	void showCountries();
 	vector<int> rollDie(int);
+	GameStatsObserver* getGameStats();
+	void saveGameStats(GameStatsObserver*);
 
 	virtual void reinforce(Map*, Deck*) = 0;
 	virtual void attack(Map*, Deck*) = 0;

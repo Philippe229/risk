@@ -57,6 +57,10 @@ void DomDecorator::display() {
         buildGraph((rPercentage/10),10);
     }
 
+	cout << "--Country Owners--" << endl;
+	for (Country* c : mainLoop->getMap()->getCountries())
+		cout << c->getName() + " owner: " + c->getOwner()->getName() << endl;
+
     cout << "#####################" << endl;
 }
 

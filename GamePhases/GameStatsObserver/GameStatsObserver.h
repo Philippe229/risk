@@ -15,6 +15,9 @@ class MainLoop;
 
 class GameStatsObserver : public Observer {
 
+private:
+	bool locked;
+
 protected:
 	MainLoop* mainLoop;
 
@@ -23,6 +26,8 @@ public:
 	~GameStatsObserver();
 	void update();
 	MainLoop* getMainLoop();
+	bool getLock();
+	void lock();
 
 };
 

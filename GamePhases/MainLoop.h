@@ -9,6 +9,7 @@
 #include "GameStatsObserver/GameStatsObserver.h"
 
 class GameStatsObserver;
+class Map;
 
 class MainLoop : public Subject {
 
