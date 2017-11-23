@@ -14,8 +14,9 @@ private:
 	vector<Map*> maps;
 	vector<Player*> players;
 	int gamesPerMap;
-	int gamesToDraw;
+	int turnsToDraw;
 	vector<Game*> games;
+	void setUpComputers(int);
 
 public:
 	void tournamentInitialization();

@@ -2,7 +2,7 @@
 #include "../GamePhases/MainLoop.h"
 #include "../CardComponents/Deck.h"
 
-void Game::initialize(Map* m, vector<Player*> p, int n, int max) {
+Game::Game(Map* m, vector<Player*> p, int n, int max) {
 	map = m;
 	players = p;
 	gameNumber = n;
@@ -23,4 +23,11 @@ void Game::startGame() {
 		}
 	}
 
+}
+
+string Game::getWinnerName() {
+	if(win == NULL)
+		return "DRAW";
+	else	
+		return to_string(win->getID());
 }

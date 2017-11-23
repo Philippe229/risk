@@ -17,8 +17,9 @@ private:
 	int maxTurns;
 
 public:
-	void initialize(Map*,vector<Player*>,int,int);
+	Game(Map*,vector<Player*>,int,int);
 	void startGame();
+	string getWinnerName();
 };
 
 #endif

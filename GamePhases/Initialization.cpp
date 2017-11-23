@@ -1,4 +1,5 @@
 #include "Initialization.h"
+#include <algorithm>
 
 void Initialization::clearScreen() {
     cout << string(100, '\n');
@@ -105,6 +106,7 @@ vector<string> Initialization::getAndDisplayMapOptions() {
     return mapFiles;
 }
 
+
 // Gets user input for choosing an available map
 void Initialization::chooseMap() {
     cout << endl << "*CHOOSING MAP*" << endl;
@@ -142,6 +144,58 @@ void Initialization::chooseMap() {
     loadedMap = map;
 }
 
+vector<Map*> Initialization::chooseSeveralMaps() {
+    cout << endl << "*CHOOSING MAP*" << endl;
+    vector<string> mapFiles = getAndDisplayMapOptions();
+    vector<Map*> mapsSelected;
+    vector<int> choices;
+    for(int i =0; i < numMaps;i++) {
+        int mapNumber = getUserInputInteger("Select Map " + to_string(i+1) + " (-1 to quit): ", 1, mapFiles.size());
+        MapLoader* map = new MapLoader();
+
+        bool validMap = false;
+        string error;
+
+        // Check if it's a valid map
+        try {
+            map->parseMap(mapDirectory + mapFiles[mapNumber - 1]);
+            validMap = true;
+        } catch (invalid_argument e) {
+            error = e.what();
+        }
+
+        //Check if map already selected
+        if(std::find(choices.begin(), choices.end(), mapNumber) != choices.end()) {
+            validMap = false;
+            error = "Map already selected.";
+        } 
+
+        // While it's not a valid map keep asking for the user to choose another map
+        while (!validMap) {
+            clearScreen();
+            cout << error;
+            cout << "Invalid map, choose another map: " << endl;
+            getAndDisplayMapOptions();
+            mapNumber = getUserInputInteger("Select Map " + to_string(i+1) + " : ", 1, mapFiles.size());
+
+            try {
+                map->parseMap(mapDirectory + mapFiles[mapNumber - 1]);
+                validMap = true;
+            } catch (invalid_argument e) {
+                error = e.what();
+            }
+            //Check if map already selected
+            if(std::find(choices.begin(), choices.end(), mapNumber) != choices.end()) {
+                validMap = false;
+            } 
+        }
+        choices.push_back(mapNumber);
+        mapsSelected.push_back(map->getMap());
+    }
+
+    return mapsSelected;
+}
+
 // Gets input from the user for the amount of players that should be created
 void Initialization::createPlayers() {
     cout << endl << "*CHOOSING AMOUNT OF PLAYERS*" << endl;
@@ -162,6 +216,7 @@ Initialization::Initialization() {
     chooseMap();
     cout << endl << "Successfully chose a map, creating the game state..." << endl;
     createPlayers();
+    numMaps = 1;
 }
 
 Initialization::Initialization(bool cPlayer) {
@@ -171,6 +226,11 @@ Initialization::Initialization(bool cPlayer) {
         createPlayers();
     else
         currentDeck = new Deck(loadedMap->getMap()->getCountries().size());
+    numMaps = 1;
+}
+
+Initialization::Initialization(int n) {
+    numMaps = n;
 }
 
 Deck* Initialization::getDeck() {
