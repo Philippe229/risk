@@ -98,3 +98,6 @@ bool Fortification::verifyNumOfArmies(Country* sourceCountry, int numOfArmies) {
 	return true;
 }
 
+void Fortification::notifyObserver(Player* player, string message) {
+	notify(player, "Fortification", message);
+}

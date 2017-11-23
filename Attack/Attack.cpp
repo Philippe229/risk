@@ -348,3 +348,7 @@ void Attack::attack(Deck* currDeck, Player* player, Country* sourceCountry, Coun
 		player->getHand()->getCard(currDeck->Draw());
 	}
 }
+
+void Attack::notifyObserver(Player* player, string message) {
+	notify(player, "Attack", message);
+}

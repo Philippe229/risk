@@ -35,6 +35,7 @@ private:
 public:
 	void attackInitalization(Player*, Deck* deck);
 	static void attack(Deck*, Player*, Country*, Country*, int, int);
+	static void notifyObserver(Player*, string);
 };
 
 #endif /* ATTACK_H_ */

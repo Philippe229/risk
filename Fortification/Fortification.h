@@ -23,6 +23,7 @@ public:
 	static void startFortify(Player* player);
 	static void fortify(Player* player, Country* sourceCountry, Country* targetCountry, int numOfArmies);
 	static bool verifyTargetCountry(Player* player, Country* sourceCountry, Country* targetCountry);
+	static void notifyObserver(Player*, string);
 };
 
 #endif /* FORTIFICATION_H_ */
