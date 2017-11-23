@@ -2,8 +2,6 @@
 #define GAMEPHASES_GAMESTATSOBSERVER_DECORATORS_DOMDECORATOR_H_
 
 #include "StatsDecorator.h"
-#include "../../../Player/Player.h"
-
 
 class DomDecorator : public StatsDecorator {
 

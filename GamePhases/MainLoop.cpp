@@ -1,6 +1,8 @@
 #include <iostream>
 #include "MainLoop.h"
 #include "GameStatsObserver/Decorators/DomDecorator.h"
+#include "GameStatsObserver/Decorators/HandsDecorator.h"
+#include "GameStatsObserver/Decorators/ContinentsDecorator.h"
 
 using namespace std;
 
@@ -20,12 +22,6 @@ Player* MainLoop::getWinner() {
 
 MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck) {
 	gameStatsObserver = new GameStatsObserver(this);
-
-	// give player option to decorate observer
-	delete gameStatsObserver;
-
-	gameStatsObserver = new DomDecorator(new GameStatsObserver(this));
-
     playerOrder = players;
     currMap = theMap;
     currDeck = theDeck;
@@ -35,9 +31,6 @@ MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck) {
 
 MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck, int max) {
 	gameStatsObserver = new GameStatsObserver(this);
-
-	// TODO
-
     playerOrder = players;
     currMap = theMap;
     currDeck = theDeck;
@@ -54,6 +47,10 @@ void MainLoop::play() {
     Player* winner;
     Player* currPlayer;
     size_t playingIndex = 0;
+
+	// give player option to decorate observer
+	gameStatsObserver = new ContinentsDecorator(new HandsDecorator(new DomDecorator(new GameStatsObserver(this))));
+
     notify();
 
     // While no one has won keep playing
@@ -117,4 +114,8 @@ int MainLoop::getTurn() {
 
 void MainLoop::notify() {
 	gameStatsObserver -> update();
+}
+
+Map* MainLoop::getMap() {
+	return currMap;
 }

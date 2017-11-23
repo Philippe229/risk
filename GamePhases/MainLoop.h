@@ -32,6 +32,7 @@ public:
     int getTurn();
     int playSeveral();
     void notify();
+    Map* getMap();
 };
 
 #endif

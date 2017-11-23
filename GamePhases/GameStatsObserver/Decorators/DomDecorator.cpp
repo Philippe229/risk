@@ -37,7 +37,7 @@ void DomDecorator::display() {
         totalArmies += p->getPlacedArmies();
     }
 
-    cout << endl << "###GAME STATISTICS###" << endl;
+    cout << endl << "###DOMINATION STATISTICS###" << endl;
     cout << "--Dominance--" << endl;
     //Build bar graph
     for(int i = 0;i < players.size();i++) {
