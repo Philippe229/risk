@@ -19,7 +19,6 @@ private:
     DomObserver* d;
     int turnsPerPlayer;
     Player* getWinner();
-    bool isMaxTurns;
     int maxTurns;
 
 public:
