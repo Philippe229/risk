@@ -13,11 +13,12 @@ private:
 	Map* map;
 	Player* win;
 	vector<Player*> players;
+	Deck* deck;
 	int gameNumber;
 	int maxTurns;
 
 public:
-	Game(Map*,vector<Player*>,int,int);
+	Game(Map*,vector<Player*>,int,int,Deck*);
 	void startGame();
 	string getWinnerName();
 };

@@ -1,17 +1,19 @@
 #include "Game.h"
 #include "../GamePhases/MainLoop.h"
+#include "../GamePhases/Startup.h"
 #include "../CardComponents/Deck.h"
 
-Game::Game(Map* m, vector<Player*> p, int n, int max) {
+Game::Game(Map* m, vector<Player*> p, int n, int max, Deck* d) {
 	map = m;
+	deck = d;
 	players = p;
 	gameNumber = n;
 	maxTurns = max;
 }
 
 void Game::startGame() {
-	Deck* d = new Deck(map->getCountries().size());
-	MainLoop mainLoop(players, map, d, maxTurns);
+	Startup startup(players, map);
+	MainLoop mainLoop(players, map, deck, maxTurns);
 	int results = mainLoop.playSeveral();
 	if (results == -1) {
 		win = NULL;
@@ -29,5 +31,5 @@ string Game::getWinnerName() {
 	if(win == NULL)
 		return "DRAW";
 	else	
-		return to_string(win->getID());
+		return win->getName();
 }

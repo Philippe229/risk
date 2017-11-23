@@ -7,7 +7,9 @@
 #include "Game.h"
 #include "../Player/PlayerContext.h"
 #include "../Map/Map.h"
+#include "../CardComponents/Deck.h"
 
+class Map;
 class Tournament {
 
 private:
@@ -16,7 +18,9 @@ private:
 	int gamesPerMap;
 	int turnsToDraw;
 	vector<Game*> games;
+	vector<Deck*> decks;
 	void setUpComputers(int);
+	Map* cleanUpMap(Map*);
 
 public:
 	void tournamentInitialization();

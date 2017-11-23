@@ -3,7 +3,7 @@
 #include "../Map/Map.h"
 
 int main(int argc, char **argv) {
-   Tournament t;
-   t.tournamentInitialization();
-   t.startTournament();
+	Tournament t;
+	t.tournamentInitialization();
+	t.startTournament();
 }

@@ -345,7 +345,9 @@ void Attack::attack(Deck* currDeck, Player* player, Country* sourceCountry, Coun
 
 	// Get a card if a country was successfully attacked
 	if (player->getHand()->getNumberOfCards() < 5 && successfulTakeover) {
-		player->getHand()->getCard(currDeck->Draw());
+		if(currDeck->getNumberCards() > 0) {
+			player->getHand()->getCard(currDeck->Draw());
+		}
 	}
 }
 

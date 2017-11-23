@@ -41,6 +41,7 @@ public:
 	void addArmies(int);
 	void removeArmies(int);
 	void setOwner(Player*);
+	void setArmies(int);
 	void addBorderingCountry(Country*);
 	vector<Country*> getBorderingCountries();
 	vector<Country*> getBorderingEnemies();
