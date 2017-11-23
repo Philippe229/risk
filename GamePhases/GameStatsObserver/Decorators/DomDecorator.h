@@ -17,11 +17,6 @@ public:
 	void update();
 	void display();
 
-
-//    DomDecorator(MainLoop*);
-//	~DomDecorator();
-
-
 };
 
 #endif

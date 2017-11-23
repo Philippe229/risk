@@ -7,7 +7,7 @@
 
 #include "StatsDecorator.h"
 
-StatsDecorator::StatsDecorator(GameStatsObserver* o) {
+StatsDecorator::StatsDecorator(GameStatsObserver* o) : GameStatsObserver(o -> getMainLoop()) {
 	this -> decoratedObserver = o;
 }
 

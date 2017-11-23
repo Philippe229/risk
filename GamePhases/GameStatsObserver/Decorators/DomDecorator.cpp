@@ -2,16 +2,6 @@
 #include <iostream>
 #include <cstdio>
 
-//DomDecorator::DomDecorator(MainLoop* mLoop) {
-//	mainLoop = mLoop;
-//	mainLoop -> addObserver(this);
-//}
-
-//DomDecorator::~DomDecorator() {
-//	if (mainLoop != NULL)
-//		mainLoop -> removeObserver(this);
-//}
-
 DomDecorator::DomDecorator(GameStatsObserver* o) : StatsDecorator(o) {
 
 }

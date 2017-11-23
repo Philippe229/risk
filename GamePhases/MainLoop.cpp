@@ -54,7 +54,7 @@ void MainLoop::play() {
     Player* winner;
     Player* currPlayer;
     size_t playingIndex = 0;
-    notifyAll();
+    notify();
 
     // While no one has won keep playing
     while ((winner = getWinner()) == NULL) {
@@ -68,7 +68,7 @@ void MainLoop::play() {
 
         if (playingIndex + 1 == playerOrder.size()) {
         	turn++;
-        	notifyAll();
+        	notify();
         }
 
         playingIndex = (playingIndex + 1) % playerOrder.size();
@@ -113,4 +113,8 @@ vector<Player*> MainLoop::getPlayers() {
 
 int MainLoop::getTurn() {
 	return turn;
+}
+
+void MainLoop::notify() {
+	gameStatsObserver -> update();
 }

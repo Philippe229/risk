@@ -10,11 +10,6 @@
 
 using namespace std;
 
-GameStatsObserver::GameStatsObserver() {
-	// Creates an observer with no subject to observe
-	mainLoop = NULL;
-}
-
 GameStatsObserver::GameStatsObserver(MainLoop* m) {
 	mainLoop = m;
 	mainLoop -> addObserver(this);
@@ -30,4 +25,8 @@ void GameStatsObserver::update() {
 	cout << "Turn: " + to_string(mainLoop -> getTurn()) << endl;
     cout << "#####################" << endl;
 
+}
+
+MainLoop* GameStatsObserver::getMainLoop() {
+	return mainLoop;
 }

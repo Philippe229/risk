@@ -31,6 +31,7 @@ public:
     void play();
     int getTurn();
     int playSeveral();
+    void notify();
 };
 
 #endif

@@ -19,10 +19,10 @@ protected:
 	MainLoop* mainLoop;
 
 public:
-	GameStatsObserver();
 	GameStatsObserver(MainLoop* m);
 	~GameStatsObserver();
 	void update();
+	MainLoop* getMainLoop();
 
 };
 
