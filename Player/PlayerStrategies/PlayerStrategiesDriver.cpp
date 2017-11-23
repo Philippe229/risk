@@ -1,17 +1,27 @@
 #include <ctime>
 #include "../../GamePhases/Initialization.h"
 #include "../PlayerContext.h"
-#include "Human.h"
 #include "AggressiveBot.h"
 #include "DefensiveBot.h"
+#include "RandomBot.h"
+#include "CheaterBot.h"
 #include "../../Common/Common.h"
 
 int main() {
     srand(time(0));
 
-	Player* aggressiveBot = new AggressiveBot("Agressive Bot");
-    Player* defensiveBot = new DefensiveBot("Defensive Bot");
-    Player* human = new Human("Human");
+    Player* bots[4];
+    for (int i = 0; i < 4; i++) {
+        if (i % 4 == 0 ){
+            bots[i] = new AggressiveBot("Agressive Bot");
+        } else if (i % 4 == 1) {
+            bots[i] = new DefensiveBot("Defensive Bot");
+        } else if (i % 4 == 2) {
+            bots[i] = new RandomBot("Random Bot");
+        } else {
+            bots[i] = new CheaterBot("Cheater Bot");
+        }
+    }
 
     Map* currMap;
     Deck* currDeck;
@@ -24,103 +34,38 @@ int main() {
         Country* currCountry = currMap->getCountries()[i];
         currCountry->addArmies(1);
 
-        if (i % 3 == 0) {
-            currCountry->setOwner(aggressiveBot);
-            aggressiveBot->addCountry(currCountry);
-        } else if(i % 3 == 1){
-            currCountry->setOwner(defensiveBot);
-            defensiveBot->addCountry(currCountry);
-        } else {
-            currCountry->setOwner(human);
-            human->addCountry(currCountry);
+        if (i % 4 == 0) {
+            currCountry->setOwner(bots[0]);
+            bots[0]->addCountry(currCountry);
+        } else if (i % 4 == 1) {
+            currCountry->setOwner(bots[1]);
+            bots[1]->addCountry(currCountry);
+        } else if (i % 4 == 2) {
+            currCountry->setOwner(bots[2]);
+            bots[2]->addCountry(currCountry);
+        } else if (i % 4 == 3) {
+            currCountry->setOwner(bots[3]);
+            bots[3]->addCountry(currCountry);
         }
     }
 
     // DEMO: two turns each player
-    // TURN 1
+    for (int i = 0; i < 4 * 4; i++) {
+        cout << bots[i % 4]->getName() << " Countries and Armies: " << endl;
+        Common::displayPlayersCountriesAndArmies(bots[i % 4]);
 
-    cout << "Aggressive Bot Countries and Armies: " << endl;
-    Common::displayPlayersCountriesAndArmies(aggressiveBot);
+        cout << endl;
+        PlayerContext currBot(bots[i % 4]);
 
-    cout << endl;
-    PlayerContext agressive(aggressiveBot);
-    cout << "Agressive Bot Reinforcing: " << endl;
-    agressive.reinforce(currMap, currDeck);
-
-    cout << "Agressive Bot Attacking: " << endl;
-    agressive.attack(currMap, currDeck);
-
-    cout << "Agressive Bot Fortifying: " << endl;
-    agressive.fortify(currMap, currDeck);
-
-    cout << "Defensive Bot Countries and Armies: " << endl;
-    Common::displayPlayersCountriesAndArmies(defensiveBot);
-
-    cout << endl;
-    PlayerContext defensive(defensiveBot);
-    cout << "Defensive Bot Reinforcing: " << endl;
-    defensive.reinforce(currMap, currDeck);
-
-    cout << "Defensive Bot Attacking: " << endl;
-    defensive.attack(currMap, currDeck);
-
-    cout << "Defensive Bot Fortifying: " << endl;
-    defensive.fortify(currMap, currDeck);
-
-    cout << "Human Countries and Armies: " << endl;
-    Common::displayPlayersCountriesAndArmies(human);
-
-    cout << endl;
-    PlayerContext player(human);
-    cout << "Human Reinforcing: " << endl;
-    player.reinforce(currMap, currDeck);
-
-    cout << "Human Attacking: " << endl;
-    player.attack(currMap, currDeck);
-
-    cout << "Human Fortifying: " << endl;
-    player.fortify(currMap, currDeck);
-
-    // TURN 2
-
-    cout << "Aggressive Bot Countries and Armies: " << endl;
-    Common::displayPlayersCountriesAndArmies(aggressiveBot);
+        cout << bots[i % 4]->getName() << " Reinforcing: " << endl;
+        currBot.reinforce(currMap, currDeck);
     
-    cout << endl;
-    cout << "Agressive Bot Reinforcing: " << endl;
-    agressive.reinforce(currMap, currDeck);
-
-    cout << "Agressive Bot Attacking: " << endl;
-    agressive.attack(currMap, currDeck);
-
-    cout << "Agressive Bot Fortifying: " << endl;
-    agressive.fortify(currMap, currDeck);
-
-    cout << "Defensive Bot Countries and Armies: " << endl;
-    Common::displayPlayersCountriesAndArmies(defensiveBot);
+        cout << bots[i % 4]->getName() << " Attacking: " << endl;
+        currBot.attack(currMap, currDeck);
     
-    cout << endl;
-    cout << "Defensive Bot Reinforcing: " << endl;
-    defensive.reinforce(currMap, currDeck);
-
-    cout << "Defensive Bot Attacking: " << endl;
-    defensive.attack(currMap, currDeck);
-
-    cout << "Defensive Bot Fortifying: " << endl;
-    defensive.fortify(currMap, currDeck);
-
-    cout << "Human Countries and Armies: " << endl;
-    Common::displayPlayersCountriesAndArmies(human);
-    
-    cout << endl;
-    cout << "Human Reinforcing: " << endl;
-    player.reinforce(currMap, currDeck);
-
-    cout << "Human Attacking: " << endl;
-    player.attack(currMap, currDeck);
-
-    cout << "Human Fortifying: " << endl;
-    player.fortify(currMap, currDeck);
+        cout << bots[i % 4]->getName() << " Fortifying: " << endl;
+        currBot.fortify(currMap, currDeck);
+    }
 
     cout << "END OF DEMO" << endl;
     return 0;
