@@ -1,5 +1,6 @@
 #include <iostream>
 #include "MainLoop.h"
+#include "GameStatsObserver/Decorators/DomDecorator.h"
 
 using namespace std;
 
@@ -21,7 +22,9 @@ MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck) {
 	gameStatsObserver = new GameStatsObserver(this);
 
 	// give player option to decorate observer
-	gameStatsObserver = new DomDecorator(gameStatsObserver);
+	delete gameStatsObserver;
+
+	gameStatsObserver = new DomDecorator(new GameStatsObserver(this));
 
     playerOrder = players;
     currMap = theMap;
