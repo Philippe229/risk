@@ -20,15 +20,18 @@ private:
     Map* currMap;
     Deck* currDeck;
     int turn;
-
+    int turnsPerPlayer;
     Player* getWinner();
+    bool isMaxTurns;
+    int maxTurns;
 
 public:
     MainLoop(vector<Player*>, Map*, Deck*);
+    MainLoop(vector<Player*>, Map*, Deck*, int);
     vector<Player*> getPlayers();
     void play();
     int getTurn();
-
+    int playSeveral();
 };
 
 #endif
