@@ -78,7 +78,7 @@ void Tournament::printReport() {
 	int gamesIterator = 0;
 	cout << "TOURNAMENT RESULTS:" << endl << "      ";
 	for (int j = 0; j < gamesPerMap; j++) {
-		cout << "Game" + to_string(j+j);
+		cout << "Game" + to_string(j+1);
 	}
 	cout << endl;
 	for (int i = 0; i < maps.size(); i++) {
