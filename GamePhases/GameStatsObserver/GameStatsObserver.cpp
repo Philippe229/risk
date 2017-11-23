@@ -10,6 +10,11 @@
 
 using namespace std;
 
+GameStatsObserver::GameStatsObserver() {
+	// Creates an observer with no subject to observe
+	mainLoop = NULL;
+}
+
 GameStatsObserver::GameStatsObserver(MainLoop* m) {
 	mainLoop = m;
 	mainLoop -> addObserver(this);

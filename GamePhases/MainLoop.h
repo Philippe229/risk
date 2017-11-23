@@ -8,14 +8,13 @@
 #include "../Common/Observer/Subject.h"
 #include "GameStatsObserver/GameStatsObserver.h"
 
-class Subject;
-class Player;
 class GameStatsObserver;
 
 class MainLoop : public Subject {
 
 private:
-    GameStatsObserver* observer;
+	GameStatsObserver* gameStatsObserver;
+
     vector<Player*> playerOrder;
     Map* currMap;
     Deck* currDeck;

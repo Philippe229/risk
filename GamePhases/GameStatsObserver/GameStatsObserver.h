@@ -15,10 +15,11 @@ class MainLoop;
 
 class GameStatsObserver : public Observer {
 
-private:
+protected:
 	MainLoop* mainLoop;
 
 public:
+	GameStatsObserver();
 	GameStatsObserver(MainLoop* m);
 	~GameStatsObserver();
 	void update();

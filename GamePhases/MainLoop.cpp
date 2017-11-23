@@ -18,7 +18,11 @@ Player* MainLoop::getWinner() {
 }
 
 MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck) {
-    observer = new GameStatsObserver(this);
+	gameStatsObserver = new GameStatsObserver(this);
+
+	// give player option to decorate observer
+	gameStatsObserver = new DomDecorator(gameStatsObserver);
+
     playerOrder = players;
     currMap = theMap;
     currDeck = theDeck;
@@ -27,7 +31,10 @@ MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck) {
 }
 
 MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck, int max) {
-    observer = new GameStatsObserver(this);
+	gameStatsObserver = new GameStatsObserver(this);
+
+	// TODO
+
     playerOrder = players;
     currMap = theMap;
     currDeck = theDeck;
