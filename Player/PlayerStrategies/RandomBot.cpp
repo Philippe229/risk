@@ -35,7 +35,7 @@ void RandomBot::attack(Map* currMap, Deck* currDeck) {
         // Attack all bordering countries randomly and assign 1 army if take over is successful
         vector<Country*> borderingEnemies = randomCountry->getBorderingEnemies();
 
-        while (randomCountry != NULL && timesToAttack-- > 0 && randomCountry->getArmies() > 1) {
+        while (borderingEnemies.size() > 0 && randomCountry != NULL && timesToAttack-- > 0 && randomCountry->getArmies() > 1) {
             Country* countryToAttack = borderingEnemies[rand() % borderingEnemies.size()];
             Attack::attack(currDeck, this, randomCountry, countryToAttack, min(3, randomCountry->getArmies() - 1), 1);
         }
