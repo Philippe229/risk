@@ -46,6 +46,10 @@ void Reinforcement::reinforcement(Player* player, Country* country, int numArmie
 	}
 }
 
+void Reinforcement::notifyObserver(Player* player, string message) {
+	notify(player, "Reinforcement", message);
+}
+
 void Reinforcement::playerReinforcement(Player* player, vector<Continent*> continents) {
 
 	notify(player, "Reinforcement", "");
