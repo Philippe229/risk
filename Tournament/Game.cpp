@@ -10,7 +10,7 @@ void Game::initialize(Map* m, vector<Player*> p, int n, int max) {
 }
 
 void Game::startGame() {
-	Deck d = new Deck(map->getCountries().size());
+	Deck* d = new Deck(map->getCountries().size());
 	MainLoop mainLoop(players, map, d, maxTurns);
 	int results = mainLoop.playSeveral();
 	if (results == -1) {
