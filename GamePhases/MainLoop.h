@@ -6,17 +6,20 @@
 #include "../Map/Map.h"
 #include "../CardComponents/Deck.h"
 #include "../Common/Observer/Subject.h"
-#include "../Common/Observer/DomObserver.h"
-class Subject;
-class Player;
-class DomObserver;
+#include "GameStatsObserver/GameStatsObserver.h"
 
-class MainLoop : public Subject { 
+class GameStatsObserver;
+class Map;
+
+class MainLoop : public Subject {
+
 private:
+	GameStatsObserver* gameStatsObserver;
+
     vector<Player*> playerOrder;
     Map* currMap;
     Deck* currDeck;
-    DomObserver* d;
+    int turn;
     int turnsPerPlayer;
     Player* getWinner();
     bool isMaxTurns;
@@ -27,7 +30,10 @@ public:
     MainLoop(vector<Player*>, Map*, Deck*, int);
     vector<Player*> getPlayers();
     void play();
+    int getTurn();
     int playSeveral();
+    void notify();
+    Map* getMap();
 };
 
 #endif

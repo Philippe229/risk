@@ -13,11 +13,8 @@ class Observer {
 private:
 
 public:
-	Observer();
-	~Observer();
 	virtual void update() = 0;
+
 };
-
-
 
 #endif /* COMMON_OBSERVER_OBSERVER_H_ */

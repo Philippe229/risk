@@ -6,6 +6,7 @@
 #include <stdexcept>
 #include "../Player/Player.h"
 #include "../Map/Map.h"
+#include "../Map/Country.h"
 
 class Startup {
 private:
@@ -17,7 +18,7 @@ private:
     int getUserInputInteger(string, int, int);
 public:
     Startup(vector<Player*>, Map*);
-
+    Startup(vector<Player*> players, Map* map, bool quickStart);
     void randomPlayerOrder();
     void assignCountries();
     void assignArmies();

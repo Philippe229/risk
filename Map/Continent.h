@@ -24,6 +24,7 @@ public:
     vector<Country*> getCountries();
     string getName();
     int getWorth();
+    string getOwner();
 };
 
 #endif

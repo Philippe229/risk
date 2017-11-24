@@ -23,7 +23,11 @@ void Subject::addObserver(Observer* o ) {
 }
 
 void Subject::removeObserver(Observer* o) {
-	observers -> remove(o);
+	for (list<Observer*>::iterator itr = observers -> begin(); itr != observers -> end(); itr++) {
+		if (*itr == o) {
+			observers->erase(itr);
+		}
+	}
 }
 
 void Subject::notify(Observer* o) {

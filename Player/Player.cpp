@@ -11,6 +11,7 @@ Player::Player() {
 	unplaced_armies = 0;
 	hand = new Hand(5);
 	dices = new DiceRollingFacility();
+	gameStatsObserver = NULL;
 }
 
 Player::~Player(void) {
@@ -25,6 +26,7 @@ Player::Player(string n) {
 	unplaced_armies = 0;
 	hand = new Hand(5);
 	dices = new DiceRollingFacility();
+	gameStatsObserver = NULL;
 }
 
 Player::Player(string n, vector<Country*> c) {
@@ -35,6 +37,7 @@ Player::Player(string n, vector<Country*> c) {
 	hand = new Hand(5);
 	dices = new DiceRollingFacility();
 	countries = c;
+	gameStatsObserver = NULL;
 }
 
 string Player::getName() {
@@ -111,4 +114,12 @@ void Player::showCountries() {
 
 int Player::getID() {
 	return id;
+}
+
+void Player::saveGameStats(GameStatsObserver* stats) {
+	gameStatsObserver = stats;
+}
+
+GameStatsObserver* Player::getGameStats() {
+	return gameStatsObserver;
 }

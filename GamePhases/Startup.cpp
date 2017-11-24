@@ -77,6 +77,48 @@ Startup::Startup(vector<Player*> players, Map* map) {
         assignArmies();
 }
 
+Startup::Startup(vector<Player*> players, Map* map, bool quickStart) {
+	if (!quickStart) {
+		Startup(players, map);
+	} else {
+		playerOrder = players;
+		currMap = map;
+		randomPlayerOrder();
+
+		// Assign countries randomly
+		size_t countriesAssigned = 0;
+		int playerIndex = 0;
+
+		while (countriesAssigned < currMap -> getCountries().size()) {
+			int countryIndex = rand() % currMap -> getCountries().size();
+			if (currMap -> getCountries()[countryIndex] -> getOwner() == NULL) {
+				countriesAssigned += 1;
+	            currMap -> getCountries()[countryIndex] -> setOwner(playerOrder[playerIndex]);
+	            playerOrder[playerIndex] -> addCountry(currMap -> getCountries()[countryIndex]);
+	            playerIndex = (playerIndex + 1) % playerOrder.size();
+			}
+		}
+
+		// Spread player armies evenly
+	    int numArmies[6] = {0, 40, 35, 30, 25, 20};
+
+	    for (Player* player : playerOrder) {
+	    	vector<Country*> playerCountries = player -> getCountries();
+	    	size_t countryIndex = 0;
+	    	int armiesToPlace = numArmies[playerOrder.size() - 1];
+
+	    	while (armiesToPlace > 0) {
+	    		playerCountries[countryIndex] -> addArmies(1);
+	    		armiesToPlace--;
+	    		if (countryIndex + 1 == playerCountries.size())
+	    			countryIndex = 0;
+	    		else
+	    			countryIndex++;
+	    	}
+	    }
+	}
+}
+
 // Choose a random player order
 void Startup::randomPlayerOrder() {
     cout << endl << "*ASSIGNING RANDOM ORDER*" << endl;
