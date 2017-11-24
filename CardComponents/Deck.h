@@ -17,6 +17,7 @@ public:
 	Deck(int);
 	Card Draw();
 	void PrintStatistics();
+	int getNumberCards();
 private:
 	vector<Card> cards;
 	int size;

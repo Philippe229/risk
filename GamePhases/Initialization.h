@@ -21,6 +21,7 @@ class Initialization {
 private:
     const string mapDirectory = "./Map/maps/";
 
+    int numMaps;
     MapLoader* loadedMap;
     vector<Player*> gamePlayers;
     Deck* currentDeck;
@@ -34,10 +35,12 @@ private:
     void createPlayers();
 public:
     Initialization();
+    Initialization(int);
     Initialization(bool);
     Deck* getDeck();
     vector<Player*> getPlayers();
     Map* getMap();
+    vector<Map*> chooseSeveralMaps();
 };
 
 #endif

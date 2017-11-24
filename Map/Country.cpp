@@ -79,6 +79,10 @@ void Country::setOwner(Player* player) {
 	owner = player;
 }
 
+void Country::setArmies(int army) {
+	armies = army;
+}
+
 void Country::addBorderingCountry(Country* country) {
 	borderingCountries.push_back(country);
 }

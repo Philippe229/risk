@@ -22,7 +22,6 @@ private:
     int turn;
     int turnsPerPlayer;
     Player* getWinner();
-    bool isMaxTurns;
     int maxTurns;
 
 public:

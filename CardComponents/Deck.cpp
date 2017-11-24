@@ -69,3 +69,6 @@ void Deck::PrintStatistics() {
 	cout << "Number of Cavalry: " << numCavalry << "\n";
 }
 
+int Deck::getNumberCards() {
+	return cards.size();
+}

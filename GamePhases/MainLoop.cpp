@@ -9,38 +9,34 @@ using namespace std;
 
 // Get the winning player, return NULL if no one has won yet
 Player* MainLoop::getWinner() {
-    Player* currPlayer = currMap->getCountries()[0]->getOwner();
-    int currIndex = 1;
+	Player* currPlayer = currMap->getCountries()[0]->getOwner();
+	int currIndex = 1;
 
-    while (currIndex < currMap->getCountries().size()) {
-        if (currPlayer != currMap->getCountries()[currIndex++]->getOwner()) {
-            return NULL;
-        }
-    }
+	while (currIndex < currMap->getCountries().size()) {
+		if (currPlayer != currMap->getCountries()[currIndex++]->getOwner()) {
+			return NULL;
+		}
+	}
 
-    return currPlayer;
+	return currPlayer;
 }
 
 MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck) {
+	playerOrder = players;
+	currMap = theMap;
+	currDeck = theDeck;
 	gameStatsObserver = new GameStatsObserver(this);
-    playerOrder = players;
-    currMap = theMap;
-    currDeck = theDeck;
-    turn = 1;
-    isMaxTurns = false;
+	turn = 1;
 }
 
-MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck, int max) {
+MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck,
+		int max) {
+	playerOrder = players;
+	currMap = theMap;
+	currDeck = theDeck;
 	gameStatsObserver = new GameStatsObserver(this);
-    playerOrder = players;
-    currMap = theMap;
-    currDeck = theDeck;
-    turn = 1;
-
-    if (max > 0)
-        isMaxTurns = true;
-    else
-        isMaxTurns = false;
+	turn = 1;
+	maxTurns = max;
 }
 
 // Play the game
@@ -120,37 +116,36 @@ void MainLoop::play() {
         playingIndex = (playingIndex + 1) % playerOrder.size();
     }
 
-    cout << "Winner: " << winner->getName() << endl;
+	cout << "Winner: " << winner->getName() << endl;
 }
 
 int MainLoop::playSeveral() {
-    Player* winner;
-    Player* currPlayer;
-    int playingIndex = 0;
-    turnsPerPlayer = 0;
+	Player* winner;
+	Player* currPlayer;
+	int playingIndex = 0;
+	turnsPerPlayer = 0;
 
-    // While no one has won keep playing
-    while ((winner = getWinner()) == NULL) {
-        currPlayer = playerOrder[playingIndex];
-        notifyAll();
-        currPlayer->reinforce(currMap, currDeck);
-        notifyAll();
-        currPlayer->attack(currMap, currDeck);
-        notifyAll();
-        currPlayer->fortify(currMap, currDeck);
-        //increase turns after last player has played
-        if (playingIndex % playerOrder.size() == playerOrder.size() - 1)
-            turnsPerPlayer += 1;
-        if (isMaxTurns) {
-            if (turnsPerPlayer == maxTurns) {
-                //draw
-                return -1;
-            }
-        }
-        playingIndex = (playingIndex + 1) % playerOrder.size();
-    }
+	// While no one has won keep playing
+	while ((winner = getWinner()) == NULL) {
+		currPlayer = playerOrder[playingIndex];
+		notifyAll();
+		currPlayer->reinforce(currMap, currDeck);
+		notifyAll();
+		currPlayer->attack(currMap, currDeck);
+		notifyAll();
+		currPlayer->fortify(currMap, currDeck);
+		//increase turns after last player has played
+		if (playingIndex % playerOrder.size() == playerOrder.size() - 1) {
+			turnsPerPlayer += 1;
+		}
+		if (turnsPerPlayer == maxTurns) {
+			//draw
+			return -1;
+		}
+		playingIndex = (playingIndex + 1) % playerOrder.size();
+	}
 
-    return winner->getID();
+	return winner->getID();
 }
 
 vector<Player*> MainLoop::getPlayers() {

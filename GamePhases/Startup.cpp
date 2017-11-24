@@ -74,7 +74,7 @@ Startup::Startup(vector<Player*> players, Map* map) {
         currMap = map;
         randomPlayerOrder();
         assignCountries();
-        assignArmies();
+        assignArmiesAI();
 }
 
 Startup::Startup(vector<Player*> players, Map* map, bool quickStart) {
@@ -135,7 +135,7 @@ void Startup::randomPlayerOrder() {
 
     cout << endl << "Current player order: " << endl;
     for (int i = 0; i < playerOrder.size(); i++) {
-        cout << (i + 1) << ": " << playerOrder[i]->getName() << endl;
+        cout << (i + 1) << ": " << playerOrder[i]->getID() << endl;
     }
 }
 
@@ -204,6 +204,26 @@ void Startup::assignArmies() {
 
         // Move to the next player in the order
         currPlayerIndex = (currPlayerIndex + 1) % playerOrder.size();
+    }
+}
+
+void Startup::assignArmiesAI() {
+    cout << endl << "*ASSIGNING ARMIES TO COUNTRIES*" << endl;
+    int numArmies[6] = {0, 40, 35, 30, 25, 20};
+    int totalTokens = numArmies[playerOrder.size() - 1] * playerOrder.size();
+    int currPlayerIndex = 0;
+    map<string, int> playerArmies;
+
+    for (int i = 0; i < playerOrder.size(); i++) {
+        playerArmies[playerOrder[i]->getName()] = numArmies[playerOrder.size() - 1];
+    }
+
+    // Assign one army to every country
+    for (int i = 0; i < currMap->getCountries().size(); i++) {
+        currMap->getCountries()[i]->addArmies(1);
+        totalTokens -= 1;
+
+        playerArmies[currMap->getCountries()[i]->getOwner()->getName()] -= 1;
     }
 }
 

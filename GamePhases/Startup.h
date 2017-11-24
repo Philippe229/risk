@@ -22,6 +22,7 @@ public:
     void randomPlayerOrder();
     void assignCountries();
     void assignArmies();
+    void assignArmiesAI();
     vector<Player*> getPlayerOrder();
 };
 
