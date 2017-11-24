@@ -107,8 +107,9 @@ Map* Tournament::cleanUpMap(Map* m) {
 
 vector<Player*> Tournament::cleanUpPlayers(vector<Player*> playerz) {
 	for (int playerIndex = 0; playerIndex < playerz.size(); playerIndex++) {
-		playerz[playerIndex]->getCountries().clear();
-		cout << to_string(playerz[playerIndex]->getCountries().size());
+		for(auto& country: playerz[playerIndex]->getCountries()) {
+			playerz[playerIndex]->removeCountry(country);
+		}
 	}
 	return playerz;
 }
