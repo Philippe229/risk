@@ -10,6 +10,7 @@
 #include "../CardComponents/Deck.h"
 
 class Map;
+class Player;
 class Tournament {
 
 private:
@@ -21,6 +22,7 @@ private:
 	vector<Deck*> decks;
 	void setUpComputers(int);
 	Map* cleanUpMap(Map*);
+	vector<Player*> cleanUpPlayers(vector<Player*>);
 
 public:
 	void tournamentInitialization();

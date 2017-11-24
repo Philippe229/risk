@@ -63,7 +63,7 @@ void Tournament::startTournament() {
 	int gamesIterator = 0;
 	for (int i = 0; i < maps.size(); i++) {
 		for (int j = 0; j < gamesPerMap; j++) {
-			g = new Game(cleanUpMap(maps.at(i)), players, (i + 1) * (j + 1), turnsToDraw,
+			g = new Game(cleanUpMap(maps.at(i)), cleanUpPlayers(players), (i + 1) * (j + 1), turnsToDraw,
 					decks.at(gamesIterator));
 			gamesIterator++;
 			games.push_back(g);
@@ -103,4 +103,12 @@ Map* Tournament::cleanUpMap(Map* m) {
 			}
 	}
 	return m;
+}
+
+vector<Player*> Tournament::cleanUpPlayers(vector<Player*> playerz) {
+	for (int playerIndex = 0; playerIndex < playerz.size(); playerIndex++) {
+		playerz[playerIndex]->getCountries().clear();
+		cout << to_string(playerz[playerIndex]->getCountries().size());
+	}
+	return playerz;
 }
