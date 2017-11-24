@@ -1,29 +1,19 @@
+#include "DomDecorator.h"
 #include <iostream>
 #include <cstdio>
-#include "DomObserver.h"
 
-DomObserver::DomObserver() {
-	// Creates an observer with no subject to observe
-	m = NULL;
+DomDecorator::DomDecorator(GameStatsObserver* o) : StatsDecorator(o) {
+
 }
 
-DomObserver::DomObserver(MainLoop* mLoop) {
-	m = mLoop;
-	m -> addObserver(this);
-}
-
-DomObserver::~DomObserver() {
-	if (m != NULL)
-		m -> removeObserver(this);
-}
-
-void DomObserver::update() {
-    players = m->getPlayers();
+void DomDecorator::update() {
+	StatsDecorator::update();
+	players = mainLoop -> getPlayers();
     display();
 }
 
 //Has player already been added to array
-bool DomObserver::sawPlayer(Player* player) {
+bool DomDecorator::sawPlayer(Player* player) {
     if(players.size() == 0)
         return false;
     for(int i = 0; i < players.size();i++) {
@@ -33,7 +23,7 @@ bool DomObserver::sawPlayer(Player* player) {
     return false;
 }
 
-void DomObserver::display() {
+void DomDecorator::display() {
     int totalCountries = 0;
     int totalArmies = 0;
     int numCountries= 0;
@@ -46,7 +36,8 @@ void DomObserver::display() {
         totalCountries += p->getCountries().size();
         totalArmies += p->getPlacedArmies();
     }
-    cout << "###GAME STATISTICS###" << endl;
+
+    cout << endl << "###DOMINATION STATISTICS###" << endl;
     cout << "--Dominance--" << endl;
     //Build bar graph
     for(int i = 0;i < players.size();i++) {
@@ -56,6 +47,7 @@ void DomObserver::display() {
         cout << "| Player " << p->getID() << ": ";
         buildGraph((rPercentage/10),10);
     }
+
     cout << "--Army Force--" << endl;
 	for(int i = 0;i < players.size();i++) {
         p = players.at(i);
@@ -64,10 +56,15 @@ void DomObserver::display() {
         cout << "| Player " << p->getID() << ": ";
         buildGraph((rPercentage/10),10);
     }
+
+	cout << "--Country Owners--" << endl;
+	for (Country* c : mainLoop->getMap()->getCountries())
+		cout << c->getName() + " owner: " + c->getOwner()->getName() << endl;
+
     cout << "#####################" << endl;
 }
 
-void DomObserver::buildGraph(double numPlus, int numTot) {
+void DomDecorator::buildGraph(double numPlus, int numTot) {
     for(int i = 0; i < numTot;i++)
         if(i < (int)numPlus)
             cout << "+";

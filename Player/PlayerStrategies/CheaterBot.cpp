@@ -17,9 +17,11 @@ void CheaterBot::reinforce(Map* currMap, Deck* currDeck) {
     vector<Country*> myCountries = Player::getCountries();
    
     for (int i = 0; i < myCountries.size(); i++) {
-        string message = "Reinforcing " + myCountries[i]->getName() + " with " + to_string(myCountries[i]->getArmies()) + " armies....";
-        Reinforcement::notifyObserver(myCountries[i]->getOwner(), message);
-        myCountries[i]->addArmies(myCountries[i]->getArmies());
+        if (myCountries[i]->getArmies() <= (INT_MAX / 2)) {
+            string message = "Reinforcing " + myCountries[i]->getName() + " with " + to_string(myCountries[i]->getArmies()) + " armies....";
+            Reinforcement::notifyObserver(myCountries[i]->getOwner(), message);
+            myCountries[i]->addArmies(myCountries[i]->getArmies());
+        }
     }
 }
 
@@ -59,11 +61,13 @@ void CheaterBot::fortify(Map* currMap, Deck* currDeck) {
         // If we have bordering enemies then double the amount of armies
         vector<Country*> borderingEnemies = currCountry->getBorderingEnemies();
         if (borderingEnemies.size() > 0) {
-            string message = "Fortifying " + currCountry->getName() + "'s " +
-                to_string(currCountry->getArmies()) + " army/armies by doubling it.";
-            Fortification::notifyObserver(currCountry->getOwner(), message);
-            
-            currCountry->addArmies(currCountry->getArmies());
+            if (currCountry->getArmies() <= (INT_MAX / 2)) {
+                string message = "Fortifying " + currCountry->getName() + "'s " +
+                    to_string(currCountry->getArmies()) + " army/armies by doubling it.";
+                Fortification::notifyObserver(currCountry->getOwner(), message);
+                
+                currCountry->addArmies(currCountry->getArmies());
+            }
         }
     }
 }

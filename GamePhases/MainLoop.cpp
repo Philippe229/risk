@@ -1,5 +1,9 @@
 #include <iostream>
 #include "MainLoop.h"
+#include "GameStatsObserver/Decorators/DomDecorator.h"
+#include "GameStatsObserver/Decorators/HandsDecorator.h"
+#include "GameStatsObserver/Decorators/ContinentsDecorator.h"
+#include "../Common/Common.h"
 
 using namespace std;
 
@@ -21,7 +25,8 @@ MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck) {
 	playerOrder = players;
 	currMap = theMap;
 	currDeck = theDeck;
-	d = new DomObserver(this);
+	gameStatsObserver = new GameStatsObserver(this);
+	turn = 1;
 }
 
 MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck,
@@ -29,30 +34,87 @@ MainLoop::MainLoop(vector<Player*> players, Map* theMap, Deck* theDeck,
 	playerOrder = players;
 	currMap = theMap;
 	currDeck = theDeck;
-	d = new DomObserver(this);
+	gameStatsObserver = new GameStatsObserver(this);
+	turn = 1;
 	maxTurns = max;
 }
 
 // Play the game
 void MainLoop::play() {
-	Player* winner;
-	Player* currPlayer;
-	int playingIndex = 0;
-	int numTurns = 0;
+    Player* winner;
+    Player* currPlayer;
+    size_t playingIndex = 0;
 
-	// While no one has won keep playing
-	while ((winner = getWinner()) == NULL) {
-		currPlayer = playerOrder[playingIndex];
-		notifyAll();
-		currPlayer->reinforce(currMap, currDeck);
-		notifyAll();
-		currPlayer->attack(currMap, currDeck);
-		notifyAll();
-		currPlayer->fortify(currMap, currDeck);
+    for (Player* p : playerOrder)
+    	p->saveGameStats(new GameStatsObserver(this));
 
-		playingIndex = (playingIndex + 1) % playerOrder.size();
-		numTurns += 1;
-	}
+    // While no one has won keep playing
+    while ((winner = getWinner()) == NULL) {
+        currPlayer = playerOrder[playingIndex];
+
+        gameStatsObserver = currPlayer->getGameStats();
+        notify();
+
+        // Choose decorators for game stats
+        if (!currPlayer->getGameStats()->getLock()) {
+        	GameStatsObserver* playerGameStats = currPlayer->getGameStats();
+
+        	cout << endl << "Choose decorators:" << endl;
+        	cout << "0: default, 1: domination, 2: hands, 3: continents," << endl;
+        	cout << "4: domination + hands, 5: domination + continents, 6: hands + continents," << endl;
+        	cout << "7: domination + hands + continents" << endl;
+
+        	int selection = Common::getUserInputIntegerInRange("", 0, 7);
+
+        	switch(selection) {
+        	case 0:
+        		playerGameStats = new GameStatsObserver(this);
+        		break;
+        	case 1:
+        		playerGameStats = new DomDecorator(new GameStatsObserver(this));
+        		break;
+        	case 2:
+        		playerGameStats = new HandsDecorator(new GameStatsObserver(this));
+        		break;
+        	case 3:
+        		playerGameStats = new ContinentsDecorator(new GameStatsObserver(this));
+        		break;
+        	case 4:
+        		playerGameStats = new HandsDecorator(new DomDecorator(new GameStatsObserver(this)));
+        		break;
+        	case 5:
+        		playerGameStats = new ContinentsDecorator(new DomDecorator(new GameStatsObserver(this)));
+        		break;
+        	case 6:
+        		playerGameStats = new ContinentsDecorator(new HandsDecorator(new GameStatsObserver(this)));
+        		break;
+        	case 7:
+        		playerGameStats = new ContinentsDecorator(new HandsDecorator(new DomDecorator(new GameStatsObserver(this))));
+        		break;
+        	}
+
+        	currPlayer->saveGameStats(playerGameStats);
+
+        	char doLock;
+        	cout << "Do you wish to add/remove decorators in the future? (Y/N)" << endl;
+        	cin >> doLock;
+
+        	if (toupper(doLock) == 'N') {
+        		cout << "Locking game stats" << endl;
+        		currPlayer->getGameStats()->lock();
+        	}
+        }
+
+        currPlayer->reinforce(currMap, currDeck);
+        currPlayer->attack(currMap, currDeck);
+        currPlayer->fortify(currMap, currDeck);
+
+        if (playingIndex + 1 == playerOrder.size()) {
+        	turn++;
+        }
+
+        playingIndex = (playingIndex + 1) % playerOrder.size();
+    }
 
 	cout << "Winner: " << winner->getName() << endl;
 }
@@ -87,5 +149,17 @@ int MainLoop::playSeveral() {
 }
 
 vector<Player*> MainLoop::getPlayers() {
-	return playerOrder;
+    return playerOrder;
+}
+
+int MainLoop::getTurn() {
+	return turn;
+}
+
+void MainLoop::notify() {
+	gameStatsObserver -> update();
+}
+
+Map* MainLoop::getMap() {
+	return currMap;
 }
